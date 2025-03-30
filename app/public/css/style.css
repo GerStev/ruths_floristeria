@@ -848,6 +848,16 @@ color: var(--background-color);
     margin-top: 2rem;
 }
 
+.about-section h2{
+    color: var(--six-color);
+}
+
+.about-content{
+    color: var(--six-color);
+    font-weight: 300;
+
+}
+
 .about-img{
     width: 200px;
     height: 200px;
