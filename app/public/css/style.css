@@ -840,37 +840,60 @@ color: var(--background-color);
     transform: scale(1);
 }
 
+
 /* Estilos para la página Sobre Nosotros */
 .about-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+}
+.about-section{
+    padding: 1rem;
+    font-weight: 500;
 }
 
 .about-section h2{
+    margin-bottom: 5px;
     color: var(--six-color);
+}
+
+.valores h3{
+    margin-top: 10px;
 }
 
 .about-content{
-    color: var(--six-color);
-    font-weight: 300;
+    width: 700px;
+    height: 220px;
+    color: var(--third-color);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: justify;
+    
+    background: var(--cuarter-color);
+    
+}
 
+.about-images{
+    float: right; /* Posiciona el div al lado derecho */
+    margin-left: 20px; /* Espaciado entre el contenido y el div */
+    margin-top: 10px; /* Ajusta el margen superior si es necesario */
+    width: auto; /* Ajusta el ancho según el contenido */
 }
 
 .about-img{
-    width: 200px;
-    height: 200px;
+    display: block; /* Asegura que la imagen se comporte como un bloque */
+    max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
 }
 
 .about-text {
     font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
+    line-height: 1.2;
+    
 }
 
 .valores-list {
-    list-style: none;
+    margin-left: 2rem;
     padding: 0;
 }
 
@@ -1376,8 +1399,6 @@ color: var(--background-color);
         border-radius: 10px 10px 0 0;
     }
 
-    
-
     .info-product{
         padding: 15px 35px;
         line-height: 1.5;
@@ -1407,6 +1428,47 @@ color: var(--background-color);
         color: var(--cuarter-color);
         padding: 15px 10px;
         cursor: pointer;
+    }
+
+    /* Nosotros html */
+    .about-grid {
+        grid-template-columns: 1fr; /* Cambia a una sola columna */
+        gap: 1rem;
+    }
+
+    .about-section h2 {
+        text-align: center;
+    }
+
+    .about-content {
+        width: 100%; /* Ajusta el ancho al 100% */
+        height: auto; /* Permite que la altura sea dinámica */
+    }
+
+    .about-images {
+        float: none; /* Elimina el float */
+        margin: 0 auto; /* Centra el div */
+        text-align: center; /* Centra el contenido dentro del div */
+        width: 100%; /* Ajusta el ancho al 100% */
+        
+    }
+
+    .about-img {
+        display: block; /* Asegura que la imagen se comporte como un bloque */
+        max-width: 80%; /* Reduce el tamaño de la imagen */
+        height: auto; /* Mantiene la proporción */
+        margin: auto; /* Centra la imagen horizontalmente */
+    }
+
+    .about-text {
+        font-size: 1rem; /* Ajusta el tamaño de la fuente */
+        line-height: 1.5; /* Mejora la legibilidad */
+        
+    }
+
+    .valores-list {
+        margin-left: 0; /* Elimina el margen izquierdo */
+        
     }
 }
 
