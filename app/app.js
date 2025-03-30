@@ -212,15 +212,15 @@ app.post('/api/generate-image', async (req, res) => {
 });
 
 // Otras rutas
-app.get("/", (req, res) => {res.sendFile(__dirname + "/Paginas/index.html");});
-app.get("/index", (req, res) => {res.sendFile(__dirname + "/Paginas/index.html");});
-app.get("/catalogo", (req, res) => {res.sendFile(__dirname + "/Paginas/catalogo.html");});
-app.get("/contacto", (req, res) => {res.sendFile(__dirname + "/Paginas/contacto.html");});
-app.get("/nosotros", (req, res) => {res.sendFile(__dirname + "/Paginas/nosotros.html");});
-app.get("/personaliza", (req, res) => {res.sendFile(__dirname + "/Paginas/personaliza.html");});
-app.get("/carrito", (req, res) => {res.sendFile(__dirname + "/Paginas/carrito.html");});
-app.get("/register", (req, res) => {res.sendFile(__dirname + "/Paginas/register.html");});
-app.get("/login", (req, res) => {res.sendFile(__dirname + "/Paginas/login.html");});
+app.get("/", (req, res) => {res.sendFile(__dirname + "/views/index.html");});
+app.get("/index", (req, res) => {res.sendFile(__dirname + "/views/index.html");});
+app.get("/catalogo", (req, res) => {res.sendFile(__dirname + "/views/catalogo.html");});
+app.get("/contacto", (req, res) => {res.sendFile(__dirname + "/views/contacto.html");});
+app.get("/nosotros", (req, res) => {res.sendFile(__dirname + "/views/nosotros.html");});
+app.get("/personaliza", (req, res) => {res.sendFile(__dirname + "/views/personaliza.html");});
+app.get("/carrito", (req, res) => {res.sendFile(__dirname + "/views/carrito.html");});
+app.get("/register", (req, res) => {res.sendFile(__dirname + "/views/register.html");});
+app.get("/login", (req, res) => {res.sendFile(__dirname + "/views/login.html");});
 
 // Iniciar el servidor
 // Usar el puerto definido en el archivo .env o el puerto proporcionado por Render
