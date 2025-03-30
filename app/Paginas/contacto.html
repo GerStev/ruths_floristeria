@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"" >
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="/app/public/scripts/Contacto.js" defer></script>
+        <script src="/app/public/scripts/script.js" defer></script>
+    <title>Contactanos</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo-container">
+                <a href="/index" alt="Ruth´s Floristeria">
+                    <img src="/img/LogoOficial2.png" alt="Ruth´s Floristeria"
+                        class="logo">
+                </a>
+            </div>
+            <div class="name-container">
+                <!-- Bloque que contiene las redes sociales -->
+                <div class="brand-name">
+                    <div class="nameHeader">
+                        <h1>RUTH'S FLORISTERIA</h1>
+                    </div>
+                    
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/share/15a2yERfwt/" target="_blank"
+                            aria-label="Facebook" class="social_i_link">
+                            <img src="/Img/facebook_icon.png" alt="Facebook" class="social_i_link">
+                        </a>
+                        <a href="https://www.instagram.com/ruths_floristeria?igsh=MTY0dXgzOWtsdXFlZA==" target="_blank"
+                            aria-label="Instagram" class="social_i_link">
+                            <img src="/Img/ig_icon.png" alt="Instagram" class="social_i_link">
+                        </a>
+                        <a href="https://www.tiktok.com/@ruthu2922?_t=ZM-8tanzx0APdW&_r=1" target="_blank"
+                            aria-label="TikTok" class="social_i_link">
+                            <img src="/Img/tik-tok_icon.png" alt="TikTok" class="social_i_link">
+                        </a>
+                        <a href="https://wa.me/message/7DZKOUFPRBHBN1" target="_blank"
+                            aria-label="WhatsApp" class="social_i_link">
+                            <img src="/Img/whatsapp_icon.png" alt="WhatsApp" class="social_i_link">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Boton que hara la funcion de buscar los filtros -->
+        <div class="search-div">
+            <input class="search-input" type="search" name="search" placeholder="Buscar">
+            <button class="btn-search"><i class="bi bi-search"></i>
+            </button>
+                
+            <a href="/login" aria-label="Login" class="user-icon">
+                <i id="user-icon" class="bi bi-person-fill"></i>
+            </a>
+            <a class="plus-icon" href="#" aria-label="Cart" >
+                <i id="plus-icon" class="bi bi-cart-plus-fill"></i>
+            </a>
+
+        </div>
+        
+    </header>
+        <!-- Enlaces a las diferentes paginas -->
+        <div class="menuFondo">
+            <button class="abrir_menu" id="abrir">
+                <i class="bi bi-list"></i>
+            </button>
+         </div>
+        
+        <nav class="nav" id="nav">
+            <ul class="nav-menu" >
+                <button class="cerrar_menu" id="cerrar">
+                    <i class="bi bi-x">
+                </i></button>
+
+                <!-- menu -->
+                <li><a href="/index">Inicio</a></li>
+                <li><a href="/catalogo">Catálogo</a></li>
+                <li><a href="/contacto">Contactanos</a></li>
+                <li><a href="/nosotros">¿Quienes somos?</a></li>
+                
+            </ul>
+        </nav>
+
+    <div class="contenedor">
+        <div class="contacto-section">
+            <h1 id="title1">Dejanos saber que necesitas o quieres saber!!</h1>
+            <div class="contacto-grid">
+                <div class="form-container">
+                    <form id="contactForm" class="contacto-form" action="/enviar-formulario" method="POST">
+                        <div class="form-group">
+                            <label for="nombre">Nombre:*</label>
+                            <input type="text" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:*</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono:*</label>
+                            <input type="tel" id="telefono" name="telefono" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensaje">Dinos tu mensaje:*</label>
+                            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-enviar">Enviar</button>
+                    </form>
+                </div>
+
+                <div class="info-contacto">
+                    <h3>Información de empresa</h3>
+                    <div class="contacto-item">
+                        <i class="icon-location"></i>
+                        <p>Col. Los Angeles #18, Apopa, San Salvador Oeste</p>
+                    </div>
+                    <div class="contacto-item">
+                        <i class="icon-phone"></i>
+                        <p>+503 7810-0380</p>
+                    </div>
+                    <div class="contacto-item">
+                        <i class="icon-email"></i>
+                        <p>cd.rosaseternasshop@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <div>
+                    <img class="img-footer" src="./Img/LogoWeb.png" alt="Logo">
+                </div>
+                <div>
+                    <h2>Contactos</h2>
+                    <p class="footer_info">WhatsApp: (503) 7810 0380</p>
+                    <p class="footer_info">Correo: ruths_floristeria@gmail.com
+                </div>
+            <div>
+                <h2>
+                    Horarios de atencion
+                </h2>
+                <p class="footer_info">Lunes a Viernes 9:00 a.m - 5:00 p.m</p>
+                <p class="footer_info">Sabado: 9:00 a.m - 12:00 m.d</p>
+                <p class="footer_info">Domingo: 9:00 a.m - 12:00 m.d</p>
+            </div>
+            <div>
+                <h2>
+                   Dirección:
+                </h2>
+                <p class="footer_info">Pasaje Texas #18</p>
+                <p class="footer_info">Colonia Los Angeles</p>
+                <p class="footer_info">Apopa, San Salvador, El Salvador</p>
+            </div>
+            
+        </div>
+        <p class="footer-copyright">
+            Todos los derechos reservados &copy; 2024 Ruth's Floristeria. 
+        </p>
+    </footer>
+</body>
+</html>

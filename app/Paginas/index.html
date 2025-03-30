@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"" >
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+       
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="/scripts/script.js" defer></script>
+        <title>Flores eternas 4.0</title>
+        
+    </head>
+
+    </body> 
+        <!-- Cabezera del web: contiene el logo y nombre del negocio -->
+        <header>
+            <div class="header-container">
+                <div class="logo-container">
+                    <a href="/index" alt="Ruth´s Floristeria">
+                        <img src="/img/LogoOficial2.png" alt="Ruth´s Floristeria"
+                            class="logo" id="logo">
+                    </a>
+                </div>
+                <div class="name-container">
+                    <!-- Bloque que contiene las redes sociales -->
+                    <div class="brand-name">
+                        <div class="nameHeader">
+                            <h1>RUTH'S FLORISTERIA</h1>
+                        </div>
+                        
+                        <div class="social-icons">
+                            <a href="https://www.facebook.com/share/15a2yERfwt/" target="_blank"
+                                aria-label="Facebook" class="social_i_link">
+                                <img src="/Img/facebook_icon.png" alt="Facebook" class="social_i_link">
+                            </a>
+                            <a href="https://www.instagram.com/ruths_floristeria?igsh=MTY0dXgzOWtsdXFlZA==" target="_blank"
+                                aria-label="Instagram" class="social_i_link">
+                                <img src="/Img/ig_icon.png" alt="Instagram" class="social_i_link">
+                            </a>
+                            <a href="https://www.tiktok.com/@ruthu2922?_t=ZM-8tanzx0APdW&_r=1" target="_blank"
+                                aria-label="TikTok" class="social_i_link">
+                                <img src="/Img/tik-tok_icon.png" alt="TikTok" class="social_i_link">
+                            </a>
+                            <a href="https://wa.me/message/7DZKOUFPRBHBN1" target="_blank"
+                                aria-label="WhatsApp" class="social_i_link">
+                                <img src="/Img/whatsapp_icon.png" alt="WhatsApp" class="social_i_link">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Boton que hara la funcion de buscar los filtros -->
+            <div class="search-div">
+                <input class="search-input" type="search" name="search" placeholder="Buscar">
+                <button class="btn-search"><i class="bi bi-search"></i>
+                </button>
+                    
+                <a href="/login" aria-label="Login" class="user-icon">
+                    <i id="user-icon" class="bi bi-person-fill"></i>
+                </a>
+
+            </div>
+        </header>
+
+        
+            <!-- Enlaces a las diferentes paginas -->
+             <div class="menuFondo">
+                <button class="abrir_menu" id="abrir">
+                    <i class="bi bi-list"></i>
+                </button>
+             </div>
+            
+            <nav class="nav" id="nav">
+                <ul class="nav-menu" >
+                    <button class="cerrar_menu" id="cerrar">
+                        <i class="bi bi-x">
+                    </i></button>
+
+                    <!-- menu -->
+                    <li><a href="/index">Inicio</a></li>
+                    <li><a href="/catalogo">Catálogo</a></li>
+                    <li><a href="/contacto">Contactanos</a></li>
+                    <li><a href="/nosotros">¿Quienes somos?</a></li>
+                    
+                </ul>
+            </nav>
+                
+            <!-- Muestra el contenedor de los prodcutos disponibles en la web -->
+            <div class="contenedor">
+                <h1 id="title1">Descubrelo en nuestro stock.</h1>
+                <div class="flores-grid">
+                    <div class="flor-card">
+                        <img src="./Img/Rosas.jpg" alt="Rosas Rojas"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Arreglos Naturales.</h3>
+                            <p class="flor_text">Maravillosos arreglos naturales, donde juntamos todo tipo de flores que nos demuestran la verdadera belleza de la naturaleza.</p>
+                            <p id="nota">Nota: solo bajo pedido de 3 dias.</p>
+                            <a href="/catalogo" class="btn-ver" data-alert="true">Ver</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flor-card">
+                        <img src="./Img/GirasolRamo.jpg" alt="Girasoles"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Arreglos eternos.</h3>
+                            <p class="flor_text">Lindos arreglos con material de calidad, hechos a mano con liston satinado con un duracion eterna.</p>
+                            <a href="#" class="btn-ver"
+                                data-alert="true">Ver</a>
+                        </div>
+                    </div>
+
+                    <div class="flor-card">
+                        <img src="./Img/GirasolRamo.jpg" alt="Girasoles"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Arreglos artificiales.</h3>
+                            <p class="flor_text">Hermosos arreglos de flores de material de pana, mayor calidad que las artificiales</p>
+                            <a href="#" class="btn-ver"
+                                data-alert="true">Ver</a>
+                        </div>
+                    </div>
+
+                    <div class="flor-card">
+                        <img src="./Img/Detalles.jpg" alt="Orquídeas"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Mini detalles y arreglos.</h3>
+                            <p class="flor_text">Elegantes detalles para un toque de amor y novedad
+                                ante la pareja.</p>
+                            <a href="#" class="btn-ver"
+                                data-alert="true">Ver</a>
+                        </div>
+                    </div>
+                    
+				<!-- Contiene la funcion de personalizado -->
+                    <div class="flor-card">
+                        <img src="./Img/Personalizado.jpg" alt="Personalizados"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Personalizalo tu arreglo.</h3>
+                            <p class="flor_text">¡Aqui te damos la opcion que crees tu propio arreglo,
+                                ramo o detalle
+                                a tu gusto o para la ocasión que lo necesites!</p>
+                            <a href="/personaliza" class="btn-ver" >Personalizalo</a>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+			 <!-- Se muestra el slide de imagenes de presentacion -->
+                <div class="slider">
+                    <div class="sliderInner">
+                        <img class="imgSlide" src="./Img/Slide1.jpg" alt="">
+                        <img class="imgSlide" src="./Img/Slide2.jpg" alt="">
+                        <img class="imgSlide" src="./Img/Slide3.jpg" alt="">
+                        <img class="imgSlide" src="./Img/Silde4.jpg" alt="">
+                        <img class="imgSlide" src="./Img/Silde5.jpg" alt="">
+                        <!-- reinicio de slide -->
+                        <img class="imgSlide" src="./Img/Slide1.jpg" alt="">
+                        <img class="imgSlide" src="./Img/Slide2.jpg" alt="">
+                        <img class="imgSlide" src="./Img/Slide3.jpg" alt="">
+                        <img class="imgSlide" src="./Img/Silde4.jpg" alt="">
+                        <img class="imgSlide" src="./Img/Silde5.jpg" alt="">
+                    </div>
+                </div>
+
+                <!-- Muestra el contenedor de las proximos productos disponibles -->
+                <h1 id="title1">Proximamente disponible.</h1>
+                <div class="flores-grid">
+                    <div class="flor-card">
+                        <img src="./Img/Febrero.jpg" alt="Rosas Rojas"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Festival del amor y la amistad</h3>
+                            <p></p>
+                            <a href="#" class="btn-ver">Disponible
+                                14/02/2025</a>
+                        </div>
+                    </div>
+
+                    <div class="flor-card">
+                        <img src="./Img/Diamujer.jpg" alt="Girasoles"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Dia de las más guerreras del pais.</h3>
+                            <p></p>
+                            <a href="#" class="btn-ver">Disponible
+                                08/03/2025</a>
+                        </div>
+                    </div>
+
+                    <div class="flor-card">
+                        <img src="./Img/Diamadre.avif" alt="Orquídeas"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Demostremos a nuestro gran amor cuanto la amamos con
+                                un detalle hermoso y unico.</h3>
+                            <p></p>
+                            <a href="#" class="btn-ver">Disponible
+                                10/05/2025</a>
+                        </div>
+                    </div>
+
+                    <div class="flor-card">
+                        <img src="./Img/Independencia.jpg" alt="Personalizados"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Celebremos nuestra amada independencia.</h3>
+                            <p></p>
+                            <a href="#"
+                                class="btn-ver">Disponible 15/09/2025</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Muestra el contenedor de ofertas -->
+                <h1 id="title1">Ofertas disponibles.</h1>
+                <div class="flores-grid">
+                    <div class="flor-card">
+                        <img src="./Img/ofertas.png" alt="Rosas Rojas"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Ofertas por fin de año.</h3>
+                            <p></p>
+                            <a href="#" class="btn-ver">Ver</a>
+                        </div>
+                    </div>
+
+                    <div class="flor-card">
+                        <img src="./Img/descuento.webp" alt="Girasoles"
+                            class="flor-img">
+                        <div class="flor-info">
+                            <h3>Con el 15% de descuento.</h3>
+                            <p></p>
+                            <a href="#" class="btn-ver">Ver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="footer-container">
+                    <div class="footer-info">
+                        <div>
+                            <img class="img-footer" src="./Img/LogoWeb.png" alt="Logo">
+                        </div>
+                        <div>
+                            <h2>Contactos</h2>
+                            <p class="footer_info">WhatsApp: (503) 7810 0380</p>
+                            <p class="footer_info">Correo: ruths_floristeria@gmail.com
+                        </div>
+                    <div>
+                        <h2>
+                            Horarios de atencion
+                        </h2>
+                        <p class="footer_info">Lunes a Viernes 9:00 a.m - 5:00 p.m</p>
+                        <p class="footer_info">Sabado: 9:00 a.m - 12:00 m.d</p>
+                        <p class="footer_info">Domingo: 9:00 a.m - 12:00 m.d</p>
+                    </div>
+                    <div>
+                        <h2>
+                           Dirección:
+                        </h2>
+                        <p class="footer_info">Pasaje Texas #18</p>
+                        <p class="footer_info">Colonia Los Angeles</p>
+                        <p class="footer_info">Apopa, San Salvador, El Salvador</p>
+                    </div>
+                    
+                </div>
+                <p class="footer-copyright">
+                    Todos los derechos reservados &copy; 2024 Ruth's Floristeria. 
+                </p>
+            </footer>
+    </body>
+</html>
