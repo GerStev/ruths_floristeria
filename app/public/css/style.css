@@ -848,6 +848,11 @@ color: var(--background-color);
     margin-top: 2rem;
 }
 
+.about-img{
+    width: 200px;
+    height: 200px;
+}
+
 .about-text {
     font-size: 1.1rem;
     line-height: 1.6;
@@ -1176,7 +1181,7 @@ color: var(--background-color);
     }
 
     .btn-pagar:hover {
-        backg""round-color: var(--fifth-color); /* Cambia el color según tu preferencia */
+        background-color: var(--fifth-color); /* Cambia el color según tu preferencia */
     }
 
 
