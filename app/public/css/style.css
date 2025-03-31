@@ -1380,7 +1380,7 @@ color: var(--background-color);
     }
     
     /* Ajustes para el menú desplegable */
-    #menu-nav {
+    #menu_nav {
         opacity: 0;
         visibility: hidden;
         display: flex;
@@ -1399,12 +1399,12 @@ color: var(--background-color);
         z-index: 1000;
     }
 
-    #menu-nav.visible {
+    #menu_nav.visible {
         opacity: 1;
         visibility: visible;
     }
 
-    #menu-nav .menu-link {
+    #menu_nav .menu-link {
         color: var(--six-color);
         text-decoration: none;
         font-weight: bold;
@@ -1414,12 +1414,12 @@ color: var(--background-color);
         font-size: clamp(1.6rem, 1.5vw, 1rem);
     }
 
-    #menu-nav .menu-link:hover {
+    #menu_nav .menu-link:hover {
         background: var(--six-color);
         color: var(--cuarter-color);
     }
 
-    #menu-nav .cerrar_menu {
+    #menu_nav .cerrar_menu {
         display: block;
         border: none;
         font-size: 3rem;
@@ -1429,7 +1429,7 @@ color: var(--background-color);
         align-self: flex-end;
     }
 
-    #menu-nav .menu-catalogo-drop {
+    #menu_nav .menu-catalogo-drop {
         display: none;
         list-style: none;
         background: var(--six-color);
@@ -1438,7 +1438,7 @@ color: var(--background-color);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
-    #menu-nav .menu-dropdown:hover .menu-catalogo-drop {
+    #menu_nav .menu-dropdown:hover .menu-catalogo-drop {
         display: block;
     }
 

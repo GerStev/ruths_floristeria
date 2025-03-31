@@ -7,7 +7,7 @@ const cerrar = document.querySelector("#cerrar");
 document.addEventListener('DOMContentLoaded', () => {
     const abrirMenu = document.querySelector('.abrir_menu');
     const cerrarMenu = document.querySelector('#cerrar');
-    const navMenu = document.querySelector('#menu-nav');
+    const navMenu = document.querySelector('#menu_nav');
 
     abrirMenu.addEventListener('click', () => {
         navMenu.classList.add('visible');
