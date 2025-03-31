@@ -3,12 +3,61 @@ const nav = document.querySelector("#nav");
 const abrir = document.querySelector("#abrir");
 const cerrar = document.querySelector("#cerrar");
 
-abrir.addEventListener("click", () => {
-    nav.classList.add("visible");
+// Controla el despliegue del menu en movil
+document.addEventListener('DOMContentLoaded', () => {
+    const abrirMenu = document.querySelector('.abrir_menu');
+    const cerrarMenu = document.querySelector('#cerrar');
+    const navMenu = document.querySelector('#menu-nav');
+
+    abrirMenu.addEventListener('click', () => {
+        navMenu.classList.add('visible');
+    });
+
+    cerrarMenu.addEventListener('click', () => {
+        navMenu.classList.remove('visible');
+    });
+
+    // Cerrar el menú al hacer clic fuera de él
+    document.addEventListener('click', (event) => {
+        if (!navMenu.contains(event.target) && !abrirMenu.contains(event.target)) {
+            navMenu.classList.remove('visible');
+        }
+    });
 });
 
-cerrar.addEventListener("click", () => {
-    nav.classList.remove("visible");
+// Controla las opciones de filtrado
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButton = document.querySelector('.filter-button');
+    const filterOptions = document.querySelector('.filter-options');
+
+    filterButton.addEventListener('click', () => {
+        if (filterOptions.classList.contains('visible')) {
+            filterOptions.classList.remove('visible');
+            filterOptions.classList.add('hidden');
+            setTimeout(() => {
+                filterOptions.style.display = 'none'; // Ocultar después de la animación
+            }, 300); // Duración de la animación
+        } else {
+            filterOptions.style.display = 'flex'; // Mostrar antes de la animación
+            setTimeout(() => {
+                filterOptions.classList.remove('hidden');
+                filterOptions.classList.add('visible');
+            }, 10); // Pequeño retraso para permitir que la animación se active
+        }
+    });
+
+    // Cerrar el menú del filtro al hacer clic fuera de él
+    document.addEventListener('click', (event) => {
+        if (!filterOptions.contains(event.target) && !filterButton.contains(event.target)) {
+            if (filterOptions.classList.contains('visible')) {
+                filterOptions.classList.remove('visible');
+                filterOptions.classList.add('hidden');
+                setTimeout(() => {
+                    filterOptions.style.display = 'none'; // Ocultar después de la animación
+                }, 300); // Duración de la animación
+            }
+        }
+    });
 });
 
 
@@ -22,6 +71,23 @@ document.querySelectorAll('.flor-card').forEach(card => {
         card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
     });
 });
+
+// Maneja el boton de filtrado
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButton = document.getElementById('filter-button');
+    const filterOptions = document.getElementById('filter-options');
+
+    // Mostrar/ocultar opciones de filtro
+    filterButton.addEventListener('click', () => {
+        filterOptions.classList.toggle('hidden');
+    });
+});
+
+// Función para manejar los filtros
+function filterBy(criteria) {
+    console.log(`Filtrando por: ${criteria}`);
+    // Aquí puedes implementar la lógica para filtrar los productos
+}
 
 
 // Centra los titlos de las tarjetas

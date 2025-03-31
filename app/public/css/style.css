@@ -58,7 +58,7 @@ header {
     text-align: center;
     padding: 25px;
     position: relative;
-    height: 150px;
+    height: 180px;
     /* position: fixed; /* Fijar el footer */
     /* top: 0; /* Alinearlo al fondo */
     /* left: 0; */
@@ -210,8 +210,16 @@ hr{
 }
 
 
-/* Estilos de la barra de navegación*/
+/* Barra de navegacion */
 .nav-menu  {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: none;
+}
+
+.nav-menu-catalogo{
     list-style: none;
     display: flex;
     gap: 1rem;
@@ -230,12 +238,173 @@ hr{
     font-size: clamp(1.6rem, 1.5vw, 1rem);
 }
 
+.nav-menu-catalogo li a{
+    display: flex;
+    color: var(--six-color);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    font-size: clamp(1.6rem, 1.5vw, 1rem);
+}
+
 /* efectos de la barra de navegacion */
 .nav-menu li a:hover {
     background: var(--cuarter-color);
     color: var(--six-color);
     transform: translateY(-2px);
 }
+
+.nav-menu-catalogo li a:hover{
+    color: var(--cuarter-color);
+    transform: translateY(-2px);
+}
+
+
+/* ================================================================== */
+/* Menu despegable de barra de navegacion */
+.menu-box, .menu-catalogo {
+    list-style: none;
+    background: var(--six-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.logoMenu{
+    display: none;
+}
+
+.menu-catalogo-cerrar {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--cuarter-color);
+    cursor: pointer;
+}
+
+.menu-item {
+    display: inline-block;
+    position: relative;
+}
+
+.menu-link {
+    display: block;
+    padding: 15px 20px;
+    color: var(--cuarter-color);
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    font-size: clamp(1.6rem, 1.5vw, 1rem);
+    transition: all 0.3s ease;
+}
+
+.menu-link:hover {
+    background: var(--cuarter-color);
+    color: var(--six-color);
+    border-radius: 10px;
+}
+
+/* Estilos para el menú desplegable */
+.menu-dropdown:hover .menu-catalogo-drop {
+    display: block;
+}
+
+.menu-catalogo-drop {
+    width: 100%;
+    background: var(--six-color);
+    position: absolute;
+    z-index: 999;
+    display: none;
+    list-style: none;
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-drop-item {
+    display: block;
+}
+
+.menu-drop-link {
+    display: block;
+    padding: 10px 20px;
+    color: var(--cuarter-color);
+    text-decoration: none;
+    font-size: clamp(1.4rem, 1.5vw, 1rem);
+    transition: all 0.5s ease;
+    font-weight:500;
+}
+
+.menu-drop-link:hover {
+    background: var(--cuarter-color);
+    color: var(--six-color);
+    border-radius: 10px;
+}
+
+
+/* Estilos para el contenedor del botón de filtro */
+.filter-container {
+    display: block;
+    align-items: center;
+    justify-self: center;
+    text-align: center;
+    margin-top: 20px ;
+}
+
+.filter-button {
+    background-color: var(--cuarter-color);
+    color: var(--six-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+/* Opciones de filtro con animación */
+.filter-options {
+    display: none; /* Ocultas por defecto */
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(-10px); /* Posición inicial para la animación */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.filter-options.visible {
+    display: block; /* Mostrar las opciones */
+    opacity: 1;
+    transform: translateY(0); /* Animación hacia su posición final */
+}
+
+.filter-options.hidden {
+    opacity: 0;
+    transform: translateY(-10px); /* Animación hacia arriba */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.filter-options button {
+    background-color: var(--six-color);
+    color: var(--cuarter-color);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.filter-options button:hover {
+    background-color: var(--fifth-color);
+    color: var(--six-color);
+    font-weight: 600;
+    transform: scale(1.05); /* Efecto de zoom al pasar el cursor */
+}
+
 
 
 /* Contenedor de las tarjetas de presentacion de productos en 
@@ -493,6 +662,71 @@ color: var(--background-color);
 /* ==================================================================================== */
 /* Estilos para la página de catálogo */
 
+/* Estilos del menu despegable de barra de navegación*/
+#menu-nav {
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    gap: 1rem;
+    padding: 2rem;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--cuarter-color);
+    box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+#menu-nav.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#menu-nav .menu-link {
+    color: var(--six-color);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 20px;
+    transition: all 0.5s ease;
+    font-size: clamp(1.6rem, 1.5vw, 1rem);
+}
+
+#menu-nav .menu-link:hover {
+    background: var(--six-color);
+    color: var(--cuarter-color);
+}
+
+#menu-nav .cerrar_menu {
+    display: block;
+    border: none;
+    font-size: 3rem;
+    background: transparent;
+    color: var(--six-color);
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+#menu-nav .menu-catalogo-drop {
+    display: none;
+    list-style: none;
+    background: var(--six-color);
+    padding: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#menu-nav .menu-dropdown:hover .menu-catalogo-drop {
+    display: block;
+}
+
+
+
+/* Contenedor del icono catalogo */
 .container-icon{
     position: relative;
 }
@@ -1126,40 +1360,106 @@ color: var(--background-color);
     }
 
     .cerrar_menu{
-        color: var(--six-color);
+        position: absolute; /* Posiciona el botón de forma absoluta */
+        top: 10px; /* Ajusta la distancia desde la parte superior */
+        left: 10px; /* Ajusta la distancia desde la parte izquierda */
+        font-size: 2.5rem; /* Tamaño del icono */
+        background: transparent; /* Fondo transparente */
+        color: var(--six-color); /* Color del icono */
+        border: none; /* Sin bordes */
+        cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    }
+
+    .logoMenu{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto; /* Centra horizontalmente */
+        
     }
     
-    .nav{
+    /* Ajustes para el menú desplegable */
+    #menu-nav {
         opacity: 0;
         visibility: hidden;
-
         display: flex;
         flex-direction: column;
-        align-items: end;
-        position: absolute;
-        gap: 1rem;
-        padding: 2rem;
+        align-items: flex-end;
+        position: fixed;
         top: 0;
         right: 0;
         bottom: 0;
+        width: 80%;
         background: var(--cuarter-color);
         padding: 2rem;
+        gap: 1rem;
         box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 1000;
     }
 
-    .nav.visible{
+    #menu-nav.visible {
         opacity: 1;
         visibility: visible;
     }
 
-    .nav-menu{
-        flex-direction: column;
-        align-items: end;
+    #menu-nav .menu-link {
+        color: var(--six-color);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        font-size: clamp(1.6rem, 1.5vw, 1rem);
     }
 
-    .nav-menu li a {
-        
+    #menu-nav .menu-link:hover {
+        background: var(--six-color);
+        color: var(--cuarter-color);
+    }
+
+    #menu-nav .cerrar_menu {
+        display: block;
+        border: none;
+        font-size: 3rem;
+        background: transparent;
         color: var(--six-color);
+        cursor: pointer;
+        align-self: flex-end;
+    }
+
+    #menu-nav .menu-catalogo-drop {
+        display: none;
+        list-style: none;
+        background: var(--six-color);
+        padding: 10px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #menu-nav .menu-dropdown:hover .menu-catalogo-drop {
+        display: block;
+    }
+
+    /* Botón para abrir el menú */
+    .abrir_menu {
+        display: block;
+        border: none;
+        font-size: 3rem;
+        background: transparent;
+        color: var(--cuarter-color);
+        cursor: pointer;
+    }
+
+    /* Ocultar el menú en pantallas más grandes */
+    .menu-box {
+        display: none;
+    }
+
+    /* Mostrar el botón solo en pantallas de 768px o menos */
+    .filter-container {
+        display: block;
     }
 
     /* Carrito */

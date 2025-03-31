@@ -43,7 +43,9 @@
         <!-- barra de busqueda -->
         <div class="search-div">
             <input class="search-input" type="search" name="search" placeholder="Buscar">
+            
             <button class="btn-search"><i class="bi bi-search"></i></button>
+            
             <a href="/login" aria-label="Login" class="user-icon">
                 <i id="user-icon" class="bi bi-person-fill"></i>
             </a>
@@ -80,17 +82,23 @@
                         <span class="total-pagar">$0</span>
                         <a href="https://checkout.wompi.co/p/" class="btn-pagar" target="_blank">Ir a pagar</a>
                     </div>
+
                     <p class="cart-empty">El carrito está vacío</p>
+
                 </div>
+
             </div>
         </div>
     </header>
 
     <!-- Menú desplegable -->
     <div class="menuFondo">
+
         <button class="abrir_menu" id="abrir">
             <i class="bi bi-list"></i>
         </button>
+
+
         <!-- Carrito pequeño -->
         <div class="container-icon cart-small">
             <div class="container-cart-icon">
@@ -128,22 +136,46 @@
         </div>
      </div>
 
-    <nav class="nav" id="nav">
-        <ul class="nav-menu" >
-            <button class="cerrar_menu" id="cerrar">
-                <i class="bi bi-x">
-            </i></button>
-            
+    
+    <ul class="menu-box menu-catalogo" id="menu_nav">
 
-            <!-- menu -->
-            <li><a href="/index">Inicio</a></li>
-            <li><a href="/catalogo">Catálogo</a></li>
-            <li><a href="/contacto">Contactanos</a></li>
-            <li><a href="/nosotros">¿Quienes somos?</a></li>
-            
-        </ul>
-        
-    </nav>
+        <button class="cerrar_menu" id="cerrar">
+            <i class="bi bi-x"></i>
+        </button>
+
+        <img src="/Img/LogoOficial2.png" alt="logoMenu" class="logoMenu">
+
+        <li class="menu-item"><a href="/index" class="menu-link">Inicio</a></li>
+    
+        <li class="menu-item menu-dropdown">
+            <a href="#" class="menu-link">Flores 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                    <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                </svg>
+            </a>
+            <ul class="menu-drop menu-catalogo-drop">
+                <li class="menu-drop-item"><a href="#" class="menu-drop-link">Rosas</a></li>
+                <li class="menu-drop-item"><a href="#" class="menu-drop-link">Girasoles</a></li>
+                <li class="menu-drop-item"><a href="#" class="menu-drop-link">Lirios</a></li>
+            </ul>
+        </li>
+    
+        <li class="menu-item"><a href="#" class="menu-link">Contactanos</a></li>
+        <li class="menu-item"><a href="#" class="menu-link">Sobre nosotros</a></li>
+    </ul>
+    
+
+    <!-- Botón de filtro -->
+    <div class="filter-container">
+        <button id="filter-button" class="filter-button">Filtrar Productos</button>
+        <div id="filter-options" class="filter-options hidden">
+            <button onclick="filterBy('price')">Por Precio</button>
+            <button onclick="filterBy('relevance')">Más Relevantes</button>
+            <button onclick="filterBy('bestsellers')">Más Vendidos</button>
+            <button onclick="filterBy('type')">Por Tipo de Flor</button>
+        </div>
+    </div>
+
 
     <!-- ================================================= -->
     <!-- Contiene los productos -->
@@ -166,12 +198,12 @@
         <div class="item">
             <figure>
                 <img
-                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                    src="/Img/Slide1.jpg"
                     alt="producto"
                 />
             </figure>
             <div class="info-product">
-                <h2>Ramo de rosas <hr>(12 unidades)</h2>
+                <h2>Corazón de rosas <hr>(30 unidades)</h2>
                 <p class="price">$25</p>
                 <button class="btn-add-cart">Añadir al carrito</button>
             </div>
@@ -179,56 +211,12 @@
         <div class="item">
             <figure>
                 <img
-                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1099&q=80"
+                    src="/Img/Slide2.jpg"
                     alt="producto"
                 />
             </figure>
             <div class="info-product">
-                <h2>Ramo de rosas <hr>(18 unidades)</h2>
-                <p class="price">$35</p>
-                <button class="btn-add-cart">Añadir al carrito</button>
-            </div>
-        </div>
-        <div class="item">
-            <figure>
-                <img
-                    src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80"
-                    alt="producto"
-                />
-            </figure>
-            <div class="info-product">
-                <h2>Smartwatch</h2>
-                <p class="price">$90</p>
-                <button class="btn-add-cart">Añadir al carrito</button>
-            </div>
-        </div>
-        <div class="item">
-            <figure>
-                <img
-                    src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80"
-                    alt="producto"
-                />
-            </figure>
-            <div class="info-product">
-                <h2>Gafas de sol</h2>
-                <p class="price">$30</p>
-                <button class="btn-add-cart">Añadir al carrito</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Segundo bloque -->
-    <h1 class="titleCatalogos">Rosas</h1>
-    <div class="container-items">
-        <div class="item">
-            <figure>
-                <img
-                    src="/Img/Rosas.jpg"
-                    alt="producto"
-                />
-            </figure>
-            <div class="info-product">
-                <h2>Ramo de rosas <hr>(8 unidades)</h2>
+                <h2>Ramo de rosas <hr>(7 unidades)</h2>
                 <p class="price">$15</p>
                 <button class="btn-add-cart">Añadir al carrito</button>
             </div>
@@ -236,12 +224,56 @@
         <div class="item">
             <figure>
                 <img
-                    src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                    src="/Img/Silde4.jpg"
                     alt="producto"
                 />
             </figure>
             <div class="info-product">
-                <h2>Ramo de rosas <hr>(12 unidades)</h2>
+                <h2>Ramos de rosas <hr> (10 unidades) </h2>
+                <p class="price">$20</p>
+                <button class="btn-add-cart">Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img
+                    src="/Img/Silde5.jpg"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Cartera de rosas</h2>
+                <p class="price">$15</p>
+                <button class="btn-add-cart">Añadir al carrito</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Segundo bloque -->
+    <h1 class="titleCatalogos">Girasoles</h1>
+    <div class="container-items">
+        <div class="item">
+            <figure>
+                <img
+                    src="/Img/GirasolArr.jpg"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Arreglo de girasol <hr>(5 unidades)</h2>
+                <p class="price">$15</p>
+                <button class="btn-add-cart">Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img
+                    src="/Img/GirasolRamo.jpg"
+                    alt="producto"
+                />
+            </figure>
+            <div class="info-product">
+                <h2>Ramo de girasol <hr>(12 unidades)</h2>
                 <p class="price">$25</p>
                 <button class="btn-add-cart">Añadir al carrito</button>
             </div>
