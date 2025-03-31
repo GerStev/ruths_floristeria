@@ -217,14 +217,11 @@ hr{
     gap: 1rem;
     padding: 1rem;
     border: none;
+    margin-top: 20px;
 }
 
-.nav-menu-catalogo{
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    padding: 1rem;
-    border: none;
+.logoNav{
+    display: none;
 }
 
 .nav-menu li a {
@@ -1353,7 +1350,7 @@ color: var(--background-color);
     .abrir_menu, .cerrar_menu {
         display: block;
         border: none;
-        font-size: 3rem;
+        font-size: 4rem;
         background: transparent;
         color: var(--cuarter-color);
         
@@ -1363,7 +1360,7 @@ color: var(--background-color);
         position: absolute; /* Posiciona el botón de forma absoluta */
         top: 10px; /* Ajusta la distancia desde la parte superior */
         left: 10px; /* Ajusta la distancia desde la parte izquierda */
-        font-size: 2.5rem; /* Tamaño del icono */
+        font-size: 5rem; /* Tamaño del icono */
         background: transparent; /* Fondo transparente */
         color: var(--six-color); /* Color del icono */
         border: none; /* Sin bordes */
@@ -1399,7 +1396,7 @@ color: var(--background-color);
         z-index: 1000;
     }
 
-    #menu_nav.visible {
+    #menu_nav.visible  {
         opacity: 1;
         visibility: visible;
     }
@@ -1456,6 +1453,67 @@ color: var(--background-color);
     .menu-box {
         display: none;
     }
+
+    /* ============================================================== */
+    /* Barra de navegacion en froma de menu */
+    .nav{
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 80%;
+        background: var(--cuarter-color);
+        padding: 1rem;
+        gap: 1rem;
+        box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 1000;
+        
+    }
+
+    .nav.visible{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .logoNav{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto; /* Centra horizontalmente */
+        margin-top: 50px;
+        margin-bottom: 20px;
+        
+    }
+
+    .nav-menu{
+        flex-direction: column;
+        align-items: end;
+    }
+
+    .nav-menu li a {
+        
+        color: var(--six-color);
+    }
+
+    .cerrar_menu {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 3rem;
+        background: transparent;
+        border: none;
+        color: var(--six-color);
+        cursor: pointer;
+    }
+
+
 
     /* Mostrar el botón solo en pantallas de 768px o menos */
     .filter-container {
