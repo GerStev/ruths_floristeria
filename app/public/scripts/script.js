@@ -23,6 +23,20 @@ document.querySelectorAll('.flor-card').forEach(card => {
     });
 });
 
+
+// Centra los titlos de las tarjetas
+document.addEventListener("DOMContentLoaded", () => {
+    const titles = document.querySelectorAll(".flor-info h3");
+
+    titles.forEach(title => {
+        if (title.textContent.trim().length <= 16) {
+            title.classList.add("text-center");
+        } else {
+            title.classList.add("text-justify");
+        }
+    });
+});
+
 document.querySelectorAll('.masContenido').forEach(card => {
     card.addEventListener('mouseover', () => {
         card.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';

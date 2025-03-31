@@ -25,6 +25,20 @@
     --card-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Clase para centrar el texto */
+.text-center {
+    text-align: center;
+}
+
+/* Clase para justificar el texto */
+.text-justify {
+    text-align: justify;
+}
+
+
+/* ======================================================================================================== */
+/* Inicio del poyecto */
+
 /* Cuerpo de las paginas */
 body {
     background: var(--six-color);
@@ -33,6 +47,7 @@ body {
     position: relative;
     font-family: "Raleway", serif;
 }
+
 /* Cabezera de las paginas */
 header {
     display: flex;
@@ -43,13 +58,18 @@ header {
     text-align: center;
     padding: 25px;
     position: relative;
+    height: 150px;
+    /* position: fixed; /* Fijar el footer */
+    /* top: 0; /* Alinearlo al fondo */
+    /* left: 0; */
+    /* width: 100%; Asegurar que ocupe todo el ancho */ 
+    /* z-index: 5; Asegura que esté por encima de otros elementos */ 
 }
 
 /* linea de separación entre blooques de las tarjetas */
 hr{
     border: none;
     background-color: var(--cuarter-color);
-    height: .5rem;
 }
 
 .header-container {
@@ -57,7 +77,8 @@ hr{
     align-items: center;
     justify-content: flex-start;
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 100%;
+    margin-top: 25px;
 }
 
 /* Contenedor del logo */
@@ -71,14 +92,13 @@ hr{
 }
 
 .logo {
-    width: clamp(115px, 1vw, 1px);
-    height: clamp(115px, 1vw, 1px);
+    width: clamp(100px, 1vw, 1px);
+    height: clamp(100px, 1vw, 1px);
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 1px 1px 10px rgba(0,0,0,0.1);
     
 }
-
 
 .brand-name {
     display: flex;
@@ -244,13 +264,21 @@ las paginas */
     scroll-behavior: smooth; /* Desplazamiento suave */
 }
 
+.flores-grid:has(.flor-card:nth-child(2)):not(:has(.flor-card:nth-child(5))) {
+    justify-content: space-between; /* Asegura que las tarjetas se distribuyan */
+}
+
+.flores-grid:has(.flor-card:nth-child(2)):not(:has(.flor-card:nth-child(5))) .flor-card {
+    width: calc(50% - 1rem); /* Cada tarjeta ocupa la mitad del ancho */
+}
+
 /* tarjetas de presentacion de los productos */
 .flor-card {
     background: var(--cuarter-color);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    width: calc(20% - 12px); /* Mostrar 5 tarjetas a la vez */
+    width: calc(25% - 15px); /* Mostrar 5 tarjetas a la vez */
     scroll-snap-align: start;
 }
 
@@ -277,7 +305,7 @@ las paginas */
     color: var(--six-color);
     margin-bottom: 0.5rem;
     font-size: clamp(1.8rem, 2vw, 1.3rem);
-    text-align: start;
+    text-align: center;
     
 }
 
@@ -672,6 +700,7 @@ color: var(--background-color);
     flex-direction: column;
     gap: 10px;
     background: var(--cuarter-color);
+    color: var(--six-color);
     border-radius: 0 0 10px 10px;
     align-items: center;
     text-align: center; /* Asegura que el texto esté centrado */
@@ -842,14 +871,23 @@ color: var(--background-color);
 
 
 /* Estilos para la página Sobre Nosotros */
+.section-img {
+    position: absolute;
+    margin-left: 60%;
+    transform: translateX(50%);
+    transform: translateY(-50%);
+    max-width: 100%;
+}
+
 .about-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 1rem;
 }
-.about-section{
+.about-section {
     padding: 1rem;
     font-weight: 500;
+    overflow: hidden; /* Asegura que los elementos flotantes no afecten el flujo */
 }
 
 .about-section h2{
@@ -865,7 +903,7 @@ color: var(--background-color);
     width: 700px;
     height: 220px;
     color: var(--third-color);
-    padding: 10px;
+    padding: 20px;
     border-radius: 10px;
     text-align: justify;
     
@@ -873,22 +911,10 @@ color: var(--background-color);
     
 }
 
-.about-images{
-    float: right; /* Posiciona el div al lado derecho */
-    margin-left: 20px; /* Espaciado entre el contenido y el div */
-    margin-top: 10px; /* Ajusta el margen superior si es necesario */
-    width: auto; /* Ajusta el ancho según el contenido */
-}
-
-.about-img{
-    display: block; /* Asegura que la imagen se comporte como un bloque */
-    max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-}
-
 .about-text {
     font-size: 1.1rem;
     line-height: 1.2;
+    
     
 }
 
