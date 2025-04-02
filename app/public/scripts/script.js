@@ -102,19 +102,6 @@ function filterBy(criteria) {
 }
 
 
-// Centra los titlos de las tarjetas
-document.addEventListener("DOMContentLoaded", () => {
-    const titles = document.querySelectorAll(".flor-info h3");
-
-    titles.forEach(title => {
-        if (title.textContent.trim().length <= 16) {
-            title.classList.add("text-center");
-        } else {
-            title.classList.add("text-justify");
-        }
-    });
-});
-
 document.querySelectorAll('.masContenido').forEach(card => {
     card.addEventListener('mouseover', () => {
         card.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';
@@ -207,16 +194,6 @@ window.addEventListener('resize', handleResize);
 // Llamar a la función al cargar la página
 handleResize();
 
-// Manejo del formulario de contacto
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Aquí iría la lógica para enviar el formulario
-        alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-        contactForm.reset();
-    });
-}
 
 //Ruta de direccion a la pagina de incio por medio del logo
 document.getElementById('logo').addEventListener('click', function() {

@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(wompiRoutes);
 
+
 // Función para generar el PDF con los datos del formulario
 async function generarPDF(datos) {
     return new Promise((resolve, reject) => {
@@ -107,10 +108,10 @@ async function enviarEmail(datos, pdfPath) {
         to: process.env.RECIPIENT_EMAIL,
         subject: `Nuevo mensaje desde la web de Ruth´s Floristeria`,
         html: `
-            <h2>Nuevo mensaje</h2>
+            <h2>Tienes un nuevo mensaje</h2>
             <p><strong>Nombre:</strong> ${nombre}</p>
             <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Teléfono:</strong> ${telefono || 'No proporcionado'}</p>
+            <p><strong>Teléfono:</strong> ${telefono}</p>
             <h3>Mensaje:</h3>
             <p>${mensaje}</p>
         `,
@@ -156,14 +157,16 @@ app.post("/enviar-formulario", async (req, res) => {
         // Eliminar el archivo PDF temporal
         fs.unlinkSync(pdfPath);
 
-        // Responder al cliente
-        res.redirect('/contacto');
+        // Responder al cliente con JSON en lugar de redirect
+        res.json({ success: true, message: 'Se ha enviado correctamente. ¡Gracias por contactarnos!' });
+
     } catch (error) {
         console.error('Error al procesar el formulario:', error);
         res.status(500).json({ success: false, message: 'Error al procesar el formulario' });
     }
 });
 
+// ========================================================================================================================
 // Rutas del carrito
 let cart = [];
 

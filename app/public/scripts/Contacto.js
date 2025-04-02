@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Datos del formulario:", formData);
         
         try {
+
             // Enviar los datos al servidor
             const response = await fetch('/enviar-formulario', {
                 method: 'POST',
@@ -31,20 +32,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify(formData)
             });
             
-            const result = await response.json();
-            
-            if (response.ok) {
-                // Éxito
+            if (response.redirected) {
+                // Si el servidor hizo redirect, asumimos éxito
                 alert('Se ha enviado correctamente. ¡Gracias por contactarnos!');
                 contactForm.reset();
+
             } else {
-                // Error
-                alert(`Error: ${result.message || 'No se pudo enviar el mensaje. Intente de nuevo más tarde.'}`);
+                // Si no hubo redirect, procesamos como JSON
+                const result = await response.json();
+                if (response.ok) {
+                    alert('Se ha enviado correctamente. ¡Gracias por contactarnos!');
+                    contactForm.reset();
+                } else {
+                    alert(`Error: ${result.message || 'No se pudo enviar el mensaje. Intente de nuevo más tarde.'}`);
+                }
             }
         } catch (error) {
             console.error('Error al enviar el formulario:', error);
             alert('Ocurrió un error al enviar el mensaje. Por favor, intente nuevamente.');
-        } finally {
+        }finally {
             // Restaurar el botón
             submitButton.textContent = originalText;
             submitButton.disabled = false;
