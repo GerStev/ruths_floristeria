@@ -84,22 +84,63 @@ document.querySelectorAll('.flor-card').forEach(card => {
     });
 });
 
-// Maneja el boton de filtrado
-document.addEventListener('DOMContentLoaded', () => {
-    const filterButton = document.getElementById('filter-button');
-    const filterOptions = document.getElementById('filter-options');
+// Obtener el parámetro "status" de la URL
+const params = new URLSearchParams(window.location.search);
+const status = params.get('status');
 
-    // Mostrar/ocultar opciones de filtro
-    filterButton.addEventListener('click', () => {
-        filterOptions.classList.toggle('hidden');
-    });
-});
-
-// Función para manejar los filtros
-function filterBy(criteria) {
-    console.log(`Filtrando por: ${criteria}`);
-    // Aquí puedes implementar la lógica para filtrar los productos
+// Mostrar un mensaje basado en el estado del pago
+const statusMessage = document.getElementById('status-message');
+if (status === 'approved') {
+    statusMessage.textContent = '¡Pago aprobado! Gracias por tu compra.';
+} else if (status === 'declined') {
+    statusMessage.textContent = 'Lo sentimos, tu pago fue rechazado.';
+} else {
+    statusMessage.textContent = 'Hubo un problema con tu pago. Por favor, intenta nuevamente.';
 }
+
+
+// Procesar parámetros de URL para mostrar el estado
+// Procesar parámetros de URL
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const status = urlParams.get('status');
+    const mainElement = document.getElementById('confirmationMain');
+    const paymentStatus = document.getElementById('payment-status');
+    const checkmark = document.querySelector('.checkmark');
+    
+    if(status === 'approved') {
+        mainElement.classList.add('success');
+        paymentStatus.textContent = '¡Tu pago fue exitoso! En breve recibirás un correo con los detalles de tu compra.';
+        
+        // Vaciar carrito
+        fetch('/api/cart', { method: 'DELETE' });
+    } else {
+        mainElement.classList.add('error');
+        paymentStatus.textContent = 'Hubo un problema con tu pago. Por favor intenta nuevamente.';
+        
+        // Cambiar el icono a una X
+        checkmark.innerHTML = `
+            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark__check" fill="none" d="M16 16 36 36 M36 16 16 36"/>
+        `;
+    }
+    
+    // Animación adicional para las flores
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .flower-animation {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+    `;
+    document.head.appendChild(style);
+});
 
 
 document.querySelectorAll('.masContenido').forEach(card => {
@@ -297,6 +338,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Se comunica con el backend de la ia
+document.addEventListener("DOMContentLoaded", () => {
+    const previewBtn = document.getElementById("preview-btn");
+    const aiPreviewImage = document.getElementById("ai-preview-image");
+
+    previewBtn.addEventListener("click", async () => {
+        const flowerType = document.getElementById("flower-type").value;
+        const flowerQuantity = document.getElementById("flower-quantity").value;
+        const flowerColor = document.getElementById("flower-color").value;
+        const wrapDesign = document.getElementById("wrap-design").value;
+        const wrapColor = document.getElementById("wrap-color").value;
+
+        if (flowerType === "vacio" || flowerQuantity === "vacio" || wrapDesign === "vacio") {
+            alert("Por favor, selecciona todas las opciones.");
+            return;
+        }
+
+        const requestData = {
+            flowerType,
+            flowerQuantity,
+            flowerColor,
+            wrapDesign,
+            wrapColor
+        };
+
+        try {
+            const response = await fetch("/generar-imagen", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(requestData)
+            });
+
+            const data = await response.json();
+
+            if (data.imageUrl) {
+                aiPreviewImage.src = data.imageUrl;
+            } else {
+                alert("Error al generar la imagen.");
+            }
+        } catch (error) {
+            console.error("Error en la solicitud:", error);
+            alert("Hubo un error al generar la imagen.");
+        }
+    });
+});
+
+//Spiner de carga
+const loadingSpinner = document.getElementById("loading-spinner");
+loadingSpinner.style.display = "block"; // Mostrar el spinner
+aiPreviewImage.src = ""; // Limpiar la imagen previa
 
 
 

@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="/scripts/personaliza.js"></script>
-    <script src="/scripts/generatorai.js"></script>
     <title>Personaliza tu arreglo</title>
 </head>
 <body>
     <div class="personaliza-container">
-
       <div class="container-btn">
         <a class="link-regresar" href="/index">
           <button class="btn-regresar">
@@ -21,60 +18,88 @@
         </a>
       </div>
 
-        <h1 class="custom-title">Personaliza tu arreglo floral</h1>
+      <h1 class="custom-title">Personaliza tu arreglo floral</h1>
 
-        <div class="controls">
-          <label for="flower-type">Tipo de flor:</label>
-          <select id="flower-type">
-            <option value="vacio">Sin selección</option>
-            <option value="rose">Rosa</option>
-            <option value="tulip">Girasol</option>
-            <option value="tulip">Tulipán</option>
-            <option value="lily">Lirio</option>
-          </select>
+      <div class="personaliza-content">
+        <div class="controls-container">
+          <div class="controls">
+            <label for="arrangement-type">Tipo de arreglo:</label>
+            <select class="control-select" id="arrangement-type">
+              <option value="vacio">Sin selección</option>
+              <option value="ramo">Ramo</option>
+              <option value="arreglo">Arreglo floral</option>
+              <option value="detalle">Detalle pequeño</option>
+              <option value="centro">Centro de mesa</option>
+            </select>
 
-          <label for="flower-quantity">Cantidad de flores:</label>
-          <select id="flower-quantity">
-            <option value="vacio">Sin selección</option>
-            <option value="8r">8 rosas</option>
-            <option value="12r">12 rosas</option>
-            <option value="16r">16 rosas</option>
-            <option value="Combinado1">8 rosas y 1 girasol</option>
-            <option value="Combinado2">12 rosas y 1 girasol</option>
-            <option value="Combinado3">16 rosas y 1 girasol</option>
-            <option value="5g">5 girasoles</option>
-            <option value="8g">8 girasoles</option>
-            <option value="10g">10 girasoles</option>
-          </select>
-    
-          <label for="flower-color">Color de la flor:</label>
-          <input type="color" id="flower-color" value="#ff0000">
-          <div id="flower-color-preview" style="width: 50px; height: 50px; background-color: #ff0000; border: 1px solid #000;"></div>
-    
-          <label for="wrap-design">Tipo del envoltorio:</label>
-          <select id="wrap-design">
-            <option value="vacio">Sin selección</option>
-            <option value="simple">Simple (color liso sin detalles)</option>
-            <option value="elegant">Elegante (Colores unicos y con detalles de contorno)</option>
-            <option value="modern">Moderno (Diferentes colores y detalles varios)</option>
-          </select>
-    
-          <label for="wrap-color">Color del envoltorio:</label>
-          <input type="color" id="wrap-color" value="#ffffff">
-          <div id="wrap-color-preview" style="width: 50px; height: 50px; background-color: #ffffff; border: 1px solid #000;"></div>
-    
-    
-          <button class="preview-btn" id="preview-btn">Previsualizar</button>
+            <label for="flower-material">Material de la flor:</label>
+            <select class="control-select" id="flower-material">
+              <option value="vacio">Sin selección</option>
+              <option value="rosa eterna (de listón)">Rosa eterna (de listón)</option>
+              <option value="natural">Natural</option>
+              <option value="artificial">Artificial</option>
+            </select>
+
+            <label for="flower-type">Tipo de flor:</label>
+            <select class="control-select" id="flower-type">
+              <option value="vacio">Sin selección</option>
+              <option value="rosas">Rosas</option>
+              <option value="girasoles">Girasoles</option>
+              <option value="tulipanes">Tulipanes</option>
+              <option value="lirios">Lirios</option>
+              <option value="orquideas">Orquídeas</option>
+            </select>
+
+            <label for="flower-quantity">Cantidad de flores:</label>
+            <select class="control-select" id="flower-quantity">
+              <option value="vacio">Sin selección</option>
+              <option value="5">5 flores</option>
+              <option value="8">8 flores</option>
+              <option value="12">12 flores</option>
+              <option value="16">16 flores</option>
+              <option value="24">24 flores</option>
+            </select>
+      
+            <label for="flower-color">Color de la flor:</label>
+            <div class="color-picker">
+              <input type="color" id="flower-color" value="#ff0000">
+            </div>
+      
+            <label for="wrap-design">Estilo del envoltorio:</label>
+            <select class="control-select" id="wrap-design">
+              <option value="vacio">Sin selección</option>
+              <option value="simple">Simple (color liso)</option>
+              <option value="elegante">Elegante (con detalles)</option>
+              <option value="moderno">Moderno (diseño contemporáneo)</option>
+              <option value="rustico">Rústico (natural y orgánico)</option>
+            </select>
+      
+            <label for="wrap-color">Color del envoltorio:</label>
+            <div class="color-picker">
+              <input type="color" id="wrap-color" value="#ffffff">
+            </div>
+      
+            <button class="preview-btn" id="preview-btn">Generar</button>
+          </div>
         </div>
     
-        <div class="preview">
-          <div class="ai-preview">
-            <h1 class="custom-title">Vista previa generada por IA</h1>
-            <img id="ai-preview-image" src="" >
+        <div class="preview-container">
+          <div class="preview">
+            <h2 class="preview-title">Vista previa de tu diseño</h2>
+            <div id="loading-spinner">
+              <div class="spinner"></div>
+              <p>Generando tu diseño único...</p>
+            </div>
+            <img id="ai-preview-image" src="/images/placeholder.png" alt="Vista previa generada por IA">
+            <div class="preview-buttons">
+              <button class="preview-btn" id="preview-btn">Generar Vista Previa</button>
+              <button class="regenerate-btn" id="regenerate-btn">Generar Nueva Imagen</button>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      
+    <script src="/scripts/personaliza.js"></script>
 </body>
 </html>

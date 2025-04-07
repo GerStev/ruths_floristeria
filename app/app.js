@@ -7,13 +7,19 @@ import fs from 'fs';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import wompiRoutes from './routes/wompi.routes.js';
-
+import axios from 'axios';
+import { generarImagen } from './public/scripts/openai.js';
 
 // Cargar variables de entorno
 dotenv.config();
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Verificar que la API key está cargada
+if (!process.env.OPENAI_API_KEY) {
+    console.error("ERROR: OPENAI_API_KEY no está configurada en .env");
+    process.exit(1);
+}
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 
@@ -191,29 +197,126 @@ app.get('/api/cart', (req, res) => {
     res.json(cart);
 });
 
-// Ruta para manejar la generación de imágenes
-app.post('/api/generate-image', async (req, res) => {
-    const { prompt } = req.body;
+// Ruta para crear el pago con Wompi
+// Esta ruta es para crear un pago con Wompi en El Salvador
+app.post('/api/create-wompi-payment', async (req, res) => {
+    try {
+        const { amount, currency, reference, customerData, items } = req.body;
+        
+        // Configuración para Wompi SV
+        const wompiApiUrl = 'https://api.wompi.sv/v1/transactions';
+        
+        const paymentData = {
+            amount_in_cents: Math.round(amount * 100), // Convertir a centavos
+            currency: currency || 'USD',
+            reference: reference || `pedido-${Date.now()}`,
+            customer_email: customerData?.email || 'cliente@ejemplo.com',
+            payment_method: {
+                type: 'CARD' // Puede ser 'NEQUI', 'PSE', etc. según lo que soporte Wompi SV
+            },
+            items: items.map(item => ({
+                name: item.name,
+                unit_price: Math.round(item.unit_price),
+                quantity: item.quantity
+            })),
+            // Configuración específica para El Salvador
+            country: 'SV',
+            redirect_url: `${process.env.BASE_URL}/confirmacion-pago`
+        };
 
-    const response = await fetch('https://api.openai.com/v1/images/generations', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            prompt,
-            n: 1,
-            size: '512x512',
-        }),
-    });
+        const response = await axios.post(wompiApiUrl, paymentData, {
+            headers: {
+                'Authorization': `Bearer ${process.env.WOMPI_API_SECRET}`,
+                'App-ID': process.env.WOMPI_APP_ID,
+                'Content-Type': 'application/json'
+            }
+        });
 
-    const data = await response.json();
-    const imageUrl = data.data[0].url;
+        res.json({
+            success: true,
+            paymentUrl: response.data.data.redirect_url
+        });
 
-    res.json({ imageUrl });
+    } catch (error) {
+        console.error('Error en Wompi:', error.response?.data || error.message);
+        res.status(500).json({
+            success: false,
+            message: error.response?.data?.message || 'Error al procesar el pago'
+        });
+    }
 });
 
+// confirmación de pago para Wompi
+// Webhook para Wompi SV
+app.post('/api/wompi-webhook', bodyParser.json(), async (req, res) => {
+    try {
+        const event = req.body;
+        console.log('Webhook recibido:', JSON.stringify(event, null, 2));
+        
+        // Verifica que sea un evento válido
+        if (event.event === 'transaction.updated') {
+            const transaction = event.data;
+            
+            // Procesa según el estado
+            switch (transaction.status) {
+                case 'APPROVED':
+                    console.log('Pago aprobado:', transaction.reference);
+                    res.redirect('/confirmacion-pago?status=approved');
+                    break;
+                case 'DECLINED':
+                    console.log('Pago rechazado:', transaction.reference);
+                    res.redirect('/confirmacion-pago?status=declined');
+                    break;
+                case 'VOIDED':
+                    console.log('Pago cancelado:', transaction.reference);
+                    res.redirect('/confirmacion-pago?status=voided');
+                    break;
+                default:
+                    console.log('Estado desconocido:', transaction.status);
+                    res.status(400).json({ error: 'Estado desconocido' });
+            }
+        }
+        
+        res.status(200).json({ received: true });
+    } catch (error) {
+        console.error('Error en webhook:', error);
+        res.status(500).json({ error: 'Error procesando webhook' });
+    }
+});
+
+// Ruta para la confirmación de pago html
+// Esta ruta es para la confirmación de pago con Wompi en El Salvador
+app.get("/confirmacion-pago", (req, res) => {
+    res.sendFile(__dirname + "/views/confirmacion-pago.html");
+});
+
+
+// Ruta para manejar la generación de imágenes
+app.post("/generar-imagen", async (req, res) => {
+    const { prompt } = req.body;
+
+    if (!prompt || typeof prompt !== "string") {
+        return res.status(400).json({ error: "Prompt inválido o faltante" });
+    }
+
+    try {
+        const imageUrl = await generarImagen(prompt);
+
+        if (imageUrl) {
+            res.json({ imageUrl });
+        } else {
+            res.status(500).json({ error: "No se pudo generar la imagen." });
+        }
+    } catch (error) {
+        console.error("Error en la generación de imagen:", error);
+        res.status(500).json({ 
+            error: "Error interno del servidor",
+            details: error.message 
+        });
+    }
+});
+
+// ===============================================================================================================================================================================
 // Otras rutas
 app.get("/", (req, res) => {res.sendFile(__dirname + "/views/index.html");});
 app.get("/index", (req, res) => {res.sendFile(__dirname + "/views/index.html");});
@@ -221,6 +324,7 @@ app.get("/catalogo", (req, res) => {res.sendFile(__dirname + "/views/catalogo.ht
 app.get("/contacto", (req, res) => {res.sendFile(__dirname + "/views/contacto.html");});
 app.get("/nosotros", (req, res) => {res.sendFile(__dirname + "/views/nosotros.html");});
 app.get("/personaliza", (req, res) => {res.sendFile(__dirname + "/views/personaliza.html");});
+app.get("/confirmar-pago", (req, res) => {res.sendFile(__dirname + "/views/confirmacion-pago.html");});
 app.get("/carrito", (req, res) => {res.sendFile(__dirname + "/views/carrito.html");});
 app.get("/register", (req, res) => {res.sendFile(__dirname + "/views/register.html");});
 app.get("/login", (req, res) => {res.sendFile(__dirname + "/views/login.html");});

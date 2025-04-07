@@ -23,6 +23,9 @@
     --text-color: #000000;
     --background-color: #000000;
     --card-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    /* hovers */
+    --select-color: #e0e0e0;
 }
 
 /* Clase para centrar el texto */
@@ -144,9 +147,6 @@ hr{
 
 }
 
-.cart-small{
-    display: none;
-}
 
 .search-input{
     width: 300px;
@@ -159,6 +159,12 @@ hr{
     color: var(--cuarter-color);
     outline: none;
 
+}
+
+
+
+.cart-small{
+    display: none;
 }
 
 /* Boton para buscar */
@@ -179,7 +185,8 @@ hr{
     background: var(--fifth-color);
 }
 
-.user-icon, .plus-icon{
+
+.user-icon{
     text-decoration: none;
 }
 
@@ -198,9 +205,19 @@ hr{
     font-size: 2rem;
 }
 
-#user-icon:hover, #plus-icon:hover {
+#user-icon:hover {
     background: var(--fifth-color);
     
+}
+
+
+/* Oculta la barra de busqueda y el login del menu despegable */
+.search-bar-menu{
+    display: none;
+}
+
+.user-link-menu{
+    display: none;
 }
 
 
@@ -210,7 +227,7 @@ hr{
 }
 
 
-/* Barra de navegacion */
+/* Barra de navegacion normal */
 .nav-menu  {
     list-style: none;
     display: flex;
@@ -1159,40 +1176,83 @@ color: var(--background-color);
     border-bottom: 1px solid #eee;
 }
 
+
+/* ========================================================================== */
 /*Estilo para personalizacion*/
 .personaliza-container {
-    max-width: 900px;
+    max-width: 98%;
     margin: 20px auto;
     padding: 20px;
     background: var(--cuarter-color);
     border-radius: 10px;
-    box-shadow: 0 2px 10px #fe62d7;
+    box-shadow: 0 0px 15px var(--six-color);
   }
   
+  .personaliza-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  /* Maneja el tamaño del contenido de los controles */
+  /* .controls-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    
+  } */
+
   .controls {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin: 20px 0;
-    
+    border: none;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Estilos de los controles de seleccion */
+  .control-select {
+    font-weight: 600;
+    color: var(--cuarter-color);
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
   }
   
   label {
     font-size: larger;
     color: var(--six-color);
-    font-weight: 600;
-  }
-  
-  select, input[type="color"] {
-    padding: 10px;
-    border: 1px solid var(--cuarter-color);
-    color: var(--cuarter-color);
-    background-color: var(--six-color);
-    border-radius: 5px;
-    font-size: larger;
-    cursor: pointer;
     font-weight: 700;
   }
+
+  .color-picker {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .color-picker input[type="color"] {
+    width: 60px;
+    height: 40px;
+    padding: 2px;
+    cursor: pointer;
+
+    border: none;
+    border-radius: 5px; 
+}
+
+  #flower-color-preview,
+  #wrap-color-preview {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    border: 2px solid var(--six-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
   #flower-type h1{
     color: var(--cuarter-color);
@@ -1211,13 +1271,16 @@ color: var(--background-color);
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.5s ease;
   }
   
   .btn-regresar:hover{
     color: var(--cuarter-color);
     background: var(--six-color);
+    transition: all 0.5s ease;
   }
 
+  /* Estilo para el titulo de personaliza tu arreglo */
   .custom-title{
     align-items: center;
     text-align: center;
@@ -1265,24 +1328,275 @@ color: var(--background-color);
   }
   
   .preview {
-    margin-top: 30px;
-  }
-  
-  .canvas-container {
-    width: 100%;
-    height: 600px;
-    background: transparent;
-    border: 1px solid var(--six-color);
-    border-radius: 10px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    color: #888;
-    font-size: 1.2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 100%;
   }
 
+  .preview-title {
+    color: var(--six-color);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .preview-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .regenerate-btn {
+    padding: 10px;
+    background: var(--fifth-color);
+    color: var(--six-color);
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .regenerate-btn:hover {
+    background: var(--cuarter-color);
+    transform: scale(1.05);
+  }
+  
+  /* Estilo para cuando hay una imagen generada */
+  .has-image .preview-btn {
+    display: none;
+  }
+  
+  .has-image .regenerate-btn {
+    display: block;
+  }
+
+  .preview-container {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  #ai-preview-image {
+    max-width: 100%;
+    max-height: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px var(--six-color);
+    display: none;
+  }
+
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--six-color);
+    animation: spin 1s ease-in-out infinite;
+    
+  }
+
+  #loading-spinner {
+    display: none; /* Oculto por defecto */
+    text-align: center;
+  }
+  
+  
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
+  /* Confirmar-pago.html*/
+  /* confirmacion.css */
+/* Estilos base consistentes con tu sitio */
+.confirmation-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.confirmation-container h1 {
+    color: #4a6f28; /* Verde similar a tu logo */
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.confirmation-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #e91e63; /* Rosa similar a tu paleta */
+    animation: expandLine 1s ease-out forwards;
+}
+
+#payment-status {
+    font-size: 1.3rem;
+    margin: 2rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    transition: all 0.5s ease;
+}
+
+.btn-home {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--cuarter-color); /* Verde */
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s infinite;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-home:hover {
+    background-color: var(--fifth-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Icono de confirmación */
+.checkmark {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    position: relative;
+    animation: checkmarkScale 0.6s ease-in-out both;
+}
+
+.checkmark__circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: #4a6f28;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes expandLine {
+    from { width: 0; }
+    to { width: 100px; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes stroke {
+    100% { stroke-dashoffset: 0; }
+}
+
+@keyframes checkmarkScale {
+    0%, 100% { transform: none; }
+    50% { transform: scale3d(1.1, 1.1, 1); }
+}
+
+/* Estado de error */
+.error .checkmark__circle {
+    stroke: #e91e63;
+}
+
+.error .checkmark__check {
+    stroke: #e91e63;
+    animation: none;
+    stroke-dashoffset: 0;
+}
+
+.error #payment-status {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.success #payment-status {
+    background-color: #e8f5e9;
+    color: var(--cuarter-color);
+}
+
+/* ==================================================================================== */
 /* Media Queries: tamaño de las pantallas*/
-@media screen and (max-width: 768px) {
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .personaliza-container {
+      padding: 15px;
+      margin: 15px auto;
+      max-width: 95%;
+    }
+    
+    .controls {
+      padding: 20px;
+    }
+    
+    #ai-preview-image {
+      max-height: 350px;
+    }
+  }
+
+/* Dispositivos moviles plegables (altura grande) */
+@media (max-width: 767px) and (min-height: 700px) {
+    #ai-preview-image {
+      max-height: 50vh;
+    }
+  }
+  
+  /* Orientación moviles horizontal en móviles */
+  @media (max-width: 767px) and (orientation: landscape) {
+    .personaliza-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    #ai-preview-image {
+      max-height: 60vh;
+    }
+  }
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 768px) and (max-width: 1023px) {
 
     header{
         padding: 20px;
@@ -1301,41 +1615,133 @@ color: var(--background-color);
         display: none;
     }
     
+
+    /* Oculta la barra de busqueda y login de pantallas normales */
     .search-div {
-        flex-direction: column;
-        align-items: stretch;
-        position: relative;
-        transform: none;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(75px, 80px));
-        
-        width: 100%;
-        margin: 20px;
+        display: none;
+    }
+
+    .search-input  {
+        display: none;
+    }
+
+    .btn-search {
+        display: none;
+    }
+
+    #user-icon{
+        display: none;
     }
 
     .cart-large{
         display: none;
     }
+    
 
-    .search-input {
-        width: 100%;
-        border-radius: 20px;
-        margin-bottom: 10px;
+    /* barra de busqueda y login dentro del menu movil */
+    .nav {
+        max-height: 100vh; /* Altura máxima igual a la altura de la ventana */
+        overflow-y: auto; /* Habilita el scroll vertical cuando el contenido excede la altura */
+        overscroll-behavior: contain; /* Evita que el scroll afecte al cuerpo de la página */
     }
 
-    .btn-search {
-        width: 100%;
-        border-radius: 20px;
-    }
-
-    #user-icon, #plus-icon {
+    /* Contenedor del div buscar */
+    .search-bar-menu {
         display: flex;
-        align-items: center;
-        width: 50px;
-        border-radius: 20px;
+        transform: none;
+        width: 100%;
+        margin-bottom: 20px;
     }
 
-    /* dsieño del nav */
+    /* input buscar */
+    .search-input-menu {
+        width: 75%;
+        border: none;
+        border-radius: 20px 0 0 20px;
+        padding: 10px;
+        
+    }
+
+    #search-icon{
+        width: 30px;
+        height: 30px;
+        color: var(--cuarter-color);
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    .btn-search-menu {
+        width: 25%;
+        border-radius: 0 20px 20px 0;
+        padding: 10px;
+        border: none;
+        background: var(--six-color);
+        
+    }
+
+    .btn-search-menu:hover {
+        background: var(--fifth-color);
+        color: var(--six-color);
+    }
+
+    /* boton de login en menu */
+
+    .user-container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        margin-right: 15px;
+    }
+
+    .user-link-menu {
+        display: flex;
+        text-decoration: none;
+        margin-bottom: 20px;
+    }
+
+    #login-icon-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 10px;
+        background: var(--six-color);
+        color: var(--cuarter-color);
+        padding: 30px 12px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    #register-icon-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 10px;
+        background: var(--six-color);
+        color: var(--cuarter-color);
+        padding: 30px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    .login-text-menu, .register-text-menu {
+        color: var(--cuarter-color);
+        font-size: 16px;
+    }
+
+    #login-icon-menu:hover, .login-text-menu:hover {
+        background: var(--select-color);
+        color: var(--six-color);
+    }
+
+    /* ================================================================================================= */
+    /* Diseño del menu de navegacion en movil */
     .menuFondo{
         background-color: var(--six-color);
         padding: 1rem;
@@ -1355,9 +1761,9 @@ color: var(--background-color);
         color: var(--cuarter-color);
         
     }
-
+    
     .cerrar_menu{
-        position: absolute; /* Posiciona el botón de forma absoluta */
+        position: absolute; /* Posiciona el botón de forma fija */
         top: 10px; /* Ajusta la distancia desde la parte superior */
         left: 10px; /* Ajusta la distancia desde la parte izquierda */
         font-size: 5rem; /* Tamaño del icono */
@@ -1499,11 +1905,13 @@ color: var(--background-color);
 
     .nav-menu li a {
         
+        padding: 0.5rem;
         color: var(--six-color);
     }
 
     .cerrar_menu {
-        position: absolute;
+        position: fixed; /* Posiciona el botón de forma fija */
+        margin-left: 75px;
         top: 10px;
         left: 10px;
         font-size: 3rem;
@@ -1854,22 +2262,69 @@ color: var(--background-color);
         margin-left: 0; /* Elimina el margen izquierdo */
         
     }
+
+    /* Confimar-pago */
+    .confirmation-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .confirmation-container h1 {
+        font-size: 2rem;
+    }
+
+    /* Personaliza.html */
+
+    .personaliza-container{
+        max-width: 98%;
+    }
+    .personaliza-content {
+        flex-direction: column;
+      }
+      
+      .controls-container, 
+      .preview-container {
+        width: 100%;
+      }
+      
+      /* Ajustamos el espaciado para móviles */
+      .controls {
+        padding: 1.2rem;
+      }
+      
+      .preview {
+        margin-top: 1.5rem;
+        padding: 1.2rem;
+      }
+      
+      #ai-preview-image {
+        max-height: 300px;
+        margin: 1rem auto;
+      }
+      
+      .preview-buttons {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      
+      .preview-btn, 
+      .regenerate-btn {
+        width: 100%;
+      }
 }
 
-@media (min-width: 914px) and (max-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1439px) {
     .header-container {
         flex-direction: row;
     }
 
     .logo {
-        width: clamp(100px, 15vw, 150px);
-        height: clamp(100px, 15vw, 150px);
+        width: clamp(90px, 15vw, 150px);
+        height: clamp(90px, 15vw, 150px);
     }
 
-   
-
     .logo {
-        display: none;
+        display: flex;
     }
 
     .brand-name h1 {
@@ -1891,6 +2346,54 @@ color: var(--background-color);
         justify-content: center; /* Centra los elementos verticalmente */
     }
     
+    /* Barra de navegacion */
+    .nav-menu  {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        border: none;
+        margin-top: 20px;
+        align-items: center;
+    }
+
+    .logoNav{
+        display: none;
+    }
+
+    .nav-menu li a {
+        display: flex;
+        color: var(--cuarter-color);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        font-size: clamp(1.6rem, 1.5vw, 1rem);
+    }
+
+    .nav-menu-catalogo li a{
+        display: flex;
+        color: var(--six-color);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        font-size: clamp(1.6rem, 1.5vw, 1rem);
+    }
+
+    /* efectos de la barra de navegacion */
+    .nav-menu li a:hover {
+        background: var(--cuarter-color);
+        color: var(--six-color);
+        transform: translateY(-2px);
+    }
+
+    .nav-menu-catalogo li a:hover{
+        color: var(--cuarter-color);
+        transform: translateY(-2px);
+    }
 
     .flores-grid {
         display: flex;
@@ -1934,6 +2437,73 @@ color: var(--background-color);
     .search-input {
         width: 200px;
     }
+
+    
+    /* Pie de la pagina */
+    .footer-container {
+        height: auto;
+    }
+
+    .footer-info {
+        text-align: start;
+    }
+
+    .img-footer{
+        height: 150px;
+        margin: 0;
+    }
+
+    .footer-copyright{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        font-size: 1.8rem;
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+
+    }
+        
+    /* Personaliza.html */
+    .personaliza-container{
+        max-width: 98%;
+        max-height: 100%;
+    }
+    .personaliza-content {
+        flex-direction: column;
+    }
+  
+  .controls-container, 
+  .preview-container {
+    width: 100%;
+  }
+  
+  /* Ajustamos el espaciado para móviles */
+  .controls {
+    padding: 2rem;
+  }
+  
+  .preview {
+    margin-top: 1.5rem;
+    padding: 1.2rem;
+  }
+  
+  #ai-preview-image {
+    max-height: 300px;
+    margin: 1rem auto;
+  }
+  
+  .preview-buttons {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .preview-btn, 
+  .regenerate-btn {
+    width: 100%;
+  }
+
 }
 
 /* Estilos para pantallas grandes (laptops y monitores) */
@@ -1973,11 +2543,59 @@ color: var(--background-color);
         width: 300px;
     }
 
-    
+    /* personaliza.html */
+    .personaliza-container {
+        max-width: 98%;
+        padding: 25px;
+      }
+      
+    .personaliza-content {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr; /* Controles más estrechos, vista previa más ancha */
+        gap: 40px;
+        align-items: start; /* Alinea los items al inicio */
+      }
+      
+    .controls {
+        padding: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 20px; /* Hace que los controles sigan al hacer scroll */
+    }
+      
+    .preview {
+        padding: 25px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        height: fit-content;
+    }
+      
+      #ai-preview-image {
+        max-width: 100%;
+        max-height: 550px;
+        width: auto;
+        display: block;
+        margin: 0 auto;
+      }
+      
+      .preview-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 25px;
+      }
+      
+      .preview-btn, .regenerate-btn {
+        padding: 12px 25px;
+        font-size: 16px;
+      }
 }
 
 /* Estilos para pantallas extra grandes (televisores y monitores grandes) */
-@media (min-width: 1441px) {
+@media (min-width: 1440px) {
     .header-container {
         flex-direction: row;
         justify-content: space-between;
@@ -2018,6 +2636,8 @@ color: var(--background-color);
         min-width: 100%; /* Mostrar una imagen a la vez en pantallas pequeñas */
     }
 }
+
+
 
 /* Ajustes para modo oscuro del sistema */
 @media (prefers-color-scheme: dark) {
