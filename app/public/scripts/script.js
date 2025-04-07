@@ -250,48 +250,7 @@ document.getElementById("preview-btn").addEventListener("click", async () => {
 
 });
 
-// Hara scroll en las tarjetas de la galeria
-document.addEventListener('DOMContentLoaded', function() {
-    const catalogoGrid = document.querySelector('.catalogo-grid');
 
-    catalogoGrid.addEventListener('mouseenter', function() {
-        document.body.style.overflowY = 'hidden'; // Bloquear el desplazamiento vertical de la página
-    });
-
-    catalogoGrid.addEventListener('mouseleave', function() {
-        document.body.style.overflowY = 'auto'; // Desbloquear el desplazamiento vertical de la página
-    });
-
-    catalogoGrid.addEventListener('wheel', function(event) {
-        if (event.deltaY !== 0) {
-            event.preventDefault();
-            catalogoGrid.scrollLeft += event.deltaY;
-        }
-    });
-
-    // Manejar el desplazamiento táctil en dispositivos móviles y tabletas
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    catalogoGrid.addEventListener('touchstart', (e) => {
-        isDown = true;
-        startX = e.touches[0].pageX - catalogoGrid.offsetLeft;
-        scrollLeft = catalogoGrid.scrollLeft;
-    });
-
-    catalogoGrid.addEventListener('touchend', () => {
-        isDown = false;
-    });
-
-    catalogoGrid.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.touches[0].pageX - catalogoGrid.offsetLeft;
-        const walk = (x - startX) * 3; // Ajusta la velocidad del desplazamiento
-        catalogoGrid.scrollLeft = scrollLeft - walk;
-    });
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     const floresGrid = document.querySelector('.flores-grid');

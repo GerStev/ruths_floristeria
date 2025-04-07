@@ -1561,6 +1561,19 @@ color: var(--background-color);
 /* Media Queries: tamaño de las pantallas*/
 
 @media (min-width: 481px) and (max-width: 767px) {
+    
+    .header-container {
+        width: 100%;
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .logo {
+        display: none;
+    }
+    
     .personaliza-container {
       padding: 15px;
       margin: 15px auto;
@@ -1595,7 +1608,10 @@ color: var(--background-color);
     }
   }
 
-/* Pantallas pequeñas (móviles) */
+
+  
+
+  /* Pantallas pequeñas (móviles) */
 @media (max-width: 768px) and (max-width: 1023px) {
 
     header{
@@ -1609,6 +1625,7 @@ color: var(--background-color);
         display: grid;
         align-items: center;
         justify-content: center;
+        margin-top: 10px;
     }
 
     .logo {
@@ -1782,6 +1799,7 @@ color: var(--background-color);
         
     }
     
+    /* ================================================================================ */
     /* Ajustes para el menú desplegable */
     #menu_nav {
         opacity: 0;
@@ -2009,15 +2027,16 @@ color: var(--background-color);
         background-color: var(--fifth-color); /* Cambia el color según tu preferencia */
     }
 
-
+    /* ========================================================================================= */
     /* muestra los productos */
-    .contenedor h1 {
+    .contenedor  {
         text-align: start;
     }
 
     #title1{
         display: flex;
         margin-top: 2rem;
+        margin-bottom: 1rem;
         font-size: 1.4rem;
         color: var(--cuarter-color);
         justify-content: center;
@@ -2025,23 +2044,23 @@ color: var(--background-color);
 
     .flores-grid {
         display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 8px;
+        flex-direction: column; /* Cambia la dirección a columna */
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+        overflow-x: visible; /* Elimina el scroll horizontal */
+        gap: 25px; /* Aumenta el espacio entre tarjetas */
         padding: 10px;
-
     }
 
     .flor-card {
-        flex: 0 0 90%; /* Ajusta el ancho de los cards al 80% del contenedor */
-        max-width: 90%;
-        box-sizing: border-box;
-        margin: 10px;
+        flex: 1 1 auto; /* Permite que las tarjetas crezcan y se ajusten */
+        max-width: 100%; /* Ocupa todo el ancho disponible */
+        width: 100%; /* Asegura que ocupe todo el ancho */
+        margin: 0; /* Elimina los márgenes horizontales */
     }
 
     .flor-info h3{
         font-size: clamp(1.4rem, 2vw, 1.3rem);
-        text-align: center;
+        text-align: start;
     }
 
     .flor_text{
