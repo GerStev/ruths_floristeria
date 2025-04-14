@@ -58,28 +58,54 @@
         </div>
     </header>
 
-        <!-- Enlaces a las diferentes paginas -->
-        <div class="menuFondo">
+         <!-- Enlaces a las diferentes paginas -->
+         <div class="menuFondo">
             <button class="abrir_menu" id="abrir">
                 <i class="bi bi-list"></i>
             </button>
          </div>
         
         <nav class="nav" id="nav">
+
             <ul class="nav-menu" >
                 <button class="cerrar_menu" id="cerrar">
-                    <i class="bi bi-x">
-                </i></button>
+                    <i class="bi bi-x"></i>
+                </button>
+
+                <!-- Logo del negocio -->
+                <img src="/Img/LogoOficial2.png" alt="logoMenu" class="logoNav">
+
+                <!-- Barra de busqueda en menu -->
+                <div class="search-bar-menu">
+                    <input class="search-input-menu" type="search" name="search" placeholder="Buscar">
+                    <button class="btn-search-menu"><i class="bi bi-search" id="search-icon"></i>
+                    </button>
+                    
+                </div>
 
                 <!-- menu -->
                 <li><a href="/index">Inicio</a></li>
                 <li><a href="/catalogo">Catálogo</a></li>
                 <li><a href="/contacto">Contactanos</a></li>
-                <li><a href="/nosotros">¿Quienes somos?</a></li>
+                <li><a href="/nosotros">Sobre nosotros</a></li>
                 
             </ul>
+            
+            <div class="user-container">
+                <a href="/login" aria-label="Login" class="user-link-menu">
+                    <i id="login-icon-menu" class="bi bi-person-fill">
+                        <p class="login-text-menu">Iniciar sesion</p>
+                    </i>
+                </a>
+                <a href="/register" aria-label="Register" class="user-link-menu">
+                    <i id="register-icon-menu" class="bi bi-person-plus-fill">
+                        <p class="register-text-menu">Registrarse</p>
+                    </i>
+                </a>
+            </div>
+            
         </nav>
-
+        
     <!-- Cuerpo de la informacion -->
     <div class="contenedor">
         <div class="about-section">

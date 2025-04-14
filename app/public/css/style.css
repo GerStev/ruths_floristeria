@@ -1577,7 +1577,7 @@ color: var(--background-color);
 /* ==================================================================================== */
 /* Media Queries: tamaño de las pantallas*/
 
-@media (min-width: 481px) and (max-width: 767px) {
+@media (max-width: 500px) {
     
     .header-container {
         width: 100%;
@@ -1603,6 +1603,10 @@ color: var(--background-color);
     
     #ai-preview-image {
       max-height: 350px;
+    }
+
+    .swiper-slide{
+        width: 300px;
     }
   }
 
