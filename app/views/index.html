@@ -4,9 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"" >
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
        
         <link rel="stylesheet" href="/css/style.css">
-        <script src="/scripts/script.js" defer></script>
+        
         <title>Flores eternas 4.0</title>
         
     </head>
@@ -115,8 +116,11 @@
                 
             <!-- Muestra el contenedor de los prodcutos disponibles en la web -->
             <div class="contenedor">
+
                 <h1 id="title1">Descubrelo en nuestro stock.</h1>
+
                 <div class="flores-grid">
+
                     <div class="flor-card">
                         <img src="./Img/Rosas.jpg" alt="Rosas Rojas"
                             class="flor-img">
@@ -176,25 +180,38 @@
                     </div>
                 </div>
 
-                
-
-			 <!-- Se muestra el slide de imagenes de presentacion -->
-                <div class="slider">
-                    <div class="sliderInner">
-                        <img class="imgSlide" src="./Img/Slide1.jpg" alt="">
-                        <img class="imgSlide" src="./Img/Slide2.jpg" alt="">
-                        <img class="imgSlide" src="./Img/Slide3.jpg" alt="">
-                        <img class="imgSlide" src="./Img/Silde4.jpg" alt="">
-                        <img class="imgSlide" src="./Img/Silde5.jpg" alt="">
-                        <!-- reinicio de slide -->
-                        <img class="imgSlide" src="./Img/Slide1.jpg" alt="">
-                        <img class="imgSlide" src="./Img/Slide2.jpg" alt="">
-                        <img class="imgSlide" src="./Img/Slide3.jpg" alt="">
-                        <img class="imgSlide" src="./Img/Silde4.jpg" alt="">
-                        <img class="imgSlide" src="./Img/Silde5.jpg" alt="">
-                    </div>
+                <!-- Slider main container -->
+                 <h1 id="title1">
+                    Los mas cotizados
+                 </h1>
+                <div class="container-swiper">
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="/Img/Slide1.jpg" alt="Img1">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/Img/Slide2.jpg" alt="Img2">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/Img/Slide3.jpg" alt="Img3">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/Img/Slide4.jpg" alt="Img4">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/Img/Slide5.jpg" alt="Img5">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/Img/GirasolRamo.jpg" alt="Img6">
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/Img/GirasolArr.jpg" alt="Img7">
+                            </div>
+                        </div>
+                     <div class="swiper-pagination"></div>
                 </div>
-
+                
                 <!-- Muestra el contenedor de las proximos productos disponibles -->
                 <h1 id="title1">Proximamente disponible.</h1>
                 <div class="flores-grid">
@@ -203,7 +220,6 @@
                             class="flor-img">
                         <div class="flor-info">
                             <h3>Dia del amor y la amistad</h3>
-                            <p></p>
                             <a href="#" class="btn-ver">Disponible
                                 14/02/2025</a>
                         </div>
@@ -301,5 +317,10 @@
                     Todos los derechos reservados &copy; 2024 Ruth's Floristeria. 
                 </p>
             </footer>
+
+            <!-- Scripts -->
+            <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+            <script src="/scripts/script.js"></script>
     </body>
 </html>

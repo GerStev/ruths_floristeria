@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-*::after,
+*,
 *::before,
-* {	
+*::after{	
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -26,16 +26,6 @@
 
     /* hovers */
     --select-color: #e0e0e0;
-}
-
-/* Clase para centrar el texto */
-.text-center {
-    text-align: center;
-}
-
-/* Clase para justificar el texto */
-.text-justify {
-    text-align: justify;
 }
 
 
@@ -431,38 +421,33 @@ las paginas */
 
 #title1{
     display: flex;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     color: var(--cuarter-color);
+    justify-content: center;
     
 }
 
 /* agrupacion de las tajetas */
 .flores-grid {
-    display: flex;
-    gap: clamp(.8rem, 1vw, 1rem);
-    padding: .8rem 0;
-    scroll-snap-type: x mandatory;
-    overflow-x: auto;
-    width: 100%; /* Asegurar que el contenedor ocupe todo el ancho */
-    scroll-behavior: smooth; /* Desplazamiento suave */
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajusta el tamaño mínimo y máximo */
+    justify-content: center; /* Centra las tarjetas si hay menos de 5 */
+    width: 100%;
 }
 
-.flores-grid:has(.flor-card:nth-child(2)):not(:has(.flor-card:nth-child(5))) {
-    justify-content: space-between; /* Asegura que las tarjetas se distribuyan */
-}
 
-.flores-grid:has(.flor-card:nth-child(2)):not(:has(.flor-card:nth-child(5))) .flor-card {
-    width: calc(50% - 1rem); /* Cada tarjeta ocupa la mitad del ancho */
-}
 
-/* tarjetas de presentacion de los productos */
+/* Tarjetas individuales */
 .flor-card {
     background: var(--cuarter-color);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    width: calc(25% - 15px); /* Mostrar 5 tarjetas a la vez */
-    scroll-snap-align: start;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 100%; /* Tamaño máximo de cada tarjeta */
+    margin-top: 1.5rem; /* Espacio entre tarjetas */
+    margin-bottom: 20px;
 }
 
 .flor-card:hover {
@@ -488,7 +473,7 @@ las paginas */
     color: var(--six-color);
     margin-bottom: 0.5rem;
     font-size: clamp(1.8rem, 2vw, 1.3rem);
-    text-align: center;
+    text-align: start;
     
 }
 
@@ -508,25 +493,58 @@ las paginas */
     margin-bottom: 10px;
 }
 
-/* Efecto de presentacion de imagenes de los productos */
-.slider {
+/* ================================================================================================================================== */
+/* Efecto de slider de flores */
+.swiper{
+    width: 100%;
+    padding: 40px 0;
+}
+
+.swiper-slide{
     position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100vh; /* Ajustar la altura del slider */
-    margin: auto;
+    width: 360px;
+    aspect-ratio: 3/4;
+    border-radius: 15px;
+    border: 2px solid var(--fifth-color);
+
+    margin-bottom: 2rem;
 }
 
-.sliderInner {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+.swiper-slide img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    user-select: none;
 }
 
-.imgSlide {
-    width: 100%;
-    height: 100vh; /* Ajustar la altura de cada imagen */
-    object-fit: cover; /* Asegurarse de que la imagen se ajuste al contenedor sin perder proporción */
+.swiper-pagination{
+    --swiper-pagination-bullet: -6px;
 }
+
+.swiper-slide-active{
+    border-radius: 10px;
+    box-shadow: 0 15px 8px 2px rgba(240, 163, 203, 0.8);
+    transition: all 0.3s ease;
+    
+}
+
+.swiper-pagination-bullet{
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.swiper-pagination-bullet-active{
+    width: 32px;
+    background-color: var(--cuarter-color);
+    border-radius: 15px;
+}
+
 
 
 /* Botones de visualizar los productos en las tarjetas */
@@ -1027,7 +1045,6 @@ color: var(--background-color);
     height: 100%;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
-    
 }
 
 .producto-info h3{
@@ -1941,6 +1958,8 @@ color: var(--background-color);
 
 
 
+
+
     /* Mostrar el botón solo en pantallas de 768px o menos */
     .filter-container {
         display: block;
@@ -2029,15 +2048,13 @@ color: var(--background-color);
 
     /* ========================================================================================= */
     /* muestra los productos */
-    .contenedor  {
-        text-align: start;
-    }
+    
 
     #title1{
         display: flex;
         margin-top: 2rem;
         margin-bottom: 1rem;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         color: var(--cuarter-color);
         justify-content: center;
     }
@@ -2048,7 +2065,6 @@ color: var(--background-color);
         flex-wrap: wrap; /* Permite que los elementos se envuelvan */
         overflow-x: visible; /* Elimina el scroll horizontal */
         gap: 25px; /* Aumenta el espacio entre tarjetas */
-        padding: 10px;
     }
 
     .flor-card {
@@ -2056,6 +2072,11 @@ color: var(--background-color);
         max-width: 100%; /* Ocupa todo el ancho disponible */
         width: 100%; /* Asegura que ocupe todo el ancho */
         margin: 0; /* Elimina los márgenes horizontales */
+    }
+
+    
+    .flores-grid:has(.flor-card:nth-child(2)):not(:has(.flor-card:nth-child(5))) .flor-card {
+        width: calc(100%); /* hace que las tarjetas ocupen todo el ancho de la pantalla movil */
     }
 
     .flor-info h3{
@@ -2414,38 +2435,17 @@ color: var(--background-color);
         transform: translateY(-2px);
     }
 
-    .flores-grid {
+    #title1{
         display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 10px;
-        padding: 10px;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        color: var(--cuarter-color);
+        justify-content: center;
     }
 
-    .flor-card {
-        flex: 0 0 80%; /* Ajusta el ancho de los cards al 80% del contenedor */
-        max-width: 80%;
-        box-sizing: border-box;
-        margin: 10px;
-    }
-
-    .flor-info h3{
-        font-size: clamp(1.4rem, 2vw, 1.3rem);
-        text-align: center;
-    }
-
-    .flor_text{
-        display: none;
-    }
-
-    .flor-img {
-        width: 100%;
-        height: 300px;
-    }
-
-    #nota{
-        font-size: clamp(1.25rem, 2vw, 1.3rem);
-        text-align: justify;
+    .flores-grid {
+        grid-template-columns: repeat(auto-fit, minmax(3, 2fr));
     }
 
     .contacto-grid,
@@ -2638,7 +2638,7 @@ color: var(--background-color);
     }
 
     .flores-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(4, 1fr));
     }
 
     .contacto-grid,

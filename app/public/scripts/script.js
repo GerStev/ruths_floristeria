@@ -1,3 +1,6 @@
+
+
+
 // Maneja el despliegue del nav en moviles
 const nav = document.querySelector("#nav");
 const abrir = document.querySelector("#abrir");
@@ -35,6 +38,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+});
+
+// SwiperSlide de flores
+var swiper = new Swiper(".swiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    initialSlide: 3,
+    speed: 600,
+    preventClicks: true,
+    slidesPerView: "auto",
+    coverflowEffect: {
+        rotate: 0,
+        stretch: 80,
+        depth: 350,
+        modifier: 1,
+        slideShadows: true,
+    },
+    on: {
+        click(event) {
+            swiper.slideTo(this.clickedIndex);
+        },
+    },
+    pagination: {
+        el: ".swiper-pagination",
+    },
 });
 
 // Controla las opciones de filtrado
@@ -143,53 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-document.querySelectorAll('.masContenido').forEach(card => {
-    card.addEventListener('mouseover', () => {
-        card.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';
-    });
-    
-    card.addEventListener('mouseout', () => {
-        card.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
-    });
-});
-
-//Animacion para el slider
-document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.querySelector('.sliderInner');
-    const slides = document.querySelectorAll('.imgSlide');
-    let slideWidth = slides[0].clientWidth; // Ancho de una imagen
-    let currentIndex = 0;
-    const slideInterval = 5000; // Intervalo de 5 segundos
-
-    function updateSliderPosition() {
-        slider.style.transition = 'transform 0.5s ease-in-out';
-        slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    }
-
-    function updateSlideWidth() {
-        slideWidth = slides[0].clientWidth; // Ancho de una imagen
-        updateSliderPosition();
-    }
-
-    function nextSlide() {
-        currentIndex += 1;
-        updateSliderPosition();
-
-        if (currentIndex >= slides.length / 1) {
-            setTimeout(() => {
-                slider.style.transition = 'none';
-                currentIndex = 0;
-                updateSliderPosition();
-            }, 500); // Tiempo de la transición
-        }
-    }
-
-    window.addEventListener('resize', updateSlideWidth);
-    updateSlideWidth(); // Inicializar el ancho del slide
-
-    // Configurar el intervalo para cambiar las imágenes automáticamente
-    setInterval(nextSlide, slideInterval);
-});
 
 // Animación para los botones de comprar
 document.querySelectorAll('.btn-comprar' , '.masContenido').forEach(btn => {
@@ -270,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 
 
 // fltro de busqueda en catalogo
