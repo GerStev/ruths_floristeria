@@ -2355,6 +2355,10 @@ color: var(--background-color);
       .regenerate-btn {
         width: 100%;
       }
+
+      .swiper-slide{
+        width: 300px;
+      }
 }
 
 @media (min-width: 1024px) and (max-width: 1439px) {
