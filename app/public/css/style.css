@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-*,
-*::after,
-*::before{	
+*{	
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -446,7 +444,6 @@ las paginas */
 }
 
 
-
 /* Tarjetas individuales */
 .flor-card {
     background: var(--cuarter-color);
@@ -461,6 +458,7 @@ las paginas */
 
 .flor-card:hover {
     transform: translateY(-15px);
+    box-shadow: 0 0 50px var(--fifth-color);
 }
 
 .flor-img {
@@ -500,6 +498,7 @@ las paginas */
     font-size: clamp(1.3rem, 2vw, 1rem);
     font-weight: bold;
     margin-bottom: 10px;
+    text-align: justify;
 }
 
 /* ================================================================================================================================== */
@@ -534,7 +533,7 @@ las paginas */
 
 .swiper-slide-active{
     border-radius: 10px;
-    box-shadow: 0 15px 8px 2px rgba(240, 163, 203, 0.8);
+    box-shadow: 0 0 40px var(--cuarter-color);
     transition: all 0.3s ease;
     
 }
@@ -617,89 +616,253 @@ las paginas */
 
 /* ========================================================================== */
 /* Estilo para el formulario de login y Registro */
-.login-wrapper, .register.wrapper {
+.container-wrapper{
     display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container-login{
+    background-color: var(--cuarter-color);
+    border-radius: 30px;
+    box-shadow: 0 7px 200px 0 var(--cuarter-color);
+    position: relative;
+    overflow: hidden;
+    width: 60%;
+    max-width: 100%;
+    min-height: 70%;
+}
+
+.tittle-login{
+    color: var(--six-color);
+    font-size: 50px;
+    text-align: justify;
+}
+
+/* Iconos de redes de inicio de sesion */
+.social-icons-login{
+    margin: 20px 0;   
+}
+
+/* iconos de inicio de sesion */
+.icon-l-login, .icon-r-register{
+    color: var(--six-color);
+    font-size: 30px;
+    text-decoration: none;
+    margin: 20px 0 15px;
+}
+
+.icon-l-login, .icon-r-register{
+    border: 4px solid var(--fifth-color);
+    border-radius: 20%;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    gap: 6rem;
-    min-height: 100vh;
+    margin: 0 5px;
+    width: 60px;
+    height: 60px;
 }
 
-.login-container, .register-container {
-    width: 400px;
-    height: 37rem;
-    padding: 20px;
-    border: 1px solid var(--six-color);
-    border-radius: 10px;
-    box-shadow: 0 0 20px var(--six-color);
-    background: var(--cuarter-color);
+/* info de como iniciar sesion */
+.span-login, .span-register{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--six-color);
+}
+
+/* info */
+.p-login, .p-register{
+    font-size: 23px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+    color: var(--cuarter-color);
+    font-weight: 600;
+}
+
+/* formularios */
+.form-container-register, .form-container-login{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.form-login, .form-register{
+    background-color: var(--cuarter-color);
+    display: flex;
     align-items: center;
-
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
 }
-
-.login-container h2, .register-container h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: var(--six-color);
-    font-size: 2.5rem;
-}
-
-.form-group-login, .form-group-register {
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.form-group-login label, .form-group-register label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group-login input, .form-group-register input {
+/* input de formualrio */
+.input-login, .input-register{
+    background-color: var(--six-color);
+    color: var(--text-color);
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 10px;
     width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    padding: 0.8rem;
-    border: 1px solid var(--six-color);
-    border-radius: 5px;
-    font-size: 1rem;
-    background: var(--six-color);
+    outline: none;
 }
 
-.p-registro {
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    margin: 20px;
-    text-decoration: none;
+/* Recuperar contraseña */
+.recovery-pass{
     color: var(--six-color);
-}
-
-.link-registro{
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    margin-top: 10px;
+    font-size: 20px;
     text-decoration: none;
-    color: var(--six-color);
+    margin: 20px 0 15px;
 }
 
-.link-registro:hover{
-color: var(--background-color);
-}
-
-.btn-submit {
-    width: 100%;
-    padding: 10px;
+/* Botones de login */
+.btn-login, .btn-register{
     background-color: var(--six-color);
     color: var(--cuarter-color);
-    border: none;
-    border-radius: 5px;
+    font-size: 20px;
+    padding: 15px 45px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
     cursor: pointer;
-    margin-top: 20px;
 }
 
-.btn-submit:hover {
+.btn-login:hover, .btn-register:hover{
     background-color: var(--fifth-color);
+    color: var(--six-color);
+    border: 3px solid var(--six-color);
+    box-shadow: 0 2px 15px 0 var(--six-color);
+}
+
+/* animacion de cambio de login a registro */
+.btn-hidden{
+    background-color: transparent;
+    color: var(--cuarter-color);
+    font-size: 20px;
+    padding: 10px 45px;
+    border: 2px solid var(--cuarter-color);
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.btn-hidden:hover{
+    background-color: var(--six-color);
+    color: var(--cuarter-color);
+    box-shadow: 0 5px 30px 0 var(--cuarter-color);
+}
+
+.sing-in{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container-login.active .sing-in{
+    transform: translateX(100%);
+}
+
+.sing-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container-login.active .sing-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+/* animacion de movimiento entre forma de login o register */
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.toggle-container-login{
+   position: absolute;
+   top: 0;
+   left: 50%;
+   width: 50%;
+   height: 100%;
+   overflow: hidden;
+   border-radius: 150px 0 0 100px;
+   transition: all 0.6s ease-in-out;
+   z-index: 1000; 
+}
+
+.container-login.active .toggle-container-login{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle{
+    background-color: var(--six-color);
+    height: 100%;
+    color: var(--cuarter-color);
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container-login.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    font-size: 23px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;  
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.container-login.active .toggle-left{
+    transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.container-login.active .toggle-right{
+    transform: translateX(200);
 }
 
 /* ==================================================================================== */

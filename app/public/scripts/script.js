@@ -1,5 +1,34 @@
+// Script para el funcionamiento de la animacion del login y el registro
+const container = document.getElementById('container-login');
+const login = document.getElementById('login');
+const register = document.getElementById('register');
 
+register.addEventListener('click', () => {
+    container.classList.add("active");
+});
 
+login.addEventListener('click', () => {
+    container.classList.remove("active");
+});
+
+// Redirige a la pagina de inicio al hacer click en el logo
+document.addEventListener('DOMContentLoaded', () => {
+    const loginButton = document.getElementById('btn-login');
+    if (loginButton) {
+        loginButton.addEventListener('click', () => {
+            window.location.href = '/index';
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const registerButton = document.getElementById('btn-register');
+    if (registerButton) {
+        registerButton.addEventListener('click', () => {
+            window.location.href = '/index';
+        });
+    }
+});
 
 // Maneja el despliegue del nav en moviles
 const nav = document.querySelector("#nav");

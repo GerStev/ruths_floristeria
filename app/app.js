@@ -326,7 +326,6 @@ app.get("/nosotros", (req, res) => {res.sendFile(__dirname + "/views/nosotros.ht
 app.get("/personaliza", (req, res) => {res.sendFile(__dirname + "/views/personaliza.html");});
 app.get("/confirmar-pago", (req, res) => {res.sendFile(__dirname + "/views/confirmacion-pago.html");});
 app.get("/carrito", (req, res) => {res.sendFile(__dirname + "/views/carrito.html");});
-app.get("/register", (req, res) => {res.sendFile(__dirname + "/views/register.html");});
 app.get("/login", (req, res) => {res.sendFile(__dirname + "/views/login.html");});
 
 // Iniciar el servidor
