@@ -1,5 +1,5 @@
 //importacion de objetos
-import { getConnection, sql } from './connectionSqlServer.js';
+import { getConnection, mysql } from './connectionMysql.js';
 
 const getUsuarios = async () => {
     try {

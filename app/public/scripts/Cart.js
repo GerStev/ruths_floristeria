@@ -64,6 +64,25 @@ productsList.forEach(container => {
     });
 });
 
+// Guardar carrito en localStorage
+const saveCartToLocalStorage = () => {
+    localStorage.setItem('cart', JSON.stringify(allProducts));
+};
+
+// Cargar carrito desde localStorage al iniciar la página
+const loadCartFromLocalStorage = () => {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        allProducts = JSON.parse(savedCart);
+        showHTML();
+    }
+};
+
+// Llamar a loadCartFromLocalStorage al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    loadCartFromLocalStorage();
+});
+
 const rowProductClickHandler = async (e, rowProduct, container) => {
     if (e.target.classList.contains('icon-close')) {
         const product = e.target.parentElement;
@@ -79,6 +98,7 @@ const rowProductClickHandler = async (e, rowProduct, container) => {
 
         allProducts = await response.json();
         showHTML();
+        saveCartToLocalStorage(); // Guardar el carrito actualizado
     }
 };
 
@@ -134,12 +154,15 @@ const showHTML = () => {
 
             total = total + parseInt(product.quantity * product.price.slice(1));
             totalOfProducts = totalOfProducts + product.quantity;
+            
         });
 
         valorTotal.innerText = `$${total}`;
         countProducts.innerText = totalOfProducts;
+        saveCartToLocalStorage(); // Añadir esta línea al final
     };
 
     updateCart(rowProductLarge, cartEmptyLarge, cartTotalLarge, valorTotalLarge, countProductsLarge);
     updateCart(rowProductSmall, cartEmptySmall, cartTotalSmall, valorTotalSmall, countProductsSmall);
 };
+

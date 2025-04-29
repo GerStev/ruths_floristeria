@@ -1115,14 +1115,14 @@ las paginas */
 
 .item img{
     width: 100%;
-    height: 300px;
+    height: 350px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
     transition: all .6s;
 }
 
 .item figure{
-    height: 300px;
+    height: 350px;
     overflow: hidden;
     background: var(--cuarter-color);
 }
@@ -1134,29 +1134,29 @@ las paginas */
 
 /* Estilos para la información del producto */
 .info-product {
-    height: 215px;
-    padding: 15px 20px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: justify; /* Centra los elementos horizontalmente */
+    height: 50%; /* Asegura que el contenedor ocupe toda la altura */
+    padding: 15px 20px;
     background: var(--cuarter-color);
     color: var(--six-color);
     border-radius: 0 0 10px 10px;
-    align-items: center;
-    text-align: center; /* Asegura que el texto esté centrado */
+    text-align: center; /* Centra el texto horizontalmente */
     word-wrap: break-word; /* Permite que el texto se ajuste dentro del contenedor */
-    justify-content: space-between; /* Asegura que el contenido se distribuya correctamente */
 }
 
 .info-product h2 {
-    justify-content: center;
-    font-size: clamp(1rem, 2vw, 1.5rem); /* Ajusta el tamaño del texto de manera responsiva */
+    font-size: clamp(.5rem, 2vw, 1.5rem); /* Ajusta el tamaño del texto de manera responsiva */
     margin: 0; /* Elimina el margen para evitar desbordamiento */
+    flex-grow: 1; /* Permite que el título ocupe el espacio disponible */
 }
 
 .price{
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 700;
+    margin: 10px 0; /* Asegura un espacio consistente alrededor del precio */
+    flex-shrink: 0; /* Evita que el precio se reduzca si hay mucho contenido */
 }
 
 .info-product button{
@@ -1166,8 +1166,11 @@ las paginas */
     color: var(--cuarter-color);
     padding: 15px 10px;
     cursor: pointer;
-    align-self: center; /* Asegura que el botón esté centrado horizontalmente */
+    font-weight: 600;
+
+    align-self: center; /* Centra el botón horizontalmente */
     margin-top: auto; /* Empuja el botón hacia la parte inferior */
+    flex-shrink: 0; /* Evita que el botón se reduzca si hay mucho contenido */
 }
 
 
@@ -1610,7 +1613,6 @@ las paginas */
 
 
   /* Confirmar-pago.html*/
-  /* confirmacion.css */
 /* Estilos base consistentes con tu sitio */
 .confirmation-container {
     max-width: 800px;
@@ -1700,6 +1702,75 @@ las paginas */
     stroke-dashoffset: 48;
     animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
+
+/* ========================================================================================================================== */
+/* Pagina de pago */
+/* Estilo general para el contenedor de pago */
+.payment-container {
+    width: 80%;
+    background: var(--cuarter-color);
+    padding: 20px;
+    margin: 20px auto;
+    border: none;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 columnas de igual ancho */
+    gap: 20px; /* Espacio entre elementos */
+}
+
+/* Título del formulario de pago */
+.tittlePago {
+    font-size: 28px;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+}
+.formulario {
+    display: contents; /* Los hijos directos participan en el grid */
+}
+
+.form-group {
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.label-pago {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.input-pago, .select-pago {
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.btn-pago {
+    padding: 10px 20px;
+    background-color: var(--six-color);
+    color: var(--cuarter-color);
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.2s ease-in;
+
+    grid-column: 1 / -1; /* Ocupa todas las columnas */
+    justify-self: center; /* Centra el botón */
+    margin-top: 10px;
+}
+
+.btn-pago:hover {
+    background-color: var(--cuarter-color);
+    border: 4px solid var(--six-color);
+    color: var(--six-color);
+}
+
+
 
 /* Animaciones */
 @keyframes fadeIn {

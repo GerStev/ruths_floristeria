@@ -15,8 +15,8 @@
     <div class="container-wrapper">
         <div class="container-login" id="container-login">
             <div class="form-container-register sing-in">
-                
-                <form class="form-login">
+                <!-- formualrio de login -->
+                <form class="form-login" id="form-login">
                     <h1 class="tittle-login">Iniciar sesión</h1>
                     <div class="social-icons-login">
                         <a href="#" class="icon-l-login">
@@ -29,8 +29,8 @@
     
                     <span class="span-login">O usa tu correo y contraseña</span>
     
-                    <input class="input-login" type="email" placeholder="Correo" >
-                    <input class="input-login" type="password" placeholder="Contraseña" >
+                    <input class="input-login" id="username" type="text" placeholder="Nombre de usuario" >
+                    <input class="input-login" id="password" type="password" placeholder="Contraseña" >
     
                     <a href="#" class="recovery-pass">Olvidaste tu contraseña?</a>
     
@@ -41,7 +41,8 @@
             </div>
             <!-- ============================================================================================================================ -->
             <div class="form-container-login sing-up">
-                <form class="form-register">
+                <!-- formulario de registerte recalco q -->
+                <form class="form-register" id="form-register">
                     <h1 class="tittle-login">Crear cuenta</h1>
                     <div class="social-icons-login">
                         <a href="#" class="icon-r-register">
@@ -54,9 +55,9 @@
     
                     <span class="span-register">O crea tu cuenta para registrarte</span>
     
-                    <input class="input-register" type="text" placeholder="Nombre" required>
-                    <input class="input-register" type="email" placeholder="Correo" required>
-                    <input class="input-register" type="password" placeholder="Contraseña" required>
+                    <input class="input-register" id="newUsername" type="text" placeholder="Nombre" required>
+                    <input class="input-register" id="newEmail" type="email" placeholder="Correo" required>
+                    <input class="input-register" id="newPassword" type="password" placeholder="Contraseña" required>
     
                     <button class="btn-register" id="btn-register">
                         Crear cuenta

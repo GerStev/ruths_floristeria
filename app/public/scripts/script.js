@@ -11,24 +11,6 @@ login.addEventListener('click', () => {
     container.classList.remove("active");
 });
 
-// Redirige a la pagina de inicio al hacer click en el logo
-document.addEventListener('DOMContentLoaded', () => {
-    const loginButton = document.getElementById('btn-login');
-    if (loginButton) {
-        loginButton.addEventListener('click', () => {
-            window.location.href = '/index';
-        });
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const registerButton = document.getElementById('btn-register');
-    if (registerButton) {
-        registerButton.addEventListener('click', () => {
-            window.location.href = '/index';
-        });
-    }
-});
 
 // Maneja el despliegue del nav en moviles
 const nav = document.querySelector("#nav");
@@ -361,5 +343,37 @@ const loadingSpinner = document.getElementById("loading-spinner");
 loadingSpinner.style.display = "block"; // Mostrar el spinner
 aiPreviewImage.src = ""; // Limpiar la imagen previa
 
+// carrito de pago obtener datos del carrito desde la API
+async function fetchCart() {
+    try {
+        const response = await fetch('/api/cart');
+        const cart = await response.json();
+
+        const container = document.getElementById('payment-container');
+        container.innerHTML = ''; // Limpiar contenido previo
+
+        if (cart.length === 0) {
+            container.innerHTML = '<p>El carrito está vacío.</p>';
+            return;
+        }
+
+        // Renderizar los productos del carrito
+        cart.forEach(item => {
+            const productDiv = document.createElement('div');
+            productDiv.innerHTML = `
+                <p><strong>Producto:</strong> ${item.title}</p>
+                <p><strong>Precio:</strong> $${item.price}</p>
+                <p><strong>Cantidad:</strong> ${item.quantity}</p>
+                <hr>
+            `;
+            container.appendChild(productDiv);
+        });
+    } catch (error) {
+        console.error('Error al obtener el carrito:', error);
+    }
+}
+
+// Llamar a la función al cargar la página
+document.addEventListener('DOMContentLoaded', fetchCart);
 
 
