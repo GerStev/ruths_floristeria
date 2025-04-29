@@ -24,6 +24,66 @@ var swiper = new Swiper(".swiper", {
     },
 });
 
+/* ---- particles.js config ---- */
+
+particlesJS("particles-js", {
+    "particles": {
+      "number": {
+        "value": 160,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": {
+        "value": ("#FC8EAC", "#fc8ec1", "#ffe3f0")
+      },
+      "shape": {
+        "type": "circle",
+      },
+      "opacity": {
+        "value": 0.6,
+        "random": false,
+        "anim": {
+          "enable": false,
+          "speed": 10,
+          "opacity_min": 0.1,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 5,
+        "random": true,
+        "anim": {
+          "enable": true,
+          "speed": 5,
+          "size_min": 0.1,
+          "sync": false
+        }
+      },
+      "line_linked": {
+        "enable": false,
+      },
+      "move": {
+        "enable": true,
+        "speed": 1,
+        "direction": "none",
+        "random": true,
+        "straight": false,
+        "out_mode": "none",
+        "bounce": false,
+        "attract": {
+          "enable": false,
+          "rotateX": 600,
+          "rotateY": 1200
+        }
+      }
+    },
+    "retina_detect": true
+  });
+  
+  
+
 // Script para el funcionamiento de la animacion del login y el registro
 const container = document.getElementById('container-login');
 const login = document.getElementById('login');
