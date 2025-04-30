@@ -552,14 +552,13 @@ las paginas */
     font-weight: 600;
 }
 
+.swiper-pagination{
+    --swiper-pagination-bullet: -6px;
+}
+
 .swiper-slide-active .swiper-text{
     bottom: -10px;
     box-shadow: 0 20px 30px 2px var(--fifth-color);
-}
-
-
-.swiper-pagination{
-    --swiper-pagination-bullet: -6px;
 }
 
 .swiper-slide-active{

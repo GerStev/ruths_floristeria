@@ -1,103 +1,3 @@
-// SwiperSlide de flores
-var swiper = new Swiper(".swiper", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    initialSlide: 3,
-    speed: 600,
-    preventClicks: true,
-    slidesPerView: "auto",
-    coverflowEffect: {
-        rotate: 0,
-        stretch: 80,
-        depth: 350,
-        modifier: 1,
-        slideShadows: true,
-    },
-    on: {
-        click(event) {
-            swiper.slideTo(this.clickedIndex);
-        },
-    },
-    pagination: {
-        el: ".swiper-pagination",
-    },
-});
-
-/* ---- particles.js config ---- */
-
-particlesJS("particles-js", {
-    "particles": {
-      "number": {
-        "value": 160,
-        "density": {
-          "enable": true,
-          "value_area": 800
-        }
-      },
-      "color": {
-        "value": ("#FC8EAC", "#fc8ec1", "#ffe3f0")
-      },
-      "shape": {
-        "type": "circle",
-      },
-      "opacity": {
-        "value": 0.7,
-        "random": false,
-        "anim": {
-          "enable": false,
-          "speed": 10,
-          "opacity_min": 0.1,
-          "sync": false
-        }
-      },
-      "size": {
-        "value": 5,
-        "random": true,
-        "anim": {
-          "enable": true,
-          "speed": 4,
-          "size_min": 0.1,
-          "sync": false
-        }
-      },
-      "line_linked": {
-        "enable": false,
-      },
-      "move": {
-        "enable": true,
-        "speed": 1,
-        "direction": "none",
-        "random": true,
-        "straight": false,
-        "out_mode": "none",
-        "bounce": false,
-        "attract": {
-          "enable": false,
-          "rotateX": 600,
-          "rotateY": 1200
-        }
-      }
-    },
-    "retina_detect": true
-  });
-  
-  
-
-// Script para el funcionamiento de la animacion del login y el registro
-const container = document.getElementById('container-login');
-const login = document.getElementById('login');
-const register = document.getElementById('register');
-
-register.addEventListener('click', () => {
-    container.classList.add("active");
-});
-
-login.addEventListener('click', () => {
-    container.classList.remove("active");
-});
-
-
 // Maneja el despliegue del nav en moviles
 const nav = document.querySelector("#nav");
 const abrir = document.querySelector("#abrir");
@@ -137,65 +37,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// SwiperSlide de flores
-var swiper = new Swiper(".swiper", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    initialSlide: 3,
-    speed: 600,
-    preventClicks: true,
-    slidesPerView: "auto",
-    coverflowEffect: {
-        rotate: 0,
-        stretch: 80,
-        depth: 350,
-        modifier: 1,
-        slideShadows: true,
-    },
-    on: {
-        click(event) {
-            swiper.slideTo(this.clickedIndex);
-        },
-    },
-    pagination: {
-        el: ".swiper-pagination",
-    },
+// Script para el funcionamiento de la animacion del login y el registro
+const container = document.getElementById('container-login');
+const login = document.getElementById('login');
+const register = document.getElementById('register');
+
+register.addEventListener('click', () => {
+    container.classList.add("active");
 });
 
-// Controla las opciones de filtrado
-document.addEventListener('DOMContentLoaded', () => {
-    const filterButton = document.querySelector('.filter-button');
-    const filterOptions = document.querySelector('.filter-options');
-
-    filterButton.addEventListener('click', () => {
-        if (filterOptions.classList.contains('visible')) {
-            filterOptions.classList.remove('visible');
-            filterOptions.classList.add('hidden');
-            setTimeout(() => {
-                filterOptions.style.display = 'none'; // Ocultar después de la animación
-            }, 300); // Duración de la animación
-        } else {
-            filterOptions.style.display = 'flex'; // Mostrar antes de la animación
-            setTimeout(() => {
-                filterOptions.classList.remove('hidden');
-                filterOptions.classList.add('visible');
-            }, 10); // Pequeño retraso para permitir que la animación se active
-        }
-    });
-
-    // Cerrar el menú del filtro al hacer clic fuera de él
-    document.addEventListener('click', (event) => {
-        if (!filterOptions.contains(event.target) && !filterButton.contains(event.target)) {
-            if (filterOptions.classList.contains('visible')) {
-                filterOptions.classList.remove('visible');
-                filterOptions.classList.add('hidden');
-                setTimeout(() => {
-                    filterOptions.style.display = 'none'; // Ocultar después de la animación
-                }, 300); // Duración de la animación
-            }
-        }
-    });
+login.addEventListener('click', () => {
+    container.classList.remove("active");
 });
 
 
@@ -330,7 +182,6 @@ document.getElementById("preview-btn").addEventListener("click", async () => {
 });
 
 
-
 document.addEventListener('DOMContentLoaded', function() {
     const floresGrid = document.querySelector('.flores-grid');
 
@@ -351,32 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
-// fltro de busqueda en catalogo
-document.addEventListener('DOMContentLoaded', () => {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const productCards = document.querySelectorAll('.producto-card');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const filter = button.getAttribute('data-filter');
-
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to the clicked button
-            button.classList.add('active');
-
-            // Filter product cards
-            productCards.forEach(card => {
-                if (filter === 'todos' || card.getAttribute('data-categoria') === filter) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-});
 
 // Se comunica con el backend de la ia
 document.addEventListener("DOMContentLoaded", () => {
@@ -429,37 +254,6 @@ const loadingSpinner = document.getElementById("loading-spinner");
 loadingSpinner.style.display = "block"; // Mostrar el spinner
 aiPreviewImage.src = ""; // Limpiar la imagen previa
 
-// carrito de pago obtener datos del carrito desde la API
-async function fetchCart() {
-    try {
-        const response = await fetch('/api/cart');
-        const cart = await response.json();
 
-        const container = document.getElementById('payment-container');
-        container.innerHTML = ''; // Limpiar contenido previo
-
-        if (cart.length === 0) {
-            container.innerHTML = '<p>El carrito está vacío.</p>';
-            return;
-        }
-
-        // Renderizar los productos del carrito
-        cart.forEach(item => {
-            const productDiv = document.createElement('div');
-            productDiv.innerHTML = `
-                <p><strong>Producto:</strong> ${item.title}</p>
-                <p><strong>Precio:</strong> $${item.price}</p>
-                <p><strong>Cantidad:</strong> ${item.quantity}</p>
-                <hr>
-            `;
-            container.appendChild(productDiv);
-        });
-    } catch (error) {
-        console.error('Error al obtener el carrito:', error);
-    }
-}
-
-// Llamar a la función al cargar la página
-document.addEventListener('DOMContentLoaded', fetchCart);
 
 
