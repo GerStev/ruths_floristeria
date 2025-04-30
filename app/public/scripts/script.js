@@ -42,7 +42,7 @@ particlesJS("particles-js", {
         "type": "circle",
       },
       "opacity": {
-        "value": 0.6,
+        "value": 0.7,
         "random": false,
         "anim": {
           "enable": false,
@@ -56,7 +56,7 @@ particlesJS("particles-js", {
         "random": true,
         "anim": {
           "enable": true,
-          "speed": 5,
+          "speed": 4,
           "size_min": 0.1,
           "sync": false
         }

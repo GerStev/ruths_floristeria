@@ -29,7 +29,7 @@
                     <!-- Detalles de la tarjeta -->
                     <div class="form-group">
                         <label class="label-pago" for="numero-tarjeta">Número de Tarjeta</label>
-                        <input class="input-pago" type="text" id="numero-tarjeta" name="numero-tarjeta" placeholder="1234 5678 9012 3456" required>
+                        <input class="input-pago" type="text" id="numero-tarjeta" name="numero-tarjeta" placeholder="1234-5678-9012-3456" required>
                     </div>
                     <div class="form-group">
                         <label class="label-pago" for="fecha-expiracion">Fecha de Expiración</label>
@@ -42,11 +42,15 @@
                     <!-- Opciones de pago -->
                     <div class="form-group">
                         <label class="label-pago" for="metodo-pago">Método de Pago</label>
+                        <div class="img-pago">
+                            <img class="img-pago" src="/Img/Portadas/VisaPortada.jpg" alt="Tarjeta de visa">
+                            <img class="img-pago" src="/Img/Portadas/mastercardPortada.jpg" alt="Tarjeta de MasterCard">
+                            <img class="img-pago" id="bank-transfer" src="/Img/Portadas/transferenciaPortada.png" alt="Transferencia Bancaria">
+                        </div>
                         <select class="select-pago" id="metodo-pago" name="metodo-pago" required>
                             <option value="tarjeta-credito">Tarjeta de Crédito</option>
                             <option value="tarjeta-debito">Tarjeta de Débito</option>
                             <option value="transferencia-bancaria">Transferencia bancaria</option>
-                            <option value="paypal">PayPal</option>
                         </select>
                     </div>
                     <!-- Botón de envío -->
