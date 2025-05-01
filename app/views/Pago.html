@@ -3,91 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <title>Pago</title>
 </head>
 <body>
     <div class="payment-container" id="payment-container">
+        <div class="payment-header">
+            <h1 class="tittlePago">Finaliza tu compra</h1>
+            <div class="payment-steps">
+                <div class="step active"><span>1</span> Información</div>
+                <div class="step"><span>2</span> Pago</div>
+                <div class="step"><span>3</span> Confirmación</div>
+            </div>
+        </div>
+    
         <div class="form-pago-container">
-            <h2 class="tittlePago">Formulario de Pago</h2>
-            <!-- Formulario de Pago -->
-            <div class="formulario">
-                <form action="/procesar-pago" method="POST">
-                    <!-- Información del cliente -->
-                    <div class="form-group">
-                        <label class="label-pago" for="nombre">Nombre Completo</label>
-                        <input class="input-pago" type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre" required>
+            <div class="payment-card">
+                <h2 class="tittleCompra"><i class="fas fa-user"></i> Datos del comprador</h2>
+                <form action="/procesar-pago" method="POST" id="payment-form">
+                    <div class="form-group floating">
+                        <input class="input-pago" type="text" id="nombre" name="nombre" placeholder=" " required>
+                        <label class="label-pago" for="nombre">Nombre completo*</label>
+                        <i class="fas fa-user input-icon"></i>
                     </div>
-                    <div class="form-group">
-                        <label class="label-pago" for="email">Correo Electrónico</label>
-                        <input class="input-pago" type="email" id="email" name="email" placeholder="Ingresa tu correo" required>
+                    <div class="form-group floating">
+                        <input class="input-pago" type="email" id="email" name="email" placeholder=" " required>
+                        <label class="label-pago" for="email">Correo Electrónico*</label>
+                        <i class="fas fa-envelope input-icon"></i>
                     </div>
-                    <div class="form-group">
-                        <label class="label-pago" for="telefono">Teléfono</label>
-                        <input class="input-pago" type="tel" id="telefono" name="telefono" placeholder="Ingresa tu teléfono" required>
+                    <div class="form-group floating">
+                        <input class="input-pago" type="tel" id="telefono" name="telefono" placeholder=" " required>
+                        <label class="label-pago" for="telefono">Teléfono*</label>
+                        <i class="fas fa-phone input-icon"></i>
                     </div>
-                    <!-- Detalles de la tarjeta -->
-                    <div class="form-group">
-                        <label class="label-pago" for="numero-tarjeta">Número de Tarjeta</label>
-                        <input class="input-pago" type="text" id="numero-tarjeta" name="numero-tarjeta" placeholder="1234-5678-9012-3456" required>
+    
+                    <h2 class="tittleCompra"><i class="fas fa-gift"></i> Datos del destinatario</h2>
+                    <div class="form-group floating">
+                        <input class="input-pago" type="text" id="destinatario" name="destinatario" placeholder=" " required>
+                        <label class="label-pago" for="destinatario">Nombre del destinatario*</label>
+                        <i class="fas fa-user-tag input-icon"></i>
                     </div>
-                    <div class="form-group">
-                        <label class="label-pago" for="fecha-expiracion">Fecha de Expiración</label>
-                        <input class="input-pago" type="month" id="fecha-expiracion" name="fecha-expiracion" required>
+                    <div class="form-group floating">
+                        <input class="input-pago" type="text" id="direccion" name="direccion" placeholder=" " required>
+                        <label class="label-pago" for="direccion">Dirección de entrega*</label>
+                        <i class="fas fa-map-marker-alt input-icon"></i>
+                        <span class="note">(Aquí se hará la entrega)</span>
                     </div>
-                    <div class="form-group">
-                        <label class="label-pago" for="cvv">CVV</label>
-                        <input class="input-pago" type="text" id="cvv" name="cvv" placeholder="123" required>
-                    </div>
-                    <!-- Opciones de pago -->
-                    <div class="form-group">
-                        <label class="label-pago" for="metodo-pago">Método de Pago</label>
-                        <div class="img-pago">
-                            <img class="img-pago" src="/Img/Portadas/VisaPortada.jpg" alt="Tarjeta de visa">
-                            <img class="img-pago" src="/Img/Portadas/mastercardPortada.jpg" alt="Tarjeta de MasterCard">
-                            <img class="img-pago" id="bank-transfer" src="/Img/Portadas/transferenciaPortada.png" alt="Transferencia Bancaria">
+                    
+                    <h2 class="tittleCompra"><i class="fas fa-credit-card"></i> Método de pago</h2>
+                    <div class="payment-methods">
+                        <div class="method-option active" data-method="tarjeta">
+                            <i class="far fa-credit-card"></i>
+                            <span>Tarjeta</span>
                         </div>
-                        <select class="select-pago" id="metodo-pago" name="metodo-pago" required>
-                            <option value="tarjeta-credito">Tarjeta de Crédito</option>
-                            <option value="tarjeta-debito">Tarjeta de Débito</option>
-                            <option value="transferencia-bancaria">Transferencia bancaria</option>
-                        </select>
+                        <div class="method-option" data-method="transferencia">
+                            <i class="fas fa-university"></i>
+                            <span>Transferencia</span>
+                        </div>
                     </div>
-                    <!-- Botón de envío -->
-                    <button type="submit" class="btn-pago">Pagar Ahora</button>
+    
+                    <div class="card-details" id="card-details">
+                        <div class="form-group floating">
+                            <input class="input-pago" type="text" id="numero-tarjeta" name="numero-tarjeta" placeholder=" " required>
+                            <label class="label-pago" for="numero-tarjeta">Número de Tarjeta</label>
+                            <i class="far fa-credit-card input-icon"></i>
+                            <div class="card-icons">
+                                <img src="/Img/Portadas/VisaPortada.jpg" alt="Visa">
+                                <img src="/Img/Portadas/mastercardPortada.jpg" alt="Mastercard">
+                            </div>
+                        </div>
+                        <div class="card-grid">
+                            <div class="form-group floating">
+                                <input class="input-pago" type="month" id="fecha-expiracion" name="fecha-expiracion" placeholder=" " required>
+                                <label class="label-pago" for="fecha-expiracion">Fecha de Expiración</label>
+                            </div>
+                            <div class="form-group floating">
+                                <input class="input-pago" type="text" id="cvv" name="cvv" placeholder=" " required>
+                                <label class="label-pago" for="cvv">CVV</label>
+                                <i class="fas fa-lock input-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="bank-details" id="bank-details" style="display: none;">
+                        <div class="bank-info">
+                            <p><strong>Banco:</strong> Banco Agricola.</p>
+                            <p><strong>Cuenta:</strong> 129978</p>
+                            <p><strong>Beneficiario:</strong> Ruth´s Floristeria</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="label-archivo" for="comprobante">Sube tu comprobante (opcional)</label>
+                            <input type="file" id="comprobante" name="comprobante" class="file-input">
+                        </div>
+                    </div>
+    
+                    <div class="form-group terms">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></label>
+                    </div>
+    
+                    <button type="submit" class="btn-pago">
+                        <span class="btn-text">Pagar $30.00</span>
+                        <i class="fas fa-lock"></i>
+                    </button>
                 </form>
             </div>
-
-            <div class="table-pago">
-                <!-- Tabla de detalles de la compra -->
-                <table class="table-pago">
-                    <thead class="thead-pago">
-                        <tr>
-                            <th colspan="2">Detalles de la Compra</th>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Precio</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Producto 1</td>
-                            <td>$10.00</td>
-                        </tr>
-                        <tr>
-                            <td>Producto 2</td>
-                            <td>$20.00</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td>Total</td>
-                            <td>$30.00</td>
-                        </tr>
-                    </tfoot>
-                </table>
+    
+            <div class="order-summary">
+                <h2><i class="fas fa-receipt"></i> Resumen del pedido</h2>
+                <div class="summary-items">
+                    <div class="summary-item">
+                        <div class="item-name">Domo de rosa</div>
+                        <div class="item-price">$10.00</div>
+                    </div>
+                    <div class="summary-item">
+                        <div class="item-name">Ramo de caballero</div>
+                        <div class="item-price">$20.00</div>
+                    </div>
+                </div>
+                <div class="summary-total">
+                    <div>Total</div>
+                    <div>$30.00</div>
+                </div>
+                <div class="secure-payment">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Pago 100% seguro</span>
+                </div>
             </div>
+        </div>
+    </div>
 
-        <script src="/scripts/script.js"></script>
+        <script src="/scripts/Pago.js"></script>
 </body>
 </html>

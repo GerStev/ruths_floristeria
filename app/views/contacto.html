@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"" >
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="/css/style.css">
-        <script src="/scripts/Contacto.js" ></script>
+        
         <!-- <script src="/scripts/script.js" defer></script> -->
     <title>Contactanos</title>
 </head>
@@ -60,7 +60,6 @@
     </header>
 
     <div class="particles" id="particles-js"></div>
-
     <!-- Enlaces a las diferentes paginas -->
     <div class="menuFondo">
         <button class="abrir_menu" id="abrir">
@@ -70,7 +69,7 @@
     
     <nav class="nav" id="nav">
 
-        <ul class="nav-menu" >
+        <ul class="nav-menu" id="menu_nav">
             <button class="cerrar_menu" id="cerrar">
                 <i class="bi bi-x"></i>
             </button>
@@ -100,11 +99,13 @@
                     <p class="login-text-menu">Iniciar sesion</p>
                 </i>
             </a>
+            <a href="/register" aria-label="Register" class="user-link-menu">
+                <i id="register-icon-menu" class="bi bi-person-plus-fill">
+                    <p class="register-text-menu">Registrarse</p>
+                </i>
+            </a>
         </div>
-        
     </nav>
-
-
 
 
     <div class="contenedor">
@@ -182,5 +183,6 @@
     </footer>
 
     
+    <script src="/scripts/Contacto.js"></script>
 </body>
 </html>

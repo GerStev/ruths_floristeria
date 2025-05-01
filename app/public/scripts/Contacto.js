@@ -57,3 +57,42 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Maneja el despliegue del nav en moviles
+const nav = document.querySelector("#nav");
+const abrir = document.querySelector("#abrir");
+const cerrar = document.querySelector("#cerrar");
+
+// Controla el despliegue del nav y menu en movil
+document.addEventListener('DOMContentLoaded', () => {
+    const abrirMenu = document.querySelector('.abrir_menu');
+    const cerrarMenu = document.querySelector('#cerrar');
+    const navMenus = [document.querySelector('#nav'), document.querySelector('#menu_nav')]; // Selecciona ambos IDs
+
+    // Función para abrir el menú
+    abrirMenu.addEventListener('click', () => {
+        navMenus.forEach(navMenu => {
+            if (navMenu) {
+                navMenu.classList.add('visible');
+            }
+        });
+    });
+
+    // Función para cerrar el menú
+    cerrarMenu.addEventListener('click', () => {
+        navMenus.forEach(navMenu => {
+            if (navMenu) {
+                navMenu.classList.remove('visible');
+            }
+        });
+    });
+
+    // Cerrar el menú al hacer clic fuera de él
+    document.addEventListener('click', (event) => {
+        navMenus.forEach(navMenu => {
+            if (navMenu && !navMenu.contains(event.target) && !abrirMenu.contains(event.target)) {
+                navMenu.classList.remove('visible');
+            }
+        });
+    });
+});
