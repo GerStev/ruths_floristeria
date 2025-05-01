@@ -237,7 +237,7 @@ app.get("/contacto", (req, res) => {res.sendFile(__dirname + "/views/contacto.ht
 app.get("/nosotros", (req, res) => {res.sendFile(__dirname + "/views/nosotros.html");});
 app.get("/personaliza", (req, res) => {res.sendFile(__dirname + "/views/personaliza.html");});
 app.get("/pago", (req, res) => {res.sendFile(__dirname + "/views/Pago.html");});
-app.get("/confirmar-pago", (req, res) => {res.sendFile(__dirname + "/views/confirmacion-pago.html");});
+app.get("/confirmarP", (req, res) => {res.sendFile(__dirname + "/views/confirmacion-pago.html");});
 app.get("/carrito", (req, res) => {res.sendFile(__dirname + "/views/carrito.html");});
 app.get("/login", (req, res) => {res.sendFile(__dirname + "/views/login.html");});
 
