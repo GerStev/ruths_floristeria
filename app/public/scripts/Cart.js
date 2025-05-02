@@ -69,6 +69,48 @@ const saveCartToLocalStorage = () => {
     localStorage.setItem('cart', JSON.stringify(allProducts));
 };
 
+// Llamar a saveCartToLocalStorage cada vez que se actualice el carrito
+const updateCart = (rowProduct, cartEmpty, cartTotal, valorTotal, countProducts) => {
+    if (!allProducts.length) {
+        cartEmpty.classList.remove('hidden');
+        rowProduct.classList.add('hidden');
+        cartTotal.classList.add('hidden');
+    } else {
+        cartEmpty.classList.add('hidden');
+        rowProduct.classList.remove('hidden');
+        cartTotal.classList.remove('hidden');
+    }
+
+    // Limpiar HTML
+    rowProduct.innerHTML = '';
+
+    let total = 0;
+    let totalOfProducts = 0;
+
+    allProducts.forEach(product => {
+        const containerProduct = document.createElement('div');
+        containerProduct.classList.add('cart-product');
+
+        containerProduct.innerHTML = `
+            <div class="info-cart-product">
+                <span class="cantidad-producto-carrito">${product.quantity}</span>
+                <p class="titulo-producto-carrito">${product.title}</p>
+                <span class="precio-producto-carrito">${product.price}</span>
+            </div>
+        `;
+
+        rowProduct.append(containerProduct);
+
+        total += parseFloat(product.price.slice(1)) * product.quantity;
+        totalOfProducts += product.quantity;
+    });
+
+    valorTotal.innerText = `$${total.toFixed(2)}`;
+    countProducts.innerText = totalOfProducts;
+
+    saveCartToLocalStorage(); // Guardar el carrito actualizado
+};
+
 // Cargar carrito desde localStorage al iniciar la página
 const loadCartFromLocalStorage = () => {
     const savedCart = localStorage.getItem('cart');

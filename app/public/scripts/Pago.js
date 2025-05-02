@@ -72,3 +72,52 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Mostrar productos en el carrito en Pago.html
+document.addEventListener('DOMContentLoaded', () => {
+    const orderSummary = document.querySelector('.order-summary .summary-items');
+    const totalElement = document.querySelector('.order-summary .summary-total div:last-child');
+
+    // Cargar carrito desde localStorage
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        const cartItems = JSON.parse(savedCart);
+        let total = 0;
+
+        cartItems.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('summary-item');
+            itemElement.innerHTML = `
+                <div class="item-name">${item.title} (${item.quantity})</div>
+                <div class="item-price">$${(parseFloat(item.price.slice(1)) * item.quantity).toFixed(2)}</div>
+            `;
+            orderSummary.appendChild(itemElement);
+
+            total += parseFloat(item.price.slice(1)) * item.quantity;
+        });
+
+        totalElement.textContent = `$${total.toFixed(2)}`;
+    }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const totalElement = document.querySelector('.summary-total div:last-child');
+    const payButtonText = document.querySelector('.btn-pago .btn-text');
+
+    // Cargar carrito desde localStorage
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        const cartItems = JSON.parse(savedCart);
+        let total = 0;
+
+        cartItems.forEach(item => {
+            total += parseFloat(item.price.slice(1)) * item.quantity;
+        });
+
+            // Actualizar el total en el resumen del pedido
+        totalElement.textContent = `$${total.toFixed(2)}`;
+
+        // Actualizar el texto del botón de pago
+        payButtonText.textContent = `Pagar $${total.toFixed(2)}`;
+    }
+});

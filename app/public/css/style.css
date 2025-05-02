@@ -2567,9 +2567,6 @@ las paginas */
     }
 
 
-
-
-
     /* Mostrar el botón solo en pantallas de 768px o menos */
     .filter-container {
         display: block;
@@ -2627,7 +2624,7 @@ las paginas */
         display: flex;
         position: absolute;
         right: 10px;
-        top: 280px;
+        top: 205px;
         align-items: center;
     }
 
@@ -2647,6 +2644,7 @@ las paginas */
         color: white;
         text-align: center;
         text-decoration: none;
+        border: none;
         border-radius: 5px;
         font-size: 16px;
         font-weight: 700;
@@ -2654,6 +2652,7 @@ las paginas */
 
     .btn-pagar:hover {
         background-color: var(--fifth-color); /* Cambia el color según tu preferencia */
+        box-shadow: 0 10px 20px var(--cuarter-color);
     }
 
     /* ========================================================================================= */
