@@ -10,12 +10,12 @@
 
 :root {
     /* page */
-    --primary-color: #C59E00;
-    --secondary-color: #C59E00;
     --third-color: black;
     --cuarter-color: #fb6f92;
     --fifth-color:#ff8fab;
     --six-color:#FFFFFF;
+
+    --accent-color: #4895ef;
 
     --dark-color: #212529;
     --success-color: green;
@@ -31,6 +31,7 @@
     --select-color: #e0e0e0;
     --border-radius: 12px;
     --box-shadow: 0 5px 30px #ff8fab;
+    --box-shadow2: 0 10px 30px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
 }
 
@@ -598,6 +599,67 @@ las paginas */
     height: 100%;
     z-index: -1;
 }
+
+/* ================================================================================================================== */
+
+/* Estilos para la alerta personalizada */
+.custom-alert, .custom-alert2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.custom-alert.hidden, .custom-alert2.hidden {
+    display: none;
+}
+
+.custom-alert-content {
+    background-color: #fff;
+    padding: 120px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.alert-tittle{
+    font-size: 2.3rem;
+    color: var(--cuarter-color);
+    margin-bottom: 20px;
+}
+
+
+.alert-p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.btn-close-alert {
+    background-color: var(--cuarter-color);
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.btn-close-alert:hover {
+    background-color: var(--fifth-color);
+}
+
+.hidden-alert, .hidden-alert2 {
+    display: none;
+}
+
 
 
 /* Botones de visualizar los productos en las tarjetas */
@@ -1655,97 +1717,6 @@ las paginas */
   }
 
 
-  /* Confirmar-pago.html*/
-/* Estilos base consistentes con tu sitio */
-.confirmation-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    font-family: 'Arial', sans-serif;
-    animation: fadeIn 0.8s ease-out;
-}
-
-.confirmation-container h1 {
-    color: #4a6f28; /* Verde similar a tu logo */
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    display: inline-block;
-}
-
-.confirmation-container h1::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background-color: #e91e63; /* Rosa similar a tu paleta */
-    animation: expandLine 1s ease-out forwards;
-}
-
-#payment-status {
-    font-size: 1.3rem;
-    margin: 2rem 0;
-    padding: 1rem;
-    border-radius: 8px;
-    background-color: #f8f9fa;
-    transition: all 0.5s ease;
-}
-
-.btn-home {
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: var(--cuarter-color); /* Verde */
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
-    margin-top: 1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    animation: pulse 2s infinite;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-home:hover {
-    background-color: var(--fifth-color);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Icono de confirmación */
-.checkmark {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto;
-    position: relative;
-    animation: checkmarkScale 0.6s ease-in-out both;
-}
-
-.checkmark__circle {
-    stroke-dasharray: 166;
-    stroke-dashoffset: 166;
-    stroke-width: 2;
-    stroke-miterlimit: 10;
-    stroke: #4a6f28;
-    fill: none;
-    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-}
-
-.checkmark__check {
-    transform-origin: 50% 50%;
-    stroke-dasharray: 48;
-    stroke-dashoffset: 48;
-    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
-}
-
 /* ========================================================================================================================== */
 /* Pagina de pago */
 /* Estilo general para el contenedor de pago */
@@ -1762,59 +1733,35 @@ las paginas */
     margin-bottom: 40px;
 }
 
-.tittlePago {
-    font-size: 2.5rem;
+/* Titutlo de la pagina de Pago.html */
+.header-pago {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el logo y el texto */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    gap: 1rem; /* Espaciado entre el logo y el h1 */
+    margin-bottom: 1.5rem; /* Espaciado inferior opcional */
+}
+
+.logo-pago-img {
+    max-height: 150px; /* Ajusta el tamaño del logo */
+    width: auto;
+}
+
+.tlogo-pago {
+    font-size: 2rem; /* Ajusta el tamaño del texto */
+    margin: 0; /* Elimina márgenes predeterminados */
+    line-height: 1.2; /* Ajusta el espaciado entre líneas */
     color: var(--cuarter-color);
-    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.tittleCompra {
+    font-size: 23px;
+    color: var(--text-color);
+    margin-bottom: 15px;
     font-weight: 700;
 }
 
-.payment-steps {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.step {
-    display: flex;
-    align-items: center;
-    padding: 10px 25px;
-    position: relative;
-    color: var(--six-color);
-    font-weight: 500;
-}
-
-.step span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    background: #eee;
-    border-radius: 50%;
-    margin-right: 10px;
-    color: var(--text-color);
-}
-
-.step.active {
-    color: var(--cuarter-color);
-}
-
-.step.active span {
-    background: var(--cuarter-color);
-    color: var(--text-color);
-}
-
-.step:not(:last-child):after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 2px;
-    background: #ddd;
-}
 
 /* Contenedor principal */
 .form-pago-container {
@@ -1847,20 +1794,47 @@ las paginas */
     top: 20px;
 }
 
-.tittleCompra {
-    font-size: 1.5rem;
-    margin: 25px 0 15px;
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.summary-table th, .summary-table td {
+    border: 2px ;
+    padding: 8px;
+}
+
+
+.summary-table th {
+    background-color: var(--cuarter-color);
     color: var(--six-color);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
-.tittleCompra i {
-    font-size: 1.2rem;
+.summary-table td {
+    background-color: var(--six-color);
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.2; /* Ajusta el espaciado entre líneas */
 }
 
-/* Formulario */
+.summary-table tfoot td {
+    font-weight: bold;
+    text-align: center;
+    color: black;
+    font-size: 20px;
+}
+
+.summary-table .summary-total {
+    text-align: right;
+    font-size: 20px;
+    color: black;
+}
+
+/* Formulario de metodo de pago */
 .form-group {
     margin-bottom: 20px;
     position: relative;
@@ -1870,6 +1844,7 @@ las paginas */
     position: relative;
     margin-bottom: 25px;
 }
+
 
 .label-pago {
     position: absolute;
@@ -1991,7 +1966,7 @@ las paginas */
 
 /* Detalles bancarios */
 .bank-info {
-    background: var(--fifth-color);
+    background: var(--six-color);
     padding: 15px;
     border-radius: var(--border-radius);
     margin-bottom: 20px;
@@ -1999,10 +1974,12 @@ las paginas */
 
 .bank-info p {
     margin: 5px 0;
+    font-size: 18px;
+    font-weight: 400;
 }
 
-.laberl-archivo{
-    font-size: 1rem;
+.label-archivo{
+    font-size: 1.2rem;
     color: var(--text-color);
     margin-bottom: 10px;
 }
@@ -2022,7 +1999,7 @@ las paginas */
 }
 
 .file-input:hover {
-    background: gainsboro;
+    background: rgb(199, 196, 196);
 }
 
 /* Términos y condiciones */
@@ -2030,7 +2007,7 @@ las paginas */
     display: flex;
     align-items: center;
     gap: 10px;
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .terms input {
@@ -2040,7 +2017,7 @@ las paginas */
 
 .terms label {
     color: var(--text-color);
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 .terms a {
@@ -2052,7 +2029,26 @@ las paginas */
     text-decoration: underline;
 }
 
-/* Botón de pago */
+/* Botón de pago y mostrar informacion de destinatario */
+.btn-toggle-ocultar{
+    background: var(--six-color);
+    color: var(--cuarter-color);
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    margin-bottom: 15px;
+}
+
+.btn-toggle-ocultar:hover{
+    background: var(--fifth-color);
+    color: var(--six-color);
+    transition: all 0.3s ease-out;
+    box-shadow: 0 5px 15px var(--text-color);
+}
+
 .btn-pago {
     width: 100%;
     padding: 18px;
@@ -2060,7 +2056,7 @@ las paginas */
     color:var(--cuarter-color);
     border: none;
     border-radius: var(--border-radius);
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
@@ -2123,6 +2119,178 @@ las paginas */
 
 
 
+/* ================================================================================================================================================== */
+/* Confirmar-pago.html*/
+.confirmation-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.confirmation-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 40px;
+    box-shadow: var(--box-shadow2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.confirmation-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background: linear-gradient(90deg, rgb(96, 216, 96), var(--success-color));
+}
+
+.confirmation-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--cuarter-color), var(--fifth-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    color: white;
+    font-size: 48px;
+    box-shadow: 0 5px 15px var(--cuarter-color);
+}
+
+.confirmation-title {
+    font-size: 2.2rem;
+    color: var(--cuarter-color);
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.confirmation-subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+.order-details {
+    background: #f9fafc;
+    border-radius: var(--border-radius);
+    padding: 25px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.detail-label {
+    flex: 1;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.detail-value {
+    flex: 1;
+    text-align: right;
+    color: var(--text-color);
+}
+
+.order-summary {
+    margin-top: 30px;
+}
+
+.summary-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--cuarter-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 15px 0;
+    margin: 20px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: var(--cuarter-color);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--fifth-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px gray;
+}
+
+
+.confirmation-email {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.confirmation-email i {
+    margin-right: 8px;
+    color: var(--accent-color);
+}
+
+
+/* ========================================================================================================================================================================== */
 /* Animaciones */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -2180,6 +2348,41 @@ las paginas */
     animation: fadeIn 0.5s ease-out;
 }
 
+/* confirmacion de pago */
+@keyframes checkmark {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.confirmation-icon i {
+    animation: checkmark 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.confirmation-card > *:not(.confirmation-icon) {
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+.order-details {
+    animation-delay: 0.4s !important;
+}
+
+.order-summary {
+    animation-delay: 0.5s !important;
+}
+
+.action-buttons {
+    animation-delay: 0.6s !important;
+}
+
+
 /* ==================================================================================== */
 /* Media Queries: tamaño de las pantallas*/
 
@@ -2214,7 +2417,7 @@ las paginas */
     .swiper-slide{
         width: 300px;
     }
-  }
+}
 
 /* Dispositivos moviles plegables (altura grande) */
 @media (max-width: 767px) and (min-height: 700px) {
@@ -2912,14 +3115,45 @@ las paginas */
         
     }
 
+    /* Pagina de pago */
+    .header-pago {
+        flex-direction: column; /* Coloca el logo y el texto en una columna */
+        text-align: center; /* Centra el contenido */
+    }
+
+    .logo-pago-img {
+        max-height: 100px; /* Reduce el tamaño del logo */
+    }
+
+    .tlogo-pago {
+        font-size: 1.5rem; /* Reduce el tamaño del texto */
+    }
+
     /* Confimar-pago */
-    .confirmation-container {
-        padding: 1.5rem;
-        margin: 1rem;
+    .confirmation-card {
+        padding: 30px 20px;
     }
     
-    .confirmation-container h1 {
-        font-size: 2rem;
+    .confirmation-title {
+        font-size: 1.8rem;
+    }
+    
+    .detail-row {
+        flex-direction: column;
+    }
+    
+    .detail-value {
+        text-align: left;
+        margin-top: 5px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
     }
 
     /* Personaliza.html */

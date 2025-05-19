@@ -287,24 +287,38 @@
                 <h1 id="title1">Promociones disponibles.</h1>
                 <div class="flores-grid">
                     <div class="flor-card">
-                        <img src="./Img/Portadas/Promo.jpeg" alt="Rosas Rojas"
+                        <img src="./Img/Portadas/Promo.jpeg" alt="Promociones"
                             class="flor-img">
                         <div class="flor-info">
                             <h3>Promociones en los siguientes productos.</h3>
-                            <p></p>
-                            <a href="#" class="btn-ver">Ver</a>
+                            <a href="#" class="btn-ver" id="show-alert1">Ver</a>
                         </div>
                     </div>
 
                     <div class="flor-card">
-                        <img src="./Img/Portadas/oferta.jpeg" alt="Girasoles"
+                        <img src="./Img/Portadas/oferta.jpeg" alt="Promociones"
                             class="flor-img">
                         <div class="flor-info">
-                            <h3>Productos con el 10% de descuento.</h3>
-                            <p></p>
-                            <a href="#" class="btn-ver">Ver</a>
+                            <h3>Descuento en los siguientes productos.</h3>
+                            <a href="#" class="btn-ver" id="show-alert2">Ver</a>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Alertas para las promociones -->
+            <div id="custom-alert" class="custom-alert hidden-alert">
+                <div class="custom-alert-content">
+                    <h2 class="alert-tittle">¡Esperalas muy pronto!</h2>
+                    <p class="alert-p">Estas promociones estaran disponibles apartir del 9 de mayo.</p>
+                    <button id="close-alert" class="btn-close-alert">Cerrar</button>
+                </div>
+            </div>
+            <div id="custom-alert2" class="custom-alert hidden-alert2">
+                <div class="custom-alert-content">
+                    <h2 class="alert-tittle">¡Esperalos muy pronto!</h2>
+                    <p class="alert-p">Estos descuentos estaran disponibles apartir del 9 de mayo.</p>
+                    <button id="close-alert2" class="btn-close-alert">Cerrar</button>
                 </div>
             </div>
 
@@ -347,5 +361,6 @@
             <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
             <script src="/scripts/script.js"></script>
             <script src="/scripts/slide.js"></script>
+            <script src="/scripts/alert.js"></script>
     </body>
 </html>

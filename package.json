@@ -21,7 +21,6 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app/app.js",
-    "db": "nodemon app/database/sqlserver.js",
     "start": "node app/app.js"
   },
   "dependencies": {

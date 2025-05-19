@@ -254,4 +254,3 @@ const loadingSpinner = document.getElementById("loading-spinner");
 loadingSpinner.style.display = "block"; // Mostrar el spinner
 aiPreviewImage.src = ""; // Limpiar la imagen previa
 
-

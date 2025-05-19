@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Mostrar productos en el carrito en Pago.html
 document.addEventListener('DOMContentLoaded', () => {
-    const orderSummary = document.querySelector('.order-summary .summary-items');
-    const totalElement = document.querySelector('.order-summary .summary-total div:last-child');
+    const summaryItems = document.querySelector('.summary-items');
+    const totalElement = document.querySelector('.summary-total');
 
     // Cargar carrito desde localStorage
     const savedCart = localStorage.getItem('cart');
@@ -85,13 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let total = 0;
 
         cartItems.forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.classList.add('summary-item');
-            itemElement.innerHTML = `
-                <div class="item-name">${item.title} (${item.quantity})</div>
-                <div class="item-price">$${(parseFloat(item.price.slice(1)) * item.quantity).toFixed(2)}</div>
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.title}</td>
+                <td>${item.quantity}</td>
+                <td>$${(parseFloat(item.price.slice(1)) * item.quantity).toFixed(2)}</td>
             `;
-            orderSummary.appendChild(itemElement);
+            summaryItems.appendChild(row);
 
             total += parseFloat(item.price.slice(1)) * item.quantity;
         });
@@ -100,8 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Muestra el total a pagar en el botón de pago
 document.addEventListener('DOMContentLoaded', () => {
-    const totalElement = document.querySelector('.summary-total div:last-child');
+    const totalElement = document.querySelector('.summary-total');
     const payButtonText = document.querySelector('.btn-pago .btn-text');
 
     // Cargar carrito desde localStorage
@@ -120,4 +121,57 @@ document.addEventListener('DOMContentLoaded', () => {
         // Actualizar el texto del botón de pago
         payButtonText.textContent = `Pagar $${total.toFixed(2)}`;
     }
+});
+
+// Habilitar o deshabilitar campos de destinatario según el checkbox
+// Alternar visibilidad de los campos de destinatario
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('toggle-destinatario');
+    const destinatarioContainer = document.getElementById('destinatario-container');
+
+    toggleButton.addEventListener('click', () => {
+        // Alternar la visibilidad del contenedor
+        if (destinatarioContainer.style.display === 'none') {
+            destinatarioContainer.style.display = 'block';
+            toggleButton.textContent = 'Ocultar datos del destinatario';
+        } else {
+            destinatarioContainer.style.display = 'none';
+            toggleButton.textContent = 'Mostrar datos del destinatario';
+        }
+    });
+
+    // Inicializar el contenedor como visible
+    destinatarioContainer.style.display = 'block';
+});
+
+
+// Guardar datos del formulario en localStorage y redirigir a confirmacion-pago.html
+document.getElementById('payment-form').addEventListener('submit', (event) => {
+    // Prevenir el envío del formulario para manejarlo con JavaScript
+    event.preventDefault();
+
+    // Capturar los datos del formulario
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const telefono = document.getElementById('telefono').value;
+    const direccion = document.getElementById('address').value;
+    const metodoPago = document.querySelector('input[name="metodo-pago"]:checked')?.value;
+    const destinatario = document.getElementById('destinatario').value;
+
+    // Verificar que todos los campos tengan valores
+    if (!nombre || !email || !telefono || !direccion || !metodoPago || !destinatario ) {
+        alert('Por favor, completa todos los campos antes de continuar.');
+        return;
+    }
+
+    // Guardar los datos en localStorage
+    localStorage.setItem('nombre', nombre);
+    localStorage.setItem('email', email);
+    localStorage.setItem('telefono', telefono);
+    localStorage.setItem('direccion', direccion);
+    localStorage.setItem('metodoPago', metodoPago);
+    localStorage.setItem('destinatario', destinatario);
+
+    // Redirigir a confirmacion-pago.html
+    window.location.href = '/confirmacion-pago.html';
 });

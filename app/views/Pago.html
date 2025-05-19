@@ -10,19 +10,23 @@
 </head>
 <body>
     <div class="payment-container" id="payment-container">
-        <div class="payment-header">
-            <h1 class="tittlePago">Finaliza tu compra</h1>
-            <div class="payment-steps">
-                <div class="step active"><span>1</span> Información</div>
-                <div class="step"><span>2</span> Pago</div>
-                <div class="step"><span>3</span> Confirmación</div>
-            </div>
+        <div class="header-pago">
+            <picture class="logo-pago">
+                <source media="(max-width: 600px)" srcset="/Img/LogoOficial2.png">
+                <img src="/Img/LogoOficial2.png" alt="Ruth's Floristeria Logo" class="logo-pago-img">
+            </picture>
+            <h1 class="tlogo-pago">Completa el formulario para finalizar la compra</h1>
+            <picture class="logo-pago">
+                <source media="(max-width: 600px)" srcset="/Img/LogoOficial2.png">
+                <img src="/Img/LogoOficial2.png" alt="Ruth's Floristeria Logo" class="logo-pago-img">
+            </picture>
         </div>
+        
     
         <div class="form-pago-container">
             <div class="payment-card">
                 <h2 class="tittleCompra"><i class="fas fa-user"></i> Datos del comprador</h2>
-                <form action="/procesar-pago" method="POST" id="payment-form">
+                <form action="/confirmacion-pago.html" method="GET" id="payment-form">
                     <div class="form-group floating">
                         <input class="input-pago" type="text" id="nombre" name="nombre" placeholder=" " required>
                         <label class="label-pago" for="nombre">Nombre completo*</label>
@@ -38,18 +42,28 @@
                         <label class="label-pago" for="telefono">Teléfono*</label>
                         <i class="fas fa-phone input-icon"></i>
                     </div>
+                    <div class="form-group floating">
+                        <input class="input-pago" type="text" id="address" name="direccion" placeholder=" " required>
+                        <label class="label-pago" for="address">Dirección de envio*</label>
+                        <i class="fas fa-map-marker-alt input-icon"></i>
+                    </div>
     
                     <h2 class="tittleCompra"><i class="fas fa-gift"></i> Datos del destinatario</h2>
-                    <div class="form-group floating">
-                        <input class="input-pago" type="text" id="destinatario" name="destinatario" placeholder=" " required>
-                        <label class="label-pago" for="destinatario">Nombre del destinatario*</label>
-                        <i class="fas fa-user-tag input-icon"></i>
-                    </div>
-                    <div class="form-group floating">
-                        <input class="input-pago" type="text" id="direccion" name="direccion" placeholder=" " required>
-                        <label class="label-pago" for="direccion">Dirección de entrega*</label>
-                        <i class="fas fa-map-marker-alt input-icon"></i>
-                        <span class="note">(Aquí se hará la entrega)</span>
+                    <button type="button" id="toggle-destinatario" class="btn-toggle-ocultar">
+                        Mostrar datos del destinatario
+                    </button>
+                    <div id="destinatario-container">
+                        <div class="form-group floating">
+                            <input class="input-pago" type="text" id="destinatario" name="destinatario" placeholder=" " required>
+                            <label class="label-pago" for="destinatario">Nombre del destinatario*</label>
+                            <i class="fas fa-user-tag input-icon"></i>
+                        </div>
+                        <div class="form-group floating">
+                            <input class="input-pago" type="text" id="direccion" name="direccion" placeholder=" " required>
+                            <label class="label-pago" for="direccion">Dirección de entrega*</label>
+                            <i class="fas fa-map-marker-alt input-icon"></i>
+                            <span class="note">(Aquí se hará la entrega)</span>
+                        </div>
                     </div>
                     
                     <h2 class="tittleCompra"><i class="fas fa-credit-card"></i> Método de pago</h2>
@@ -101,11 +115,11 @@
     
                     <div class="form-group terms">
                         <input type="checkbox" id="terms" name="terms" required>
-                        <label for="terms">Acepto los <a href="#">términos y condiciones</a> y la <a href="#">política de privacidad</a></label>
+                        <label for="terms">Acepto los términos y condiciones junto a la política de privacidad</label>
                     </div>
     
-                    <button type="submit" class="btn-pago" onclick="">
-                        <span class="btn-text">Pagar $30.00</span>
+                    <button type="submit" class="btn-pago" onclick="window.location.href='/confirmarP'">
+                        <span class="btn-text"><!-- Se carga automaticamente el precio total --></span>
                         <i class="fas fa-lock"></i>
                     </button>
                 </form>
@@ -113,13 +127,24 @@
     
             <div class="order-summary">
                 <h2><i class="fas fa-receipt"></i> Resumen del pedido</h2>
-                <div class="summary-items">
-                    <!-- Se cargan automaticamente los productos desde el carrito -->
-                </div>
-                <div class="summary-total">
-                    <div>Total</div>
-                    <div>$0.00</div>
-                </div>
+                <table class="summary-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody class="summary-items">
+                        <!-- Se cargan automáticamente los productos desde el carrito -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"><strong>Total a pagar</strong></td>
+                            <td class="summary-total">$0.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
                 <div class="secure-payment">
                     <i class="fas fa-shield-alt"></i>
                     <span>Pago 100% seguro</span>
