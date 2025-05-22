@@ -131,6 +131,10 @@ export const registerUser = async (req, res) => {
     }
 };
 
+
+
+
+
 // Función para iniciar sesión
 export const loginUser = async (req, res) => {
     const { Nombre_Usuario, Contraseña } = req.body;
