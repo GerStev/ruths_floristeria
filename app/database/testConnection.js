@@ -46,8 +46,8 @@ async function testConnection() {
     try {
         const connection = await getConnection();
         const [result] = await connection.query(
-            "INSERT INTO t_usuarios (Nombre_Usuario, Contraseña) VALUES (?, ?)",
-            ["test_user", "test_password"]
+            "INSERT INTO usuarios (nombre, correo, contraseña) VALUES (?, ?, ?)",
+            ["test_user", "test_email", "test_password"]
         );
         console.log("✅ Inserción exitosa. ID:", result.insertId);
         await connection.end();

@@ -2,15 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('form-login');
     const registerForm = document.getElementById('form-register');
 
+    // Guardar token y datos de usuario en localStorage y sessionStorage
+    const handleAuthSuccess = (data) => {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        sessionStorage.setItem('isLoggedIn', 'true');
+        window.location.href = '/index';
+    };
+
     // Manejar el evento de inicio de sesión
     loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const username = document.getElementById('username').value;
+        const username = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value;
 
         if (!username || !password) {
-            alert('Por favor, completa todos los campos.');
+            showAlert('Por favor, completa todos los campos.', 'error');
             return;
         }
 
@@ -25,59 +33,93 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const data = await response.json();
+            
             if (response.ok) {
-                alert('Inicio de sesión exitoso!');
-                window.location.href = '/'; // Redirige a la página principal
+                handleAuthSuccess(data);
             } else {
-                alert(data.message || 'Credenciales incorrectas');
+                showAlert(data.message || 'Credenciales incorrectas', 'error');
             }
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
-            alert('Hubo un error al procesar tu solicitud.');
+            showAlert('Hubo un error al procesar tu solicitud.', 'error');
         }
     });
 
     // Manejar el evento de registro
     registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    e.preventDefault();
+    
+    const data = {
+        Nombre_Usuario: document.getElementById('newUsername').value.trim(),
+        Correo: document.getElementById('newEmail').value.trim().toLowerCase(),
+        Contraseña: document.getElementById('newPassword').value,
+        confirmPassword: document.getElementById('confirmPassword').value
+    };
 
-        const username = document.getElementById('newUsername').value;
-        const email = document.getElementById('newEmail').value;
-        const password = document.getElementById('newPassword').value;
+    // Validaciones básicas
+    if (!data.Nombre_Usuario || !data.Correo || !data.Contraseña || !data.confirmPassword) {
+        showAlert('Por favor completa todos los campos', 'error');
+        return;
+    }
 
-        if (!username || !email || !password) {
-            alert('Por favor, completa todos los campos.');
-            return;
+    if (data.Contraseña !== data.confirmPassword) {
+        showAlert('Las contraseñas no coinciden', 'error');
+        return;
+    }
+
+    try {
+        console.log('Enviando datos de registro al servidor:', {
+            Nombre_Usuario: data.Nombre_Usuario,
+            Correo: data.Correo,
+            Contraseña: '***' // No mostrar contraseña real en logs
+        });
+
+        const response = await fetch('/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                Nombre_Usuario: data.Nombre_Usuario,
+                Correo: data.Correo,
+                Contraseña: data.Contraseña
+            })
+        });
+
+        const result = await response.json();
+        console.log('Respuesta del servidor:', result);
+
+        if (!response.ok) {
+            throw new Error(result.message || 'Error en el registro');
         }
 
-        // Validación básica de email
-        if (!email.includes('@') || !email.includes('.')) {
-            alert('Por favor ingresa un correo electrónico válido.');
-            return;
-        }
+        showAlert('Registro exitoso! Redirigiendo...', 'success');
+        setTimeout(() => window.location.href = '/login', 2000);
+        
+    } catch (error) {
+        console.error('Error en el registro:', error);
+        showAlert(error.message, 'error');
+    }
+});
 
-        try {
-            const response = await fetch('/auth/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    Nombre_Usuario: username, 
-                    Correo: email, 
-                    Contraseña: password 
-                })
-            });
-
-            const data = await response.json();
-            if (response.ok) {
-                alert('Registro exitoso! Por favor inicia sesión.');
-                // Cambia a la vista de login después de registrar
-                document.getElementById('login').click();
-            } else {
-                alert(data.message || 'Error al registrar usuario');
-            }
-        } catch (error) {
-            console.error('Error al registrar usuario:', error);
-            alert('Hubo un error al procesar tu solicitud.');
-        }
-    });
+    // Función para mostrar alertas estilizadas
+    function showAlert(message, type) {
+        // Eliminar alertas anteriores
+        const existingAlert = document.querySelector('.alert');
+        if (existingAlert) existingAlert.remove();
+        
+        const alertBox = document.createElement('div');
+        alertBox.className = `alert ${type}`;
+        alertBox.textContent = message;
+        
+        // Insertar antes del formulario correspondiente
+        const formContainer = type === 'error' ? 
+            (loginForm.contains(document.activeElement) ? loginForm : registerForm) : 
+            registerForm;
+            
+        formContainer.insertBefore(alertBox, formContainer.firstChild);
+        
+        // Auto-eliminar después de 5 segundos
+        setTimeout(() => {
+            alertBox.remove();
+        }, 5000);
+    }
 });

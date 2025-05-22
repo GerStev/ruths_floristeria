@@ -254,3 +254,28 @@ const loadingSpinner = document.getElementById("loading-spinner");
 loadingSpinner.style.display = "block"; // Mostrar el spinner
 aiPreviewImage.src = ""; // Limpiar la imagen previa
 
+
+// filepath: c:\Users\STEVEN\Desktop\Ruths-Floristeria\app\Views\index.html
+document.addEventListener('DOMContentLoaded', () => {
+    const user = localStorage.getItem('user');
+    const userIcon = document.getElementById('user-icon');
+    if (user && userIcon) {
+        try {
+            const userObj = JSON.parse(user);
+            if (userObj.Nombre_Usuario) {
+                // Busca o crea el span para el nombre
+                let nameSpan = document.getElementById('user-name');
+                if (!nameSpan) {
+                    nameSpan = document.createElement('span');
+                    nameSpan.id = 'user-name';
+                    nameSpan.style.marginLeft = '5px';
+                    nameSpan.style.color = 'white';
+                    userIcon.parentNode.insertBefore(nameSpan, userIcon.nextSibling);
+                }
+                nameSpan.textContent = userObj.Nombre_Usuario;
+            }
+        } catch (e) {
+            // Si hay error, no muestra nada
+        }
+    }
+});

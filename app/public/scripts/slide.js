@@ -82,3 +82,17 @@ particlesJS("particles-js", {
     "retina_detect": true
   });
   
+  if (window.innerWidth >= 1024) {
+    var script = document.createElement('script');
+    script.src = '/scripts/particles.min.js';
+    script.onload = function() {
+        var configScript = document.createElement('script');
+        configScript.src = '/scripts/particles-config.js';
+        document.body.appendChild(configScript);
+    };
+    document.body.appendChild(script);
+} else {
+    // Si quieres, puedes ocultar el div de partículas en móviles
+    var particlesDiv = document.getElementById('particles-js');
+    if (particlesDiv) particlesDiv.style.display = 'none';
+}

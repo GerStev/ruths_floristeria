@@ -29,19 +29,19 @@
     
                     <span class="span-login">O usa tu correo y contraseña</span>
     
-                    <input class="input-login" id="username" type="text" placeholder="Nombre de usuario" >
-                    <input class="input-login" id="password" type="password" placeholder="Contraseña" >
+                    <input class="input-login" id="username" type="text" placeholder="Nombre de usuario" required>
+                    <input class="input-login" id="password" type="password" placeholder="Contraseña" required>
     
-                    <a href="#" class="recovery-pass">Olvidaste tu contraseña?</a>
+                    <a href="/recuperar-pass" class="recovery-pass">Olvidaste tu contraseña?</a>
     
-                    <button class="btn-login" id="btn-login">
+                    <button type="submit" class="btn-login" id="btn-login">
                         Iniciar sesión
                     </button>
                 </form>
             </div>
             <!-- ============================================================================================================================ -->
             <div class="form-container-login sing-up">
-                <!-- formulario de registerte recalco q -->
+                <!-- formulario de registrate -->
                 <form class="form-register" id="form-register">
                     <h1 class="tittle-login">Crear cuenta</h1>
                     <div class="social-icons-login">
@@ -58,8 +58,8 @@
                     <input class="input-register" id="newUsername" type="text" placeholder="Nombre" required>
                     <input class="input-register" id="newEmail" type="email" placeholder="Correo" required>
                     <input class="input-register" id="newPassword" type="password" placeholder="Contraseña" required>
-    
-                    <button class="btn-register" id="btn-register">
+                    <input class="input-register" id="confirmPassword" type="password" placeholder="Confirmar Contraseña" required>
+                    <button type="submit" class="btn-register" id="btn-register">
                         Crear cuenta
                     </button>
                 </form>
@@ -90,5 +90,8 @@
     
 
     <script src="/scripts/script.js"></script>
+    <script src="/scripts/login.js"></script>
+    <script src="/scripts/authController.js"></script>
+    <script src="/scripts/authRoutes.js"></script>
 </body>
 </html>

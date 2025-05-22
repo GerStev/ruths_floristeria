@@ -1,6 +1,6 @@
 import { config } from "dotenv";
 
-config({ debug: true }); // Muestra qué variables de entorno se están cargando
+config(); // Muestra qué variables de entorno se están cargando
 
 export default {
     host: process.env.HOST || "localhost",

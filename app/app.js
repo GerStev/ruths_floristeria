@@ -8,6 +8,10 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import { generarImagen } from './public/scripts/openai.js';
 import authRoutes from './routes/authRoutes.js';
+import jwt from 'jsonwebtoken';
+import { getConnection, closePool  } from './database/connectionMysql.js';
+
+
 
 // Cargar variables de entorno
 dotenv.config();
@@ -21,6 +25,28 @@ if (!process.env.OPENAI_API_KEY) {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
+// Verificación de conexión al iniciar
+(async () => {
+    try {
+        const conn = await getConnection();
+        console.log('✅ Conexión a MySQL verificada en app.js');
+        conn.release(); // Liberar la conexión al pool en lugar de cerrarla
+    } catch (error) {
+        console.error('❌ No se pudo conectar a MySQL:', error);
+        process.exit(1);
+    }
+})();
+
+// Manejar cierre adecuado del servidor
+process.on('SIGINT', async () => {
+    await closePool();
+    process.exit();
+});
+
+process.on('SIGTERM', async () => {
+    await closePool();
+    process.exit();
+});
 
 // Configuraciones
 app.use(express.static(__dirname + "/public"));
@@ -28,6 +54,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/auth', authRoutes);
+
 
 
 // Función para generar el PDF con los datos del formulario
@@ -228,6 +255,75 @@ app.post("/generar-imagen", async (req, res) => {
     }
 });
 
+// Middleware mejorado en app.js
+app.use((req, res, next) => {
+    const publicPaths = [
+        '/auth/register',
+        '/auth/login',
+        '/auth/forgot-password',
+        '/auth/reset-password',
+        '/login',
+        '/register',
+        '/forgot-password',
+        '/reset-password',
+        '/public',
+        '/css',
+        '/js',
+        '/images',
+        '/index'
+    ];
+
+    if (publicPaths.some(path => req.path.startsWith(path))) {
+        return next();
+    }
+
+    try {
+        // Obtener token de varias formas posibles
+        let token;
+        
+        // 1. Intentar desde headers Authorization
+        if (req.headers.authorization) {
+            token = req.headers.authorization.split(' ')[1];
+        } 
+        // 2. Intentar desde cookies
+        else if (req.cookies && req.cookies.token) {
+            token = req.cookies.token;
+        }
+        // 3. Intentar desde query parameters (útil para pruebas)
+        else if (req.query.token) {
+            token = req.query.token;
+        }
+
+        if (!token) {
+            // Si es una API, responder con JSON
+            if (req.path.startsWith('/api')) {
+                return res.status(401).json({ message: 'Acceso no autorizado' });
+            }
+            // Si es una ruta de vista, redirigir al login
+            return res.redirect('/login');
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = decoded;
+        next();
+    } catch (error) {
+        console.error('Error en autenticación JWT:', error);
+        
+        // Manejar diferentes tipos de errores
+        if (error.name === 'TokenExpiredError') {
+            if (req.path.startsWith('/api')) {
+                return res.status(401).json({ message: 'Token expirado' });
+            }
+            return res.redirect('/login?error=token-expired');
+        }
+        
+        if (req.path.startsWith('/api')) {
+            return res.status(401).json({ message: 'Token inválido' });
+        }
+        return res.redirect('/login?error=invalid-token');
+    }
+});
+
 // ===============================================================================================================================================================================
 // Otras rutas
 app.get("/", (req, res) => {res.sendFile(__dirname + "/views/index.html");});
@@ -240,6 +336,13 @@ app.get("/pago", (req, res) => {res.sendFile(__dirname + "/views/Pago.html");});
 app.get("/confirmarP", (req, res) => {res.sendFile(__dirname + "/views/confirmacion-pago.html");});
 app.get("/carrito", (req, res) => {res.sendFile(__dirname + "/views/carrito.html");});
 app.get("/login", (req, res) => {res.sendFile(__dirname + "/views/login.html");});
+
+app.get("/recuperar-pass", (req, res) => { res.sendFile(__dirname + "/views/recuperar-contraseña.html");});
+
+app.get("/cambiar-pass", (req, res) => {
+    res.sendFile(__dirname + "/views/cambiar-contraseña.html");
+});
+
 
 // Iniciar el servidor
 // Usar el puerto definido en el archivo .env o el puerto proporcionado por Render

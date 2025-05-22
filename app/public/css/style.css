@@ -158,7 +158,22 @@ hr{
 
 }
 
+/* Estilos para el nombre de usuario */
+/* Estilo para el nombre de usuario junto al icono */
+#user-name {
+    font-weight: bold;
+    color: #ff69b4;
+    margin-left: 8px;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    text-shadow: 0 1px 2px #fff3f8;
+    transition: color 0.3s;
+}
 
+.user-icon:hover #user-name {
+    color: #e75480;
+}
 
 .cart-small{
     display: none;
@@ -3125,11 +3140,34 @@ las paginas */
         max-height: 100px; /* Reduce el tamaño del logo */
     }
 
+    /* Botón de mostrar informacion de destinatario */
+    .btn-toggle-ocultar{
+        background: var(--six-color);
+        color: var(--cuarter-color);
+        border: none;
+        border-radius: var(--border-radius);
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        font-weight: 600;
+
+        margin-bottom: 15px;
+    }
+
+    .btn-toggle-ocultar:hover{
+        background: var(--fifth-color);
+        color: var(--six-color);
+        transition: all 0.3s ease-out;
+        box-shadow: 0 5px 15px var(--text-color);
+    }
+
     .tlogo-pago {
         font-size: 1.5rem; /* Reduce el tamaño del texto */
     }
 
     /* Confimar-pago */
+    .order-summary{
+        text-align: left;
+    }
     .confirmation-card {
         padding: 30px 20px;
     }
@@ -3141,9 +3179,13 @@ las paginas */
     .detail-row {
         flex-direction: column;
     }
+
+    .detail-label {
+        text-align: center;
+    }
     
     .detail-value {
-        text-align: left;
+        text-align: center;
         margin-top: 5px;
     }
     
