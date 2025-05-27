@@ -9,7 +9,7 @@ import dotenv from 'dotenv';
 import { generarImagen } from './public/scripts/openai.js';
 import authRoutes from './routes/authRoutes.js';
 import jwt from 'jsonwebtoken';
-import { getConnection, closePool  } from './database/connectionMysql.js';
+import { getConnection, closePool  } from './database/conPostgres.js';
 
 
 
@@ -255,52 +255,30 @@ app.post("/generar-imagen", async (req, res) => {
     }
 });
 
-// Middleware mejorado en app.js
+// middleware actual con versión más permisiva
 app.use((req, res, next) => {
     const publicPaths = [
-        '/auth/register',
-        '/auth/login',
-        '/auth/forgot-password',
-        '/auth/reset-password',
-        '/login',
-        '/register',
-        '/forgot-password',
-        '/reset-password',
-        '/public',
-        '/css',
-        '/js',
-        '/images',
-        '/index'
+        '/', '/index', '/catalogo', '/contacto', '/nosotros', 
+        '/personaliza', '/login', '/register', '/forgot-password',
+        '/reset-password', '/public', '/css', '/js', '/images'
     ];
 
+    // Permitir acceso a todas las rutas públicas
     if (publicPaths.some(path => req.path.startsWith(path))) {
         return next();
     }
 
+    // Para rutas privadas (como /perfil, /carrito, etc.)
     try {
-        // Obtener token de varias formas posibles
-        let token;
-        
-        // 1. Intentar desde headers Authorization
-        if (req.headers.authorization) {
-            token = req.headers.authorization.split(' ')[1];
-        } 
-        // 2. Intentar desde cookies
-        else if (req.cookies && req.cookies.token) {
-            token = req.cookies.token;
-        }
-        // 3. Intentar desde query parameters (útil para pruebas)
-        else if (req.query.token) {
-            token = req.query.token;
-        }
+        const token = req.cookies?.token || 
+                     req.headers.authorization?.split(' ')[1] || 
+                     req.query.token;
 
         if (!token) {
-            // Si es una API, responder con JSON
             if (req.path.startsWith('/api')) {
                 return res.status(401).json({ message: 'Acceso no autorizado' });
             }
-            // Si es una ruta de vista, redirigir al login
-            return res.redirect('/login');
+            return next(); // Cambiado para continuar en lugar de redirigir
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -308,19 +286,7 @@ app.use((req, res, next) => {
         next();
     } catch (error) {
         console.error('Error en autenticación JWT:', error);
-        
-        // Manejar diferentes tipos de errores
-        if (error.name === 'TokenExpiredError') {
-            if (req.path.startsWith('/api')) {
-                return res.status(401).json({ message: 'Token expirado' });
-            }
-            return res.redirect('/login?error=token-expired');
-        }
-        
-        if (req.path.startsWith('/api')) {
-            return res.status(401).json({ message: 'Token inválido' });
-        }
-        return res.redirect('/login?error=invalid-token');
+        next(); // Continuar incluso si hay error de token
     }
 });
 

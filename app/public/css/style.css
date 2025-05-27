@@ -144,7 +144,6 @@ hr{
 
 }
 
-
 .search-input{
     width: 300px;
     height: 10px;
@@ -158,23 +157,59 @@ hr{
 
 }
 
-/* Estilos para el nombre de usuario */
-/* Estilo para el nombre de usuario junto al icono */
-#user-name {
-    font-weight: bold;
-    color: #ff69b4;
-    margin-left: 8px;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    vertical-align: middle;
-    text-shadow: 0 1px 2px #fff3f8;
-    transition: color 0.3s;
+/* =============================================================================================================================================== */
+/* Estilos para el login en index */
+.user-container-login {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 7px 20px;
+    margin-left: 10px;
+    border-radius: 20px;
+    color: var(--six-color);
+    background-color: var(--cuarter-color);
 }
 
-.user-icon:hover #user-name {
-    color: #e75480;
+.user-container-login:hover{
+    background-color: var(--fifth-color);
 }
 
+/* oculta el contenedor del menu despegable en pantallas grandes */
+.user-container-login-min{
+    display: none;
+}
+
+/* estilo para el boton de iniciar sesion */
+.user-link-menu{
+    color: var(--six-color);
+    font-weight: 600;
+    font-size: 20px;
+    border-style: none;
+    text-decoration: none;
+}
+
+#login-icon-menu{
+    font-size: 22px;
+    font-style: none;
+    border-style: none;
+}
+
+.login-text-menu{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+/* Estilo para el nombre de usario al logearse */
+
+.logout-btn{
+    font-weight: 600;
+    font-size: 20px;
+    top: 10px;
+    border-style: none;
+}
+
+/* ======================================================================================================================== */
+/* oculta el icono del carrito pequeño */
 .cart-small{
     display: none;
 }
@@ -202,14 +237,14 @@ hr{
     text-decoration: none;
 }
 
-/* Iconos de login */
+/* Icono de login en catalogo */
 #user-icon {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     height: 10px;
-    background: var(--cuarter-color);
     color: var(--six-color);
+    background-color: var(--cuarter-color);
     padding: 20px 10px 20px;
     border-radius: 60px 60px 60px 60px;
     cursor: pointer;
@@ -289,7 +324,7 @@ hr{
 
 
 /* ================================================================== */
-/* Menu despegable de barra de navegacion */
+/* Menu despegable de barra de navegacion de catolog */
 .menu-box, .menu-catalogo {
     list-style: none;
     background: var(--six-color);
@@ -368,67 +403,6 @@ hr{
     background: var(--cuarter-color);
     color: var(--six-color);
     border-radius: 10px;
-}
-
-
-/* Estilos para el contenedor del botón de filtro */
-.filter-container {
-    display: block;
-    align-items: center;
-    justify-self: center;
-    text-align: center;
-    margin-top: 20px ;
-}
-
-.filter-button {
-    background-color: var(--cuarter-color);
-    color: var(--six-color);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 22px;
-}
-
-/* Opciones de filtro con animación */
-.filter-options {
-    display: none; /* Ocultas por defecto */
-    flex-direction: row;
-    gap: 10px;
-    margin-top: 10px;
-    opacity: 0;
-    transform: translateY(-10px); /* Posición inicial para la animación */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.filter-options.visible {
-    display: block; /* Mostrar las opciones */
-    opacity: 1;
-    transform: translateY(0); /* Animación hacia su posición final */
-}
-
-.filter-options.hidden {
-    opacity: 0;
-    transform: translateY(-10px); /* Animación hacia arriba */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.filter-options button {
-    background-color: var(--six-color);
-    color: var(--cuarter-color);
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.filter-options button:hover {
-    background-color: var(--fifth-color);
-    color: var(--six-color);
-    font-weight: 600;
-    transform: scale(1.05); /* Efecto de zoom al pasar el cursor */
 }
 
 
@@ -616,66 +590,6 @@ las paginas */
 }
 
 /* ================================================================================================================== */
-
-/* Estilos para la alerta personalizada */
-.custom-alert, .custom-alert2 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.custom-alert.hidden, .custom-alert2.hidden {
-    display: none;
-}
-
-.custom-alert-content {
-    background-color: #fff;
-    padding: 120px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.alert-tittle{
-    font-size: 2.3rem;
-    color: var(--cuarter-color);
-    margin-bottom: 20px;
-}
-
-
-.alert-p {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.btn-close-alert {
-    background-color: var(--cuarter-color);
-    color: #fff;
-    border: none;
-    padding: 15px 40px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 600;
-}
-
-.btn-close-alert:hover {
-    background-color: var(--fifth-color);
-}
-
-.hidden-alert, .hidden-alert2 {
-    display: none;
-}
-
-
 
 /* Botones de visualizar los productos en las tarjetas */
 .btn-ver, .btn-compra {
@@ -2502,7 +2416,7 @@ las paginas */
 
     /* barra de busqueda y login dentro del menu movil */
     .nav {
-        max-height: 100vh; /* Altura máxima igual a la altura de la ventana */
+        max-height: 100vh; /* Altura máxima igual a la altura de la ventana */max-width: 100vh; /* Ancho máximo igual al ancho de la ventana */
         overflow-y: auto; /* Habilita el scroll vertical cuando el contenido excede la altura */
         overscroll-behavior: contain; /* Evita que el scroll afecte al cuerpo de la página */
     }
@@ -2546,64 +2460,111 @@ las paginas */
         color: var(--six-color);
     }
 
-    /* boton de login en menu */
-
-    .user-container{
+    /* ============================================================== */
+    /* Barra de navegacion en forma de menu en index */
+    .nav{
+        opacity: 0;
+        visibility: hidden;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: center;
-        gap: 10px;
-        margin-right: 15px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        background: var(--cuarter-color);
+        padding: 1rem;
+        gap: 1rem;
+        box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 1000;
+        
     }
 
-    .user-link-menu {
+    .nav.visible{
+        opacity: 1;
+        visibility: visible;
+    }
+
+     /* boton de login y registro en menu desplegable de index */
+    .user-container-login-min{
+        display: flex;
+        position: absolute;
+        justify-content: flex-end;
+        right: 10px;
+        top: 200px;
+        gap: 10px;
+        
+    }
+
+    .user-link-menu-min {
         display: flex;
         text-decoration: none;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        color: var(--cuarter-color);
+    }
+
+    .user-link-menu-min:hover {
+        color: var(--six-color);
+        background: var(--cuarter-color);
+        border-radius: 20px;
     }
 
     #login-icon-menu {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        height: 10px;
-        background: var(--six-color);
-        color: var(--cuarter-color);
-        padding: 30px 12px;
+        padding: 7px 20px;
+        gap: 6px;
         border-radius: 20px;
         cursor: pointer;
-        font-size: 1.5rem;
-        font-weight: 600;
+        font-weight: 500;
+        font-size: 1.6rem;
     }
 
-    #register-icon-menu {
-        display: flex;
+    .login-text-menu{
+        font-size: 1.6rem;
+    }
+
+    /* logo  en menu*/
+    .logoNav{
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto; /* Centra horizontalmente */
+        margin-top: 50px;
+        margin-bottom: 20px;
+        
+    }
+
+    /* opciones del menu en index */
+    .nav-menu{
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        height: 10px;
-        background: var(--six-color);
-        color: var(--cuarter-color);
-        padding: 30px 16px;
-        border-radius: 20px;
-        cursor: pointer;
-        font-size: 1.5rem;
-        font-weight: 600;
     }
 
-    .login-text-menu, .register-text-menu {
-        color: var(--cuarter-color);
-        font-size: 16px;
-    }
-
-    #login-icon-menu:hover, .login-text-menu:hover {
-        background: var(--select-color);
+    .nav-menu li a {
+        padding: 0.5rem;
         color: var(--six-color);
     }
 
+    .cerrar_menu {
+        position: fixed; /* Posiciona el botón de forma fija */
+        margin-left: 0;
+        top: 10px;
+        left: 10px;
+        font-size: 3rem;
+        background: transparent;
+        border: none;
+        color: var(--six-color);
+        cursor: pointer;
+    }
+    
+
     /* ================================================================================================= */
-    /* Diseño del menu de navegacion en movil */
+    /* Diseño del menu de navegacion en movil en catologo*/
+    /* panel de incio */
     .menuFondo{
         background-color: var(--six-color);
         padding: 1rem;
@@ -2615,20 +2576,24 @@ las paginas */
         justify-content: flex-start;
     }
 
+    .abrir_menu:hover{
+        color: var(--six-color);
+        background-color: var(--cuarter-color);
+        border-radius: 5px;
+    }
+
     .abrir_menu, .cerrar_menu {
         display: block;
         border: none;
-        font-size: 4rem;
+        font-size: 3rem;
         background: transparent;
         color: var(--cuarter-color);
         
     }
     
     .cerrar_menu{
-        position: absolute; /* Posiciona el botón de forma fija */
-        top: 10px; /* Ajusta la distancia desde la parte superior */
-        left: 10px; /* Ajusta la distancia desde la parte izquierda */
-        font-size: 5rem; /* Tamaño del icono */
+        font-size: 3.2rem; /* Tamaño del icono */
+        justify-content: flex-end;
         background: transparent; /* Fondo transparente */
         color: var(--six-color); /* Color del icono */
         border: none; /* Sin bordes */
@@ -2645,7 +2610,7 @@ las paginas */
     }
     
     /* ================================================================================ */
-    /* Ajustes para el menú desplegable */
+    /* Ajustes para el menú desplegable del catalogo */
     #menu_nav {
         opacity: 0;
         visibility: hidden;
@@ -2708,7 +2673,7 @@ las paginas */
         display: block;
     }
 
-    /* Botón para abrir el menú */
+    /* Botón para abrir el menú en catalogo */
     .abrir_menu {
         display: block;
         border: none;
@@ -2718,77 +2683,11 @@ las paginas */
         cursor: pointer;
     }
 
-    /* Ocultar el menú en pantallas más grandes */
+    /* Ocultar el menú en pantallas más grandes de catalogo */
     .menu-box {
         display: none;
     }
 
-    /* ============================================================== */
-    /* Barra de navegacion en froma de menu */
-    .nav{
-        opacity: 0;
-        visibility: hidden;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        width: 80%;
-        background: var(--cuarter-color);
-        padding: 1rem;
-        gap: 1rem;
-        box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.5);
-        transition: opacity 0.3s ease, visibility 0.3s ease;
-        z-index: 1000;
-        
-    }
-
-    .nav.visible{
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .logoNav{
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        display: block;
-        margin: 0 auto; /* Centra horizontalmente */
-        margin-top: 50px;
-        margin-bottom: 20px;
-        
-    }
-
-    .nav-menu{
-        flex-direction: column;
-        align-items: end;
-    }
-
-    .nav-menu li a {
-        
-        padding: 0.5rem;
-        color: var(--six-color);
-    }
-
-    .cerrar_menu {
-        position: fixed; /* Posiciona el botón de forma fija */
-        margin-left: 75px;
-        top: 10px;
-        left: 10px;
-        font-size: 3rem;
-        background: transparent;
-        border: none;
-        color: var(--six-color);
-        cursor: pointer;
-    }
-
-
-    /* Mostrar el botón solo en pantallas de 768px o menos */
-    .filter-container {
-        display: block;
-    }
 
     /* Carrito */
     .cart-product{
@@ -2937,16 +2836,6 @@ las paginas */
         grid-template-columns: 1fr;
     }
 
-    .filtros {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .filter-btn {
-        width: 100%;
-        max-width: 200px;
-    }
-
     
 /* Pie de la pagina */
     .footer-container {
@@ -2974,18 +2863,260 @@ las paginas */
 
 
     }
+    
 
-    /* Login y registro */
-    .login-wrapper, .register-wrapper {
-        flex-direction: column;
-        gap: 2rem;
+    /* Estilo para el formulario de login y Registro */
+.container-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container-login{
+    background-color: var(--cuarter-color);
+    border-radius: 30px;
+    box-shadow: 0 7px 200px 0 var(--cuarter-color);
+    position: relative;
+    overflow: hidden;
+    width: 60%;
+    max-width: 100%;
+    min-height: 70%;
+}
+
+.tittle-login{
+    color: var(--six-color);
+    font-size: 50px;
+    text-align: justify;
+}
+
+/* Iconos de redes de inicio de sesion */
+.social-icons-login{
+    margin: 20px 0;   
+}
+
+/* iconos de inicio de sesion */
+.icon-l-login, .icon-r-register{
+    color: var(--six-color);
+    font-size: 30px;
+    text-decoration: none;
+    margin: 20px 0 15px;
+}
+
+.icon-l-login, .icon-r-register{
+    border: 4px solid var(--fifth-color);
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    width: 60px;
+    height: 60px;
+}
+
+/* info de como iniciar sesion */
+.span-login, .span-register{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--six-color);
+}
+
+/* info */
+.p-login, .p-register{
+    font-size: 23px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+    color: var(--cuarter-color);
+    font-weight: 600;
+}
+
+/* formularios */
+.form-container-register, .form-container-login{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.form-login, .form-register{
+    background-color: var(--cuarter-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+/* input de formualrio */
+.input-login, .input-register{
+    background-color: var(--six-color);
+    color: var(--text-color);
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 10px;
+    width: 100%;
+    outline: none;
+}
+
+/* Recuperar contraseña */
+.recovery-pass{
+    color: var(--six-color);
+    font-size: 20px;
+    text-decoration: none;
+    margin: 20px 0 15px;
+}
+
+/* Botones de login */
+.btn-login, .btn-register{
+    background-color: var(--six-color);
+    color: var(--cuarter-color);
+    font-size: 20px;
+    padding: 15px 45px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.btn-login:hover, .btn-register:hover{
+    background-color: var(--fifth-color);
+    color: var(--six-color);
+    border: 3px solid var(--six-color);
+    box-shadow: 0 2px 15px 0 var(--six-color);
+}
+
+/* animacion de cambio de login a registro */
+.btn-hidden{
+    background-color: transparent;
+    color: var(--cuarter-color);
+    font-size: 20px;
+    padding: 10px 45px;
+    border: 2px solid var(--cuarter-color);
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.btn-hidden:hover{
+    background-color: var(--six-color);
+    color: var(--cuarter-color);
+    box-shadow: 0 5px 30px 0 var(--cuarter-color);
+}
+
+.sing-in{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container-login.active .sing-in{
+    transform: translateX(100%);
+}
+
+.sing-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container-login.active .sing-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+/* animacion de movimiento entre forma de login o register */
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
     }
-
-    .login-container, .register-container {
-        width: 100%;
-        max-width: 400px;
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
     }
+}
 
+.toggle-container-login{
+   position: absolute;
+   top: 0;
+   left: 50%;
+   width: 50%;
+   height: 100%;
+   overflow: hidden;
+   border-radius: 150px 0 0 100px;
+   transition: all 0.6s ease-in-out;
+   z-index: 1000; 
+}
+
+.container-login.active .toggle-container-login{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle{
+    background-color: var(--six-color);
+    height: 100%;
+    color: var(--cuarter-color);
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container-login.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    font-size: 23px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;  
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.container-login.active .toggle-left{
+    transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.container-login.active .toggle-right{
+    transform: translateX(200);
+}
+
+
+    /* catalogo */
     .catalogo-grid {
         display: flex;
         gap: clamp(.8rem, 1vw, 1rem);

@@ -57,12 +57,17 @@
                 <button class="btn-search"><i class="bi bi-search"></i>
                 </button>
                     
-                <a href="/login" aria-label="Login" class="user-icon">
-                    
-                    <i id="user-icon" class="bi bi-person-fill"></i>
-                </a>
-
-            </div>
+                <div class="user-container-login">
+                    <div id="menu-user-info" class="menu-user-info" style="display: none;">
+                        <p>¡Hola! <span id="menu-username"></span></p>
+                        <button id="logout-btn" class="logout-btn">Cerrar sesión</button>
+                    </div>
+                    <a href="/login" aria-label="Login" class="user-link-menu" id="login-link-menu">
+                        <i id="login-icon-menu" class="bi bi-person-fill" >
+                            <span class="login-text-menu">Acceder</span>
+                        </i>
+                    </a>
+                </div>
         </header>
 
         <div class="particles" id="particles-js"></div>
@@ -72,6 +77,20 @@
                 <button class="abrir_menu" id="abrir">
                     <i class="bi bi-list"></i>
                 </button>
+
+                 <!-- Funciones de login y registro -->
+                    <div class="user-container-login-min">
+                        <div id="menu-user-info" class="menu-user-info" style="display: none;">
+                            <p>¡Hola! <span id="menu-username"></span></p>
+                            <button id="logout-btn" class="logout-btn">Cerrar sesión</button>
+                        </div>
+
+                        <a href="/login" aria-label="Login" class="user-link-menu-min" id="login-link-menu">
+                            <i id="login-icon-menu" class="bi bi-person-fill" >
+                                <p class="login-text-menu">Acceder</p>
+                            </i>
+                        </a>
+                    </div>
              </div>
             
             <nav class="nav" id="nav">
@@ -83,6 +102,8 @@
 
                     <!-- Logo del negocio -->
                     <img src="/Img/LogoOficial2.png" alt="logoMenu" class="logoNav">
+
+                    
 
                     <!-- Barra de busqueda en menu -->
                     <div class="search-bar-menu">
@@ -99,26 +120,12 @@
                     <li><a href="/nosotros">Sobre nosotros</a></li>
                     
                 </ul>
-                
-                <div class="user-container">
-                    <a href="/login" aria-label="Login" class="user-link-menu">
-                        <i id="login-icon-menu" class="bi bi-person-fill">
-                            <p class="login-text-menu">Iniciar sesion</p>
-                        </i>
-                    </a>
-                    <a href="/register" aria-label="Register" class="user-link-menu">
-                        <i id="register-icon-menu" class="bi bi-person-plus-fill">
-                            <p class="register-text-menu">Registrarse</p>
-                        </i>
-                    </a>
-                </div>
-                
             </nav>
                 
             <!-- Muestra el contenedor de los prodcutos disponibles en la web -->
             <div class="contenedor">
 
-                <h1 id="title1">Descubrelo en nuestro stock.</h1>
+                <h1 id="title1">Descubre nuestras categorias.</h1>
 
                 <div class="flores-grid">
                     
@@ -150,7 +157,7 @@
                         <div class="flor-info">
                             <h3>Artificiales</h3>
                             <p class="flor_text">Hermosos arreglos de flores con material de pana,
-                                mas lindos que los hechos de plastico y simulan la belleza de los naturales.
+                                muy distintos a los de plastico y simulan la belleza de los naturales.
                             </p>
                             <a href="/catalogo" class="btn-ver"
                                 data-alert="true">Ver</a>
@@ -267,7 +274,7 @@
                             <h3>Dia de las madres</h3>
                             <p></p>
                             <a href="#" class="btn-ver">Disponible
-                                10/05/2025</a>
+                                10/05/2026</a>
                         </div>
                     </div>
 
@@ -283,45 +290,9 @@
                     </div>
                 </div>
 
-                <!-- Muestra el contenedor de ofertas -->
-                <h1 id="title1">Promociones disponibles.</h1>
-                <div class="flores-grid">
-                    <div class="flor-card">
-                        <img src="./Img/Portadas/Promo.jpeg" alt="Promociones"
-                            class="flor-img">
-                        <div class="flor-info">
-                            <h3>Promociones en los siguientes productos.</h3>
-                            <a href="#" class="btn-ver" id="show-alert1">Ver</a>
-                        </div>
-                    </div>
-
-                    <div class="flor-card">
-                        <img src="./Img/Portadas/oferta.jpeg" alt="Promociones"
-                            class="flor-img">
-                        <div class="flor-info">
-                            <h3>Descuento en los siguientes productos.</h3>
-                            <a href="#" class="btn-ver" id="show-alert2">Ver</a>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <!-- Alertas para las promociones -->
-            <div id="custom-alert" class="custom-alert hidden-alert">
-                <div class="custom-alert-content">
-                    <h2 class="alert-tittle">¡Esperalas muy pronto!</h2>
-                    <p class="alert-p">Estas promociones estaran disponibles apartir del 9 de mayo.</p>
-                    <button id="close-alert" class="btn-close-alert">Cerrar</button>
-                </div>
-            </div>
-            <div id="custom-alert2" class="custom-alert hidden-alert2">
-                <div class="custom-alert-content">
-                    <h2 class="alert-tittle">¡Esperalos muy pronto!</h2>
-                    <p class="alert-p">Estos descuentos estaran disponibles apartir del 9 de mayo.</p>
-                    <button id="close-alert2" class="btn-close-alert">Cerrar</button>
-                </div>
-            </div>
-
+            <!-- Footer -->
             <footer>
                 <div class="footer-container">
                     <div class="footer-info">

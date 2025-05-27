@@ -1,34 +1,34 @@
-import { getConnection } from './connectionMysql.js';
+import { getConnection } from './conPostgres.js';
 
 async function testConnection() {
-    console.log("Iniciando pruebas de conexión a MySQL...");
+    console.log("Iniciando pruebas de conexión a PostgreSQL...");
     
     // 1. Prueba de conexión básica
     console.log("\n1. Probando conexión básica...");
     try {
         const connection = await getConnection();
         console.log("✅ Conexión exitosa");
-        await connection.end();
+        await connection.release(); // Cambiar end() por release()
     } catch (error) {
         console.error("❌ Error en conexión básica:", error.message);
         return;
     }
 
     // 2. Prueba de consulta a la tabla de usuarios
-    console.log("\n2. Probando consulta a t_usuarios...");
+    console.log("\n2. Probando consulta a usuarios...");
     try {
         const connection = await getConnection();
-        const [rows] = await connection.query("SELECT * FROM usuarios LIMIT 2");
+        const { rows } = await connection.query("SELECT * FROM usuarios LIMIT 2");
         
         if (rows.length > 1) {
             console.log("✅ Consulta exitosa. Primer usuario encontrado:", rows[0]);
         } else {
-            console.log("⚠️ La tabla t_usuarios está vacía");
+            console.log("⚠️ La tabla usuarios está vacía");
         }
         
-        await connection.end();
+        await connection.release();
     } catch (error) {
-        console.error("❌ Error en consulta a t_usuarios:", error.message);
+        console.error("❌ Error en consulta a usuarios:", error.message);
     }
 
     // 3. Prueba de consulta con error para ver manejo
@@ -36,7 +36,7 @@ async function testConnection() {
     try {
         const connection = await getConnection();
         await connection.query("SELECT * FROM tabla_inexistente");
-        await connection.end();
+        await connection.release();
     } catch (error) {
         console.log("✅ Correcto - El sistema detectó el error:", error.message);
     }
@@ -45,12 +45,12 @@ async function testConnection() {
     console.log("\n4. Probando inserción...");
     try {
         const connection = await getConnection();
-        const [result] = await connection.query(
-            "INSERT INTO usuarios (nombre, correo, contraseña) VALUES (?, ?, ?)",
-            ["test_user", "test_email", "test_password"]
+        const { rows } = await connection.query(
+            "INSERT INTO usuarios (nombre, correo, contraseña) VALUES ($1, $2, $3) RETURNING id",
+            ["test_user12", "test_email12", "test_password12"]
         );
-        console.log("✅ Inserción exitosa. ID:", result.insertId);
-        await connection.end();
+        console.log("✅ Inserción exitosa. ID:", rows[0].id);
+        await connection.release();
     } catch (error) {
         console.error("❌ Error en inserción:", error.message);
     }

@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Guardar token y datos de usuario en localStorage y sessionStorage
     const handleAuthSuccess = (data) => {
         localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem('user', JSON.stringify(data.user)); // Asegúrate que esto incluya el nombre
         sessionStorage.setItem('isLoggedIn', 'true');
-        window.location.href = '/index';
+        window.location.href = '/index'; // Redirigir a la página principal
     };
 
     // Manejar el evento de inicio de sesión

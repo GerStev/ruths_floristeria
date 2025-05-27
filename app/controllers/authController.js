@@ -1,60 +1,46 @@
-import { getConnection } from '../database/connectionMysql.js';
+import { getConnection } from '../database/conPostgres.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-// Importar nodemailer y PDFDocument
+// encripta la contraseña
 import crypto from 'crypto';
 import nodemailer from 'nodemailer';
 
-// Configuración JWT (agrégalo a tu .env)
+// Configuración de seguridad
+const SALT_ROUNDS = 12; // Coste del hashing (más alto = más seguro pero más lento)
 const JWT_SECRET = process.env.JWT_SECRET || 'tu_secreto_super_seguro';
-
 
 export const registerUser = async (req, res) => {
     const { Nombre_Usuario, Correo, Contraseña } = req.body;
 
-    // 1. LOG DE DATOS RECIBIDOS (al inicio de la función)
-    console.log("Step1_Datos recibidos para registro:", { 
-        Nombre_Usuario, 
-        Correo, 
-        Contraseña: Contraseña ? '***' : 'undefined' // Oculta la contraseña real
-    }); 
-
     // Validaciones mejoradas
     const errors = [];
-
-    // Verificar si los campos están vacíos
+    
     if (!Nombre_Usuario || !Correo || !Contraseña) {
         errors.push('Todos los campos son obligatorios');
     }
 
-    // Verificar si el nombre de usuario tiene caracteres especiales
     if (Nombre_Usuario && (Nombre_Usuario.length < 4 || Nombre_Usuario.length > 20)) {
         errors.push('El nombre de usuario debe tener entre 4 y 20 caracteres');
     }
 
-    // Verificar si el nombre de usuario contiene caracteres especiales
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (Correo && !emailRegex.test(Correo)) {
         errors.push('El formato del correo electrónico es inválido');
     }
 
-    // Verificar si el correo ya está en uso
     if (Contraseña && Contraseña.length < 8) {
         errors.push('La contraseña debe tener al menos 8 caracteres');
     }
 
-    // Verificar si la contraseña contiene al menos una letra mayúscula
     if (Contraseña && !/[A-Z]/.test(Contraseña)) {
         errors.push('La contraseña debe contener al menos una letra mayúscula');
     }
 
-    // Verificar si la contraseña contiene al menos un número
     if (Contraseña && !/[0-9]/.test(Contraseña)) {
         errors.push('La contraseña debe contener al menos un número');
     }
 
-    // Verificar si las contraseñas coinciden
     if (errors.length > 0) {
         return res.status(400).json({ 
             success: false,
@@ -63,64 +49,51 @@ export const registerUser = async (req, res) => {
         });
     }
 
-    // Verificar si el correo tiene un formato válido
     try {
-    const connection = await getConnection();
-    
-    // 2. LOG DE CONEXIÓN (después de obtener conexión)
-        console.log("Step2_Conexión a DB establecida");
+        const connection = await getConnection();
+        
+        // Verificar si el usuario ya existe
+        const { rows: userExists } = await connection.query(
+            'SELECT * FROM usuarios WHERE nombre = $1 OR correo = $2', 
+            [Nombre_Usuario, Correo]
+        );
 
-    // Verificar si el usuario ya existe
-    const [userExists] = await connection.execute(
-        'SELECT * FROM usuarios WHERE nombre = ? OR correo = ?', 
-        [Nombre_Usuario, Correo]
-    );
-
-    // Si el usuario ya existe, devolver un error
-    if (userExists.length > 0) {
-        return res.status(400).json({ 
-            success: false,
-            message: 'El nombre de usuario o correo ya está en uso' 
-        });
-    }
-
-    // Encriptar contraseña
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(Contraseña, salt);
-
-    // Insertar nuevo usuario
-    const [result] = await connection.execute(
-        'INSERT INTO usuarios (nombre, correo, contraseña) VALUES (?, ?, ?)',
-        [Nombre_Usuario, Correo, hashedPassword]
-    );
-
-    // 3. LOG DE REGISTRO EXITOSO (después de la inserción)
-        console.log("Step3_Usuario registrado con ID:", result.insertId);
-        console.log("Datos guardados en DB:", {
-            id: result.insertId,
-            nombre: Nombre_Usuario,
-            correo: Correo,
-            contraseña: '***' // Nunca loguees contraseñas reales
-        });
-    
-    // Generar token JWT
-    const token = jwt.sign(
-        { id: result.insertId, nombre: Nombre_Usuario },
-        process.env.JWT_SECRET,
-        { expiresIn: '1h' }
-    );
-    // Enviar respuesta al cliente
-    res.status(201).json({ 
-        success: true,
-        message: 'Usuario registrado exitosamente',
-        token,
-        user: {
-            id: result.insertId,
-            nombre: Nombre_Usuario,
-            correo: Correo
+        if (userExists.length > 0) {
+            await connection.release();
+            return res.status(400).json({ 
+                success: false,
+                message: 'El nombre de usuario o correo ya está en uso' 
+            });
         }
-    });
-    // Cerrar conexión
+
+        // Encriptar contraseña con bcrypt
+        const hashedPassword = await bcrypt.hash(Contraseña, SALT_ROUNDS);
+
+        // Insertar nuevo usuario con contraseña hasheada
+        const { rows: [newUser] } = await connection.query(
+            'INSERT INTO usuarios (nombre, correo, contraseña) VALUES ($1, $2, $3) RETURNING id, nombre, correo',
+            [Nombre_Usuario, Correo, hashedPassword]
+        );
+
+        await connection.release();
+
+        // Generar token JWT
+        const token = jwt.sign(
+            { id: newUser.id, nombre: newUser.nombre },
+            JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        res.status(201).json({ 
+            success: true,
+            message: 'Usuario registrado exitosamente',
+            token,
+            user: {
+                id: newUser.id,
+                nombre: newUser.nombre,
+                correo: newUser.correo
+            }
+        });
     } catch (error) {
         console.error('Error al registrar usuario:', error);
         res.status(500).json({ 
@@ -131,38 +104,37 @@ export const registerUser = async (req, res) => {
     }
 };
 
-
-
-
-
-// Función para iniciar sesión
 export const loginUser = async (req, res) => {
     const { Nombre_Usuario, Contraseña } = req.body;
-    // Validaciones mejoradas
+    
     if (!Nombre_Usuario || !Contraseña) {
         return res.status(400).json({ 
             success: false,
             message: 'Todos los campos son obligatorios' 
         });
     }
-    // Verificar si el nombre de usuario tiene caracteres especiales
+
     try {
         const connection = await getConnection();
-        const [rows] = await connection.execute(
-            'SELECT * FROM usuarios WHERE nombre = ?', 
+        const { rows } = await connection.query(
+            'SELECT * FROM usuarios WHERE nombre = $1', 
             [Nombre_Usuario]
         );
-        // Verificar si el usuario existe
+        
+        await connection.release();
+
         if (rows.length === 0) {
             return res.status(401).json({ 
                 success: false,
                 message: 'Usuario no encontrado' 
             });
         }
-        // Verificar si la contraseña es correcta
+
         const user = rows[0];
+        
+        // Comparar contraseña hasheada
         const isMatch = await bcrypt.compare(Contraseña, user.contraseña);
-        // Si la contraseña no coincide, devolver un error
+        
         if (!isMatch) {
             return res.status(401).json({ 
                 success: false,
@@ -176,7 +148,7 @@ export const loginUser = async (req, res) => {
             JWT_SECRET,
             { expiresIn: '1h' }
         );
-        // Enviar respuesta al cliente
+
         res.status(200).json({ 
             success: true,
             message: 'Inicio de sesión exitoso',
@@ -187,7 +159,6 @@ export const loginUser = async (req, res) => {
                 correo: user.correo
             }
         });
-        // Cerrar conexión
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
         res.status(500).json({ 
@@ -221,8 +192,8 @@ export const forgotPassword = async (req, res) => {
     
     try {
         const connection = await getConnection();
-        const [rows] = await connection.execute(
-            'SELECT * FROM usuarios WHERE correo = ?',
+        const { rows } = await connection.query(
+            'SELECT * FROM usuarios WHERE correo = $1',
             [email]
         );
 
@@ -239,8 +210,8 @@ export const forgotPassword = async (req, res) => {
         const token = crypto.randomBytes(20).toString('hex');
         const expiryDate = new Date(Date.now() + 3600000); // 1 hora
 
-        await connection.execute(
-            'UPDATE usuarios SET reset_token = ?, reset_token_expiry = ? WHERE id = ?',
+        await connection.query(
+            'UPDATE usuarios SET reset_token = $1, reset_token_expiry = $2 WHERE id = $3',
             [token, expiryDate, user.id]
         );
 
@@ -294,12 +265,13 @@ export const resetPassword = async (req, res) => {
 
     try {
         const connection = await getConnection();
-        const [rows] = await connection.execute(
-            'SELECT * FROM usuarios WHERE reset_token = ? AND reset_token_expiry > NOW()',
+        const { rows } = await connection.query(
+            'SELECT * FROM usuarios WHERE reset_token = $1 AND reset_token_expiry > NOW()',
             [token]
         );
 
         if (rows.length === 0) {
+            await connection.release();
             return res.status(400).json({
                 success: false,
                 message: 'El token es inválido o ha expirado'
@@ -309,14 +281,15 @@ export const resetPassword = async (req, res) => {
         const user = rows[0];
         
         // Encriptar nueva contraseña
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(newPassword, salt);
+        const hashedPassword = await bcrypt.hash(newPassword, SALT_ROUNDS);
 
         // Actualizar contraseña y limpiar token
-        await connection.execute(
-            'UPDATE usuarios SET contraseña = ?, reset_token = NULL, reset_token_expiry = NULL WHERE id = ?',
+        await connection.query(
+            'UPDATE usuarios SET contraseña = $1, reset_token = NULL, reset_token_expiry = NULL WHERE id = $2',
             [hashedPassword, user.id]
         );
+
+        await connection.release();
 
         res.status(200).json({
             success: true,
