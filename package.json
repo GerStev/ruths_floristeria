@@ -35,7 +35,6 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.14.1",
     "node-fetch": "^3.3.2",
     "nodemailer": "^6.10.0",
     "openai": "^4.87.3",
