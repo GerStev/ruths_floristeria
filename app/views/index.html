@@ -59,7 +59,7 @@
                     
                 <div class="user-container-login">
                     <div id="menu-user-info" class="menu-user-info" style="display: none;">
-                        <p>¡Hola! <span id="menu-username"></span></p>
+                        <p class="username-txt">¡Hola <span id="menu-username"></span>!</p>
                         <button id="logout-btn" class="logout-btn">Cerrar sesión</button>
                     </div>
                     <a href="/login" aria-label="Login" class="user-link-menu" id="login-link-menu">
@@ -73,25 +73,26 @@
         <div class="particles" id="particles-js"></div>
 
             <!-- Enlaces a las diferentes paginas -->
-             <div class="menuFondo">
+            <div class="menuFondo">
                 <button class="abrir_menu" id="abrir">
                     <i class="bi bi-list"></i>
                 </button>
 
-                 <!-- Funciones de login y registro -->
-                    <div class="user-container-login-min">
-                        <div id="menu-user-info" class="menu-user-info" style="display: none;">
-                            <p>¡Hola! <span id="menu-username"></span></p>
-                            <button id="logout-btn" class="logout-btn">Cerrar sesión</button>
+                    <!-- Funciones de login y registro -->
+                    <div class="user-container-login-mobile">
+                        <div id="menu-user-info-mobile" class="menu-user-info" style="display: none;">
+                            <p class="username-txt-mobile">¡Hola <span id="menu-username-mobile"></span>!</p>
+                            <button id="logout-btn-mobile" class="logout-btn-mobile">Cerrar sesión</button>
                         </div>
 
-                        <a href="/login" aria-label="Login" class="user-link-menu-min" id="login-link-menu">
-                            <i id="login-icon-menu" class="bi bi-person-fill" >
-                                <p class="login-text-menu">Acceder</p>
+                        <a href="/login" aria-label="Login" class="user-link-menu-mobile" id="login-link-menu-mobile">
+                            <i id="login-icon-menu-mobile" class="bi bi-person-fill" >
+                                <span class="login-text-menu">Acceder</span>
                             </i>
                         </a>
                     </div>
-             </div>
+                </div>
+            </div>
             
             <nav class="nav" id="nav">
 
@@ -114,7 +115,7 @@
                     </div>
 
                     <!-- menu -->
-                    <li><a href="/index">Inicio</a></li>
+                    <li><a href="/index">Ir a inicio</a></li>
                     <li><a href="/catalogo">Catálogo</a></li>
                     <li><a href="/contacto">Contactanos</a></li>
                     <li><a href="/nosotros">Sobre nosotros</a></li>

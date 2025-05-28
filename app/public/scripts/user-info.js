@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function checkAuthStatus() {
     const userData = localStorage.getItem('user');
     updateUIBasedOnAuth(!!userData);
+    
 }
 
 function updateUIBasedOnAuth(isAuthenticated) {
@@ -17,13 +18,39 @@ function updateUIBasedOnAuth(isAuthenticated) {
     const usernameDisplay = document.getElementById('username-display');
     const userIcon = document.getElementById('user-icon');
     const userContainer = document.querySelector('.user-info-container');
-    
+     
     // Elementos del menú
     const menuUserInfo = document.getElementById('menu-user-info');
     const menuUsername = document.getElementById('menu-username');
     const loginLinkMenu = document.getElementById('login-link-menu');
     const registerLinkMenu = document.getElementById('register-link-menu');
 
+    const userData = isAuthenticated ? JSON.parse(localStorage.getItem('user')) : null;
+
+    // Actualizar ambas versiones (desktop y móvil)
+    ['', '-mobile'].forEach(suffix => {
+        const menuUserInfo = document.getElementById(`menu-user-info${suffix}`);
+        const menuUsername = document.getElementById(`menu-username${suffix}`);
+        const loginLinkMenu = document.getElementById(`login-link-menu${suffix}`);
+        const logoutBtn = document.getElementById(`logout-btn${suffix}`);
+
+        if (isAuthenticated && userData) {
+            // Mostrar información del usuario
+            if (menuUserInfo) menuUserInfo.style.display = 'block';
+            if (menuUsername) menuUsername.textContent = userData.nombre;
+            if (loginLinkMenu) loginLinkMenu.style.display = 'none';
+            
+            // Configurar evento de logout para este botón
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', logoutUser);
+            }
+        } else {
+            // Ocultar información del usuario
+            if (menuUserInfo) menuUserInfo.style.display = 'none';
+            if (loginLinkMenu) loginLinkMenu.style.display = 'block';
+        }
+    });
+    
     if (isAuthenticated) {
         const user = JSON.parse(localStorage.getItem('user'));
         
@@ -40,8 +67,12 @@ function updateUIBasedOnAuth(isAuthenticated) {
             menuUsername.textContent = user.nombre;
             menuUserInfo.style.display = 'block';
         }
-        if (loginLinkMenu) loginLinkMenu.style.display = 'none';
+        if (loginLinkMenu) {
+                loginLinkMenu.style.display = 'none';    
+                loginLinkMenu.classList.add('logged-in');
+        }
         if (registerLinkMenu) registerLinkMenu.style.display = 'none';
+        
     } else {
         // Estado invitado
         if (usernameDisplay) usernameDisplay.textContent = '';
@@ -49,10 +80,13 @@ function updateUIBasedOnAuth(isAuthenticated) {
         if (userIcon) {
             userIcon.classList.remove('bi-person-check-fill');
             userIcon.classList.add('bi-person-fill');
-        }
+            }
 
         if (menuUserInfo) menuUserInfo.style.display = 'none';
-        if (loginLinkMenu) loginLinkMenu.style.display = 'block';
+        if (loginLinkMenu) {
+                loginLinkMenu.style.display = 'block';
+                loginLinkMenu.classList.remove('logged-in');
+            }
         if (registerLinkMenu) registerLinkMenu.style.display = 'block';
     }
 }

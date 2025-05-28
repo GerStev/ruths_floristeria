@@ -51,6 +51,7 @@ login.addEventListener('click', () => {
 });
 
 
+
 // Añadir efecto de hover a las tarjetas
 document.querySelectorAll('.flor-card').forEach(card => {
     card.addEventListener('mouseover', () => {

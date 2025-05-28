@@ -19,7 +19,7 @@
 
     --dark-color: #212529;
     --success-color: green;
-    --warning-color: #f72585;
+    --danger-color: #f60f0f;
     
 
     /* text */
@@ -127,8 +127,8 @@ hr{
 }
 
 .social_i_link {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
 }
 
 /* Bloque del boton de la barra de busqueda */
@@ -141,20 +141,42 @@ hr{
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-
 }
 
 .search-input{
     width: 300px;
-    height: 10px;
-    padding: 20px;
+    height: 25px;
+    padding: 25px;
     border: 0;
     border-radius: 20px 0 0 20px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     background-color: var(--text-color);
-    color: var(--cuarter-color);
+    color: var(--six-color);
     outline: none;
+}
 
+/* Boton para buscar en la barra */
+.btn-search{
+    display: flex;
+    align-items: center;
+    height: 10px;
+    background: var(--cuarter-color);
+    color: var(--six-color);
+    padding: 25px;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    font-size: 1.5rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.btn-search:hover {
+    background: var(--fifth-color);
+}
+
+
+.user-icon{
+    text-decoration: none;
 }
 
 /* =============================================================================================================================================== */
@@ -163,19 +185,15 @@ hr{
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 7px 20px;
-    margin-left: 10px;
+    padding: 12px 35px;
+    margin-left: 20px;
     border-radius: 20px;
     color: var(--six-color);
     background-color: var(--cuarter-color);
 }
 
-.user-container-login:hover{
-    background-color: var(--fifth-color);
-}
-
 /* oculta el contenedor del menu despegable en pantallas grandes */
-.user-container-login-min{
+.user-container-login-mobile{
     display: none;
 }
 
@@ -200,12 +218,28 @@ hr{
 }
 
 /* Estilo para el nombre de usario al logearse */
+.username-txt{
+    font-weight: 700;
+    font-size: 23px;
+    margin-left: 10px;
+}
 
 .logout-btn{
+    background-color: var(--success-color);
+    color: var(--six-color);
+    border-radius: 10px;
+    padding: 6px;
+
+    margin-top: 10px;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 22px;
     top: 10px;
     border-style: none;
+}
+
+.logout-btn:hover{
+    background-color: var(--danger-color);
+    cursor: pointer;
 }
 
 /* ======================================================================================================================== */
@@ -214,28 +248,7 @@ hr{
     display: none;
 }
 
-/* Boton para buscar */
-.btn-search{
-    display: flex;
-    align-items: center;
-    height: 10px;
-    background: var(--cuarter-color);
-    color: var(--six-color);
-    padding: 20px;
-    border: none;
-    border-radius: 0 20px 20px 0;
-    
-    cursor: pointer;
-}
 
-.btn-search:hover {
-    background: var(--fifth-color);
-}
-
-
-.user-icon{
-    text-decoration: none;
-}
 
 /* Icono de login en catalogo */
 #user-icon {
@@ -651,7 +664,7 @@ las paginas */
 }
 
 /* ========================================================================== */
-/* Estilo para el formulario de login y Registro */
+/* Estilo para el formulario de login y Registro en pantallas mayores a 1024px*/
 .container-wrapper{
     display: flex;
     align-items: center;
@@ -901,6 +914,7 @@ las paginas */
     transform: translateX(200);
 }
 
+
 /* ==================================================================================== */
 /* Estilos para la página de catálogo */
 
@@ -977,15 +991,15 @@ las paginas */
 
 .container-cart-icon{
     background: var(--cuarter-color);
-    padding: 5px;
+    padding: 10px;
     border-radius: 15px;
     margin-left: 10px;
 }
 
 /* icono del carrito */
 .icon-cart{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     stroke:var(--six-color);
 }
 
@@ -997,7 +1011,7 @@ las paginas */
 .count-products{
     position: absolute;
     top: 55%;
-    right: 0;
+    right: 5px;
     background-color: var(--cuarter-color);
     color: #fff;
     font-weight: bold;
@@ -1007,18 +1021,20 @@ las paginas */
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+
+    cursor: pointer;
 }
 
 #contador-productos{
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .container-cart-products{
     position: absolute;
-    top: 50px;
+    top: 80px;
     right: 0;
     background-color: #fff;
-    width: 400px;
+    width: 500px;
     z-index: 1;
     border-radius: 10px;
 }
@@ -1126,9 +1142,10 @@ las paginas */
 .titleCatalogos{
     display: flex;
     margin-top: 2rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--cuarter-color);
     margin-left: 15px;
+    justify-content: center;
 }
 
 .container-items{
@@ -2377,14 +2394,14 @@ las paginas */
         padding: 20px;
         display: flex;
         flex-direction: column;
+        border: none;
     }
 
     .header-container {
         width: 100%;
-        display: grid;
         align-items: center;
-        justify-content: center;
-        margin-top: 10px;
+        margin-top: 8px;
+        border: none;
     }
 
     .logo {
@@ -2416,7 +2433,8 @@ las paginas */
 
     /* barra de busqueda y login dentro del menu movil */
     .nav {
-        max-height: 100vh; /* Altura máxima igual a la altura de la ventana */max-width: 100vh; /* Ancho máximo igual al ancho de la ventana */
+        height: 100%; /* Altura máxima igual a la altura de la ventana */
+        max-width: 100vh; /* Ancho máximo igual al ancho de la ventana */
         overflow-y: auto; /* Habilita el scroll vertical cuando el contenido excede la altura */
         overscroll-behavior: contain; /* Evita que el scroll afecte al cuerpo de la página */
     }
@@ -2431,19 +2449,22 @@ las paginas */
 
     /* input buscar */
     .search-input-menu {
-        width: 75%;
+        width: 100%;
         border: none;
         border-radius: 20px 0 0 20px;
-        padding: 10px;
-        
+        padding: 16px;
+
+        font-size: 1.2rem;
+        color: var(--text-color);
+        background-color: #000;
     }
 
     #search-icon{
         width: 30px;
         height: 30px;
         color: var(--cuarter-color);
-        font-size: 20px;
-        font-weight: 800;
+        font-size: 30px;
+        font-weight: 900;
     }
 
     .btn-search-menu {
@@ -2487,46 +2508,85 @@ las paginas */
         visibility: visible;
     }
 
-     /* boton de login y registro en menu desplegable de index */
-    .user-container-login-min{
+     /* boton de acceder en mobile */
+    .user-container-login{
+        display: none;
+    }
+
+    .user-container-login-mobile{
         display: flex;
         position: absolute;
-        justify-content: flex-end;
         right: 10px;
-        top: 200px;
-        gap: 10px;
-        
+        top: 190px;
+        padding: 7px;
+        border-radius: 15px;
+        color: var(--six-color);
+        background-color: var(--cuarter-color);
     }
 
-    .user-link-menu-min {
-        display: flex;
+
+    .user-link-menu-mobile {
         text-decoration: none;
-        margin-bottom: 25px;
-        color: var(--cuarter-color);
+        color: var(--six-color);
+        background-color: var(--cuarter-color);
+
+        align-items: center;
+        justify-content: center;
     }
 
-    .user-link-menu-min:hover {
+    .user-link-menu-mobile:hover {
         color: var(--six-color);
         background: var(--cuarter-color);
         border-radius: 20px;
     }
 
-    #login-icon-menu {
+    #login-icon-menu-mobile {
         display: flex;
         align-items: center;
-        padding: 7px 20px;
+        padding: 5px 10px;
         gap: 6px;
         border-radius: 20px;
         cursor: pointer;
-        font-weight: 500;
-        font-size: 1.6rem;
+        font-weight: 700;
+        font-size: 1.5rem;
     }
 
     .login-text-menu{
-        font-size: 1.6rem;
+        font-size: 1.5rem;
     }
 
-    /* logo  en menu*/
+    /* estilo en mobile cuando se inicie sesion */
+    
+
+    .username-txt-mobile {
+        font-size: 1.1rem;
+        color: var(--six-color);
+        font-weight: 800;
+        align-items: center;
+    }
+
+
+    .logout-btn-mobile{
+        border: none;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 7px 15px;
+        border-radius: 20px;
+
+        background-color: var(--success-color);
+        color: var(--six-color);
+        margin-top: 5px;
+    }
+
+    .logout-btn-mobile:hover{
+        background-color: var(--danger-color);
+        color: var(--six-color);
+    }
+
+
+
+    /* logo en menu*/
     .logoNav{
         width: 150px;
         height: 150px;
@@ -2545,8 +2605,9 @@ las paginas */
     }
 
     .nav-menu li a {
-        padding: 0.5rem;
         color: var(--six-color);
+        font-size: 40px;
+        
     }
 
     .cerrar_menu {
@@ -2569,6 +2630,7 @@ las paginas */
         background-color: var(--six-color);
         padding: 1rem;
         align-items: space-between;
+        border: none;
     }
 
     .abrir_menu{
@@ -2700,10 +2762,18 @@ las paginas */
         border-bottom: 1px solid var(--cuarter-color);
     }
 
+    .icon-close{
+        color: var(--text-color);
+        width: 35px;
+        height: 35px;
+    }
+
     .cantidad-producto-carrito{
         font-weight: 700;
         font-size: 20px;
         margin-left: 10px;
+        text-align: center;
+        justify-content:stretch;
     }
 
     .titulo-producto-carrito{
@@ -2720,35 +2790,37 @@ las paginas */
 
     .container-cart-products{
         position: absolute;
-        top: 50px;
+        top: 65px;
         right: 0;
         background-color: #fff;
         width: 395px;
         z-index: 1;
         box-shadow: 0 10px 20px var(--cuarter-color);
         border-radius: 10px;
+
+        justify-content: center;
     }
 
     .cart-empty{
-        
-        padding: 20px;
+        padding: 10px;
         text-align: center;
         color: var(--cuarter-color);
         font-weight: bold;
+        font-size: 1.5rem;
     }
     
     .cart-small{
         display: flex;
         position: absolute;
         right: 10px;
-        top: 205px;
+        top: 185px;
         align-items: center;
     }
 
     .count-products{
         position: absolute;
-        top: 25px;
-        right: 25px;
+        top: 35px;
+        right: 32px;
         
     }
 
@@ -2866,255 +2938,43 @@ las paginas */
     
 
     /* Estilo para el formulario de login y Registro */
-.container-wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-}
-
-.container-login{
-    background-color: var(--cuarter-color);
-    border-radius: 30px;
-    box-shadow: 0 7px 200px 0 var(--cuarter-color);
-    position: relative;
-    overflow: hidden;
-    width: 60%;
-    max-width: 100%;
-    min-height: 70%;
-}
-
-.tittle-login{
-    color: var(--six-color);
-    font-size: 50px;
-    text-align: justify;
-}
-
-/* Iconos de redes de inicio de sesion */
-.social-icons-login{
-    margin: 20px 0;   
-}
-
-/* iconos de inicio de sesion */
-.icon-l-login, .icon-r-register{
-    color: var(--six-color);
-    font-size: 30px;
-    text-decoration: none;
-    margin: 20px 0 15px;
-}
-
-.icon-l-login, .icon-r-register{
-    border: 4px solid var(--fifth-color);
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 5px;
-    width: 60px;
-    height: 60px;
-}
-
-/* info de como iniciar sesion */
-.span-login, .span-register{
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--six-color);
-}
-
-/* info */
-.p-login, .p-register{
-    font-size: 23px;
-    line-height: 20px;
-    letter-spacing: 0.3px;
-    margin: 20px 0;
-    color: var(--cuarter-color);
-    font-weight: 600;
-}
-
-/* formularios */
-.form-container-register, .form-container-login{
-    position: absolute;
-    top: 0;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
-}
-
-.form-login, .form-register{
-    background-color: var(--cuarter-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    height: 100%;
-}
-/* input de formualrio */
-.input-login, .input-register{
-    background-color: var(--six-color);
-    color: var(--text-color);
-    border: none;
-    margin: 8px 0;
-    padding: 10px 15px;
-    font-size: 15px;
-    border-radius: 10px;
-    width: 100%;
-    outline: none;
-}
-
-/* Recuperar contraseña */
-.recovery-pass{
-    color: var(--six-color);
-    font-size: 20px;
-    text-decoration: none;
-    margin: 20px 0 15px;
-}
-
-/* Botones de login */
-.btn-login, .btn-register{
-    background-color: var(--six-color);
-    color: var(--cuarter-color);
-    font-size: 20px;
-    padding: 15px 45px;
-    border: 1px solid transparent;
-    border-radius: 10px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.btn-login:hover, .btn-register:hover{
-    background-color: var(--fifth-color);
-    color: var(--six-color);
-    border: 3px solid var(--six-color);
-    box-shadow: 0 2px 15px 0 var(--six-color);
-}
-
-/* animacion de cambio de login a registro */
-.btn-hidden{
-    background-color: transparent;
-    color: var(--cuarter-color);
-    font-size: 20px;
-    padding: 10px 45px;
-    border: 2px solid var(--cuarter-color);
-    border-radius: 10px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-.btn-hidden:hover{
-    background-color: var(--six-color);
-    color: var(--cuarter-color);
-    box-shadow: 0 5px 30px 0 var(--cuarter-color);
-}
-
-.sing-in{
-    left: 0;
-    width: 50%;
-    z-index: 2;
-}
-
-.container-login.active .sing-in{
-    transform: translateX(100%);
-}
-
-.sing-up{
-    left: 0;
-    width: 50%;
-    opacity: 0;
-    z-index: 1;
-}
-
-.container-login.active .sing-up{
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: move 0.6s;
-}
-
-/* animacion de movimiento entre forma de login o register */
-@keyframes move{
-    0%, 49.99%{
-        opacity: 0;
-        z-index: 1;
+    .container-login {
+        width: 100%;      
+        box-shadow: none;
+        border-radius: 0;
+        overflow: visible;
     }
-    50%, 100%{
+
+    .form-container-register,
+    .form-container-login,
+    .toggle-container-login {
+        all: unset; /* Elimina animaciones y posiciones absolutas */
+        display: block;
+        width: 100%;
         opacity: 1;
-        z-index: 5;
+        transform: none;
+        z-index: auto;
     }
-}
 
-.toggle-container-login{
-   position: absolute;
-   top: 0;
-   left: 50%;
-   width: 50%;
-   height: 100%;
-   overflow: hidden;
-   border-radius: 150px 0 0 100px;
-   transition: all 0.6s ease-in-out;
-   z-index: 1000; 
-}
+    .form-login,
+    .form-register {
+        padding: 20px;
+    }
 
-.container-login.active .toggle-container-login{
-    transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
-}
+    .toggle {
+        display: none; /* Oculta el panel de cambio visual en móviles */
+    }
 
-.toggle{
-    background-color: var(--six-color);
-    height: 100%;
-    color: var(--cuarter-color);
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
-}
+    .btn-hidden {
+        display: none; /* Oculta los botones de cambio en móviles */
+    }
 
-.container-login.active .toggle{
-    transform: translateX(50%);
-}
+    .container-login.active .sing-in,
+    .container-login.active .sing-up {
+        transform: none;
+    }
 
-.toggle-panel{
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 30px;
-    font-size: 23px;
-    text-align: center;
-    top: 0;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;  
-}
-
-.toggle-left{
-    transform: translateX(-200%);
-}
-
-.container-login.active .toggle-left{
-    transform: translateX(0);
-}
-
-.toggle-right{
-    right: 0;
-    transform: translateX(0);
-}
-
-.container-login.active .toggle-right{
-    transform: translateX(200);
-}
-
+    
 
     /* catalogo */
     .catalogo-grid {
