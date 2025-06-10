@@ -18,7 +18,7 @@
         </a>
       </div>
 
-      <h1 class="custom-title">Personaliza tu arreglo floral</h1>
+      <h1 class="custom-title">Personaliza tu arreglo floral con IA</h1>
 
       <div class="personaliza-content">
         <div class="controls-container">
@@ -28,8 +28,7 @@
               <option value="vacio">Sin selección</option>
               <option value="ramo">Ramo</option>
               <option value="arreglo">Arreglo floral</option>
-              <option value="detalle">Detalle pequeño</option>
-              <option value="centro">Centro de mesa</option>
+              <option value="detalle">Mini Detalle</option>
             </select>
 
             <label for="flower-material">Material de la flor:</label>
@@ -47,7 +46,6 @@
               <option value="girasoles">Girasoles</option>
               <option value="tulipanes">Tulipanes</option>
               <option value="lirios">Lirios</option>
-              <option value="orquideas">Orquídeas</option>
             </select>
 
             <label for="flower-quantity">Cantidad de flores:</label>
@@ -78,7 +76,26 @@
             <div class="color-picker">
               <input type="color" id="wrap-color" value="#ffffff">
             </div>
-      
+
+            <div class="select-terms">
+                <input type="checkbox" id="add-teddy" name="add-teddy" required>
+                <label for="add-teddy">¿Deseas agregar un peluche?</label>
+            </div>
+
+            <div id="teddy-section" style="display: none;">
+              <label for="teddys-design">Agregar peluche:</label>
+              <select class="control-select" id="teddys-design" disabled>
+                <option value="vacio">Sin selección</option>
+                <option value="stitch">Stitch clasico azul</option>
+                <option value="angela">Angela (Stitch) rosado</option>
+                <option value="kitty">Hello Kitty</option>
+                <option value="kuromiN">Kuromi color negro</option>
+                <option value="kuromiM">Kuromi color morado</option>
+                <option value="bearRed">Oso hecho de mini rosas (rojo)</option>
+                <option value="bearPink">Oso hecho de mini rosas (rosado)</option>
+              </select>
+            </div>
+            
             <button class="preview-btn" id="preview-btn">Generar</button>
           </div>
         </div>

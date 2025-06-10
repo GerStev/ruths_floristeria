@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Control de colores
+
+  //Variables de elementos del DOM
   const flowerColorInput = document.getElementById('flower-color');
   const flowerColorPreview = document.getElementById('flower-color-preview');
   const wrapColorInput = document.getElementById('wrap-color');
@@ -7,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const previewImage = document.getElementById('ai-preview-image');
   const previewContainer = document.querySelector('.preview');
   const regenerateBtn = document.getElementById('regenerate-btn');
+  const addTeddyCheckbox = document.getElementById('add-teddy');
+  const teddySection = document.getElementById('teddy-section');
+  const teddyDesignSelect = document.getElementById('teddys-design');
 
   // Cargar imagen guardada si existe
   const savedImage = localStorage.getItem('lastGeneratedImage');
@@ -68,6 +72,25 @@ document.addEventListener('DOMContentLoaded', function() {
     );
   }
 
+  // Manejar el cambio en el checkbox
+  addTeddyCheckbox.addEventListener('change', function() {
+      if (this.checked) {
+            teddySection.style.display = 'block';
+            teddyDesignSelect.disabled = false;
+      } else {
+            teddySection.style.display = 'none';
+            teddyDesignSelect.disabled = true;
+            teddyDesignSelect.value = 'vacio';
+            
+      // Limpiar la imagen si existe
+      const previewContainer = document.querySelector('.preview');
+      if (previewContainer.classList.contains('has-image')) {
+            previewContainer.classList.remove('has-image');
+            localStorage.removeItem('lastGeneratedImage');
+          }
+      }
+  });
+
   // Función para generar la imagen
   async function generateImage() {
     const arrangementType = document.getElementById("arrangement-type").value;
@@ -77,10 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const flowerColor = document.getElementById("flower-color").value;
     const wrapDesign = document.getElementById("wrap-design").value;
     const wrapColor = document.getElementById("wrap-color").value;
+    const addTeddy = addTeddyCheckbox.checked;
+    const teddyDesign = addTeddy ? document.getElementById("teddys-design").value : null;
 
     if (arrangementType === "vacio" || flowerMaterial === "vacio" || 
         flowerType === "vacio" || flowerQuantity === "vacio" || 
-        wrapDesign === "vacio") {
+        wrapDesign === "vacio" || (addTeddy && teddyDesign === "vacio")) {
       alert("Por favor, completa todas las opciones de personalización.");
       return;
     }
@@ -93,9 +118,24 @@ document.addEventListener('DOMContentLoaded', function() {
       const flowerColorName = getColorName(flowerColor);
       const wrapColorName = getColorName(wrapColor);
 
-      const prompt = `Un ${arrangementType} floral profesional compuesto por ${flowerQuantity} ${flowerType} ${flowerMaterial} de color ${flowerColorName}, 
-      envuelto en un diseño ${wrapDesign} de color ${wrapColorName}. La imagen debe ser realista, bien iluminada, 
-      con fondo neutro y estilo profesional de fotografía de producto. Alta calidad, detallada, 4K`;
+      let prompt = `Un ${arrangementType} floral profesional compuesto por ${flowerQuantity} ${flowerType} ${flowerMaterial} de color ${flowerColorName}, `;
+            prompt += `envuelto en un diseño ${wrapDesign} de color ${wrapColorName}. `;
+
+      if (addTeddy && teddyDesign !== "vacio") {
+                const teddyName = {
+                    'stitch': 'Stitch clásico azul',
+                    'angela': 'Angela (Stitch) rosado',
+                    'kitty': 'Hello Kitty',
+                    'kuromiN': 'Kuromi color negro',
+                    'kuromiM': 'Kuromi color morado',
+                    'bearRed': 'Oso hecho de mini rosas rojas',
+                    'bearPink': 'Oso hecho de mini rosas rosadas'
+                }[teddyDesign];
+                
+        prompt += `Incluye un peluche de ${teddyName} como parte del arreglo. `;
+      }
+
+      prompt += `La imagen debe ser realista, bien iluminada, con fondo neutro y estilo profesional de fotografía de producto. Alta calidad, detallada, 4K`;
 
       const response = await fetch("/generar-imagen", {
         method: "POST",

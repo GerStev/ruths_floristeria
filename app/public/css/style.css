@@ -427,6 +427,40 @@ las paginas */
     
 }
 
+/* Banner web */
+.banner-container{
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 30px;
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: pulseGlow 6s infinite ease-in-out;
+  box-shadow: 0 0 30px rgba(251, 111, 146, 0.4);
+}
+
+/* Animación estilo IA */
+@keyframes pulseGlow {
+  0% {
+    filter: drop-shadow(0 0 0px #fb6f92);
+  }
+  50% {
+    filter: drop-shadow(0 0 18px #fb6f92);
+  }
+  100% {
+    filter: drop-shadow(0 0 0px #fb6f92);
+  }
+}
+
+/* body del index */
 .titleTipo{
     display: flex;
     margin-top: 2.5rem;
